@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professor Anupam Yadav - NIT Jalandhar</title>
+    <title>Dr Anupam Yadav - NIT Jalandhar</title>
     <style>
-        /* Google font for better typography */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
         body {
@@ -17,30 +16,46 @@
 
         /* Header styling */
         header {
-            background-image: url('https://via.placeholder.com/1500x600'); /* Placeholder for background image */
-            background-size: cover;
-            background-position: center;
+            background-color: #004080;
             color: #fff;
+            padding: 60px 0;
             text-align: center;
-            padding: 100px 0;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
         }
 
+        /* Add logo and profile image */
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100px;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            margin-top: 20px;
+        }
+
+        /* Title and subtitle */
         header h1 {
             font-size: 3rem;
-            margin: 0;
+            margin: 20px 0 10px;
             letter-spacing: 2px;
         }
 
         header h2 {
             font-size: 1.5rem;
             font-weight: 300;
-            margin-top: 10px;
+            margin-bottom: 30px;
         }
 
         /* Navigation bar */
         nav {
-            background-color: #004080;
+            background-color: #00274d;
             padding: 15px;
             text-align: center;
         }
@@ -67,14 +82,14 @@
             color: #ffdd57;
         }
 
-        /* Main section */
+        /* Main content */
         section {
             padding: 40px;
-            text-align: center;
             background-color: #fff;
-            box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-            margin: -80px auto 40px;
+            margin: -40px auto 40px;
             width: 80%;
+            box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         section p {
@@ -84,31 +99,23 @@
             margin-bottom: 20px;
         }
 
-        /* Footer styling */
-        footer {
-            background-color: #004080;
-            color: #fff;
-            text-align: center;
-            padding: 15px;
-            position: relative;
-            bottom: 0;
-            width: 100%;
+        .degrees {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            text-align: left;
+            color: #333;
         }
 
-        footer p {
-            margin: 0;
+        .degrees ul {
+            list-style-type: none;
+            padding: 0;
         }
 
-        footer a {
-            color: #ffdd57;
-            text-decoration: none;
+        .degrees ul li {
+            margin-bottom: 10px;
+            font-weight: 500;
         }
 
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Button style */
         .button-primary {
             background-color: #ffdd57;
             color: #004080;
@@ -124,12 +131,40 @@
         .button-primary:hover {
             background-color: #ffc107;
         }
+
+        /* Footer styling */
+        footer {
+            background-color: #004080;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer a {
+            color: #ffdd57;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- Header section with background image -->
+    <!-- Header section with profile image and logo -->
     <header>
+        <!-- Institute logo placeholder -->
+        <img src="https://via.placeholder.com/100x100" alt="Logo_of_NIT_Jalandhar.png" class="logo">
+
+        <!-- Profile image placeholder -->
+        <img src="https://via.placeholder.com/150x150" alt="SSM02790.jpg class="profile-image">
+
         <h1>Professor Anupam Yadav</h1>
         <h2>Associate Professor, Department of Mathematics & Computing, NIT Jalandhar</h2>
     </header>
@@ -146,12 +181,25 @@
 
     <!-- Main content section -->
     <section>
-        <p>Welcome to my official website! I am an Associate Professor in the Department of Mathematics & Computing at NIT Jalandhar. My research interests include Swarm Intelligence, Evolutionary Computation, Artificial Intelligence, Optimization, and Explainable AI (XAI).</p>
-        <p>I have been actively engaged in guiding research, publishing scholarly articles, and contributing to the academic community through my work in machine learning and optimization techniques.</p>
+        <p>Welcome to my official website! I am an Associate Professor at NIT Jalandhar. My research interests include Swarm Intelligence, Evolutionary Computation, Artificial Intelligence, Optimization, and Explainable AI (XAI).</p>
+        <p>I am passionate about advancing the field of AI and mentoring the next generation of researchers and professionals in these areas.</p>
+        
+        <!-- Degrees and Qualifications -->
+        <div class="degrees">
+            <h3>Academic Degrees & Qualifications</h3>
+            <ul>
+                <li>Ph.D. in Optimization, IIT Roorkee (2013)</li>
+                <li>M.Sc. in Mathematics, Institute of Science, BHU (2008)</li>
+                <li>Specialization in Swarm Intelligence and Evolutionary Computation</li>
+                <li>Extensive Research in Explainable AI and Optimization Techniques</li>
+            </ul>
+        </div>
+
+        <!-- Call to action button -->
         <button class="button-primary" onclick="location.href='research.html'">Explore My Research</button>
     </section>
 
-    <!-- Footer with contact links -->
+    <!-- Footer with contact details -->
     <footer>
         <p>Email: <a href="mailto:anupam@nitj.ac.in">anupam@nitj.ac.in</a></p>
         <p><a href="https://github.com/anupuam">GitHub</a> | <a href="https://www.linkedin.com/in/anupuam/">LinkedIn</a></p>
