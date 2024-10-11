@@ -18,33 +18,32 @@
         header {
             background-color: #004080;
             color: #fff;
-            padding: 60px 0;
+            padding: 40px 0;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
             position: relative;
         }
 
-        /* Flex container for image and text */
+        /* Flex container for logo, image, and text */
         .header-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            max-width: 1000px;
+            max-width: 1200px;
             width: 100%;
             padding: 0 20px;
         }
 
-        /* Add logo and profile image */
+        /* Logo styling */
         .logo {
-            position: absolute;
-            top: 20px;
-            left: 20px;
             width: 100px;
             height: auto;
+            margin-right: 30px;
         }
 
+        /* Profile image styling */
         .profile-image {
             width: 150px;
             height: auto;
@@ -176,9 +175,12 @@
 </head>
 <body>
 
-    <!-- Header section with profile image and name side by side -->
+    <!-- Header section with logo, profile image, and name side by side -->
     <header>
         <div class="header-container">
+            <!-- Institute logo -->
+            <img src="Logo_of_NIT_Jalandhar.png" alt="Institute Logo" class="logo">
+
             <!-- Profile image -->
             <img src="SSM02790.JPG" alt="Profile Image" class="profile-image">
 
