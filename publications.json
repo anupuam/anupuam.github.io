@@ -1,0 +1,582 @@
+[
+  {
+    "id": "chauhan2027llm",
+    "type": "journal",
+    "year": 2027,
+    "authors": "Dikshit Chauhan, Bapi Dutta, Indu Bala, Niki van Stein, Thomas Bäck, and Anupam Yadav",
+    "title": "Large language models and evolutionary computation: A critical review of bidirectional interaction, automated algorithm design, and co-adaptive systems",
+    "venue": "Computer Science Review",
+    "details": "vol. 63, p. 101050",
+    "bibtex": "@article{chauhan2027llm,\n  author    = {Dikshit Chauhan and Bapi Dutta and Indu Bala and Niki van Stein and Thomas B{\\\"a}ck and Anupam Yadav},\n  title     = {Large language models and evolutionary computation: A critical review of bidirectional interaction, automated algorithm design, and co-adaptive systems},\n  journal   = {Computer Science Review},\n  volume    = {63},\n  pages     = {101050},\n  year      = {2027}\n}"
+  },
+  {
+    "id": "khurana2026binary",
+    "type": "journal",
+    "year": 2026,
+    "authors": "Deepika Khurana and Anupam Yadav",
+    "title": "A binary multi-objective optimization algorithm for large-scale feature selection problems",
+    "venue": "Evolving Systems",
+    "details": "vol. 17, p. 5. Springer, 2026",
+    "bibtex": "@article{khurana2026binary,\n  author  = {Deepika Khurana and Anupam Yadav},\n  title   = {A binary multi-objective optimization algorithm for large-scale feature selection problems},\n  journal = {Evolving Systems},\n  volume  = {17},\n  pages   = {5},\n  year    = {2026},\n  publisher = {Springer}\n}"
+  },
+  {
+    "id": "khurana2026monn",
+    "type": "journal",
+    "year": 2026,
+    "authors": "Deepika Khurana, Awdhesh Kumar Bind, and Anupam Yadav",
+    "title": "A multi-objective neural network approach for solving the non-linear fixed charge transportation problem",
+    "venue": "Cluster Computing",
+    "details": "vol. 29, p. 239. Springer, 2026",
+    "bibtex": "@article{khurana2026monn,\n  author  = {Deepika Khurana and Awdhesh Kumar Bind and Anupam Yadav},\n  title   = {A multi-objective neural network approach for solving the non-linear fixed charge transportation problem},\n  journal = {Cluster Computing},\n  volume  = {29},\n  pages   = {239},\n  year    = {2026},\n  publisher = {Springer}\n}"
+  },
+  {
+    "id": "gupta2026aco",
+    "type": "journal",
+    "year": 2026,
+    "authors": "Nitin Gupta and Anupam Yadav",
+    "title": "An interpretability framework for ant colony optimization in continuous domains",
+    "venue": "Swarm and Evolutionary Computation",
+    "details": "vol. 107, p. 102449. Elsevier, 2026",
+    "bibtex": "@article{gupta2026aco,\n  author  = {Nitin Gupta and Anupam Yadav},\n  title   = {An interpretability framework for ant colony optimization in continuous domains},\n  journal = {Swarm and Evolutionary Computation},\n  volume  = {107},\n  pages   = {102449},\n  year    = {2026},\n  publisher = {Elsevier}\n}"
+  },
+  {
+    "id": "chauhan2026chaotic",
+    "type": "journal",
+    "year": 2026,
+    "authors": "Dikshit Chauhan, Deepika Khurana, and Anupam Yadav",
+    "title": "Chaotic strategies-enhanced artificial electric field algorithm for combinatorial feature selection",
+    "venue": "Journal of Combinatorial Optimization",
+    "details": "vol. 51, p. 34. Springer, 2026",
+    "bibtex": "@article{chauhan2026chaotic,\n  author  = {Dikshit Chauhan and Deepika Khurana and Anupam Yadav},\n  title   = {Chaotic strategies-enhanced artificial electric field algorithm for combinatorial feature selection},\n  journal = {Journal of Combinatorial Optimization},\n  volume  = {51},\n  pages   = {34},\n  year    = {2026},\n  publisher = {Springer}\n}"
+  },
+  {
+    "id": "chauhan2026explainable",
+    "type": "journal",
+    "year": 2026,
+    "authors": "Dikshit Chauhan, Nitin Gupta, and Anupam Yadav",
+    "title": "An explainable reconfiguration-based artificial electric field algorithm for industrial and reliability-redundancy allocation problems",
+    "venue": "Evolving Systems",
+    "details": "vol. 17, p. 94. Springer, 2026",
+    "bibtex": "@article{chauhan2026explainable,\n  author  = {Dikshit Chauhan and Nitin Gupta and Anupam Yadav},\n  title   = {An explainable reconfiguration-based artificial electric field algorithm for industrial and reliability-redundancy allocation problems},\n  journal = {Evolving Systems},\n  volume  = {17},\n  pages   = {94},\n  year    = {2026},\n  publisher = {Springer}\n}"
+  },
+  {
+    "id": "chamoli2026uav",
+    "type": "journal",
+    "year": 2026,
+    "authors": "Shrishti Chamoli and Anupam Yadav",
+    "title": "An ensemble of swarm-based evolutionary learning strategies for UAV path-planning problem",
+    "venue": "Concurrency and Computation: Practice and Experience",
+    "details": "vol. 38, p. e70536. Wiley, 2026",
+    "bibtex": "@article{chamoli2026uav,\n  author  = {Shrishti Chamoli and Anupam Yadav},\n  title   = {An ensemble of swarm-based evolutionary learning strategies for {UAV} path-planning problem},\n  journal = {Concurrency and Computation: Practice and Experience},\n  volume  = {38},\n  pages   = {e70536},\n  year    = {2026},\n  publisher = {Wiley}\n}"
+  },
+  {
+    "id": "chauhan2025eaefa",
+    "type": "journal",
+    "year": 2025,
+    "authors": "Dikshit Chauhan, Anupam Yadav, and Rammohan Mallipeddi",
+    "title": "EAEFA-R: Multiple learning-based ensemble artificial electric field algorithm for global optimization",
+    "venue": "Knowledge-Based Systems",
+    "details": "p. 113453. Elsevier, 2025",
+    "bibtex": "@article{chauhan2025eaefa,\n  author  = {Dikshit Chauhan and Anupam Yadav and Rammohan Mallipeddi},\n  title   = {{EAEFA-R}: Multiple learning-based ensemble artificial electric field algorithm for global optimization},\n  journal = {Knowledge-Based Systems},\n  pages   = {113453},\n  year    = {2025},\n  publisher = {Elsevier}\n}"
+  },
+  {
+    "id": "chauhan2025aefafdb",
+    "type": "journal",
+    "year": 2025,
+    "authors": "Dikshit Chauhan, Anupam Yadav, and Sung-Bae Cho",
+    "title": "AEFA-FDB: A score-based artificial electric field algorithm for optimal reactive power dispatch problem with renewable and load demand uncertainties",
+    "venue": "Applied Soft Computing",
+    "details": "p. 113292. Elsevier, 2025",
+    "bibtex": "@article{chauhan2025aefafdb,\n  author  = {Dikshit Chauhan and Anupam Yadav and Sung-Bae Cho},\n  title   = {{AEFA-FDB}: A score-based artificial electric field algorithm for optimal reactive power dispatch problem with renewable and load demand uncertainties},\n  journal = {Applied Soft Computing},\n  pages   = {113292},\n  year    = {2025},\n  publisher = {Elsevier}\n}"
+  },
+  {
+    "id": "chauhan2025multimodal",
+    "type": "journal",
+    "year": 2025,
+    "authors": "Dikshit Chauhan, Shivani, Donghwi Jung, and Anupam Yadav",
+    "title": "Advancements in multimodal differential evolution: A comprehensive review and future perspectives",
+    "venue": "Artificial Intelligence Review",
+    "details": "Springer Netherlands, Aug 2025",
+    "bibtex": "@article{chauhan2025multimodal,\n  author  = {Dikshit Chauhan and Shivani and Donghwi Jung and Anupam Yadav},\n  title   = {Advancements in multimodal differential evolution: {A} comprehensive review and future perspectives},\n  journal = {Artificial Intelligence Review},\n  year    = {2025},\n  publisher = {Springer Netherlands}\n}"
+  },
+  {
+    "id": "chauhan2024stability",
+    "type": "journal",
+    "year": 2024,
+    "authors": "Dikshit Chauhan and Anupam Yadav",
+    "title": "Stability and agent dynamics of artificial electric field algorithm",
+    "venue": "The Journal of Supercomputing",
+    "details": "vol. 80, pp. 835–864. Springer, 2024",
+    "bibtex": "@article{chauhan2024stability,\n  author  = {Dikshit Chauhan and Anupam Yadav},\n  title   = {Stability and agent dynamics of artificial electric field algorithm},\n  journal = {The Journal of Supercomputing},\n  volume  = {80},\n  pages   = {835--864},\n  year    = {2024},\n  publisher = {Springer}\n}"
+  },
+  {
+    "id": "chauhan2024survey",
+    "type": "journal",
+    "year": 2024,
+    "authors": "Dikshit Chauhan and Anupam Yadav",
+    "title": "A comprehensive survey on artificial electric field algorithm: Theories and applications",
+    "venue": "Archives of Computational Methods in Engineering",
+    "details": "pp. 1–53. Springer, 2024",
+    "bibtex": "@article{chauhan2024survey,\n  author  = {Dikshit Chauhan and Anupam Yadav},\n  title   = {A comprehensive survey on artificial electric field algorithm: Theories and applications},\n  journal = {Archives of Computational Methods in Engineering},\n  pages   = {1--53},\n  year    = {2024},\n  publisher = {Springer}\n}"
+  },
+  {
+    "id": "chauhan2024archive",
+    "type": "journal",
+    "year": 2024,
+    "authors": "Dikshit Chauhan and Anupam Yadav",
+    "title": "An archive-based self-adaptive artificial electric field algorithm with orthogonal initialization for real-parameter optimization problems",
+    "venue": "Applied Soft Computing",
+    "details": "vol. 150, p. 111109. Elsevier, 2024",
+    "bibtex": "@article{chauhan2024archive,\n  author  = {Dikshit Chauhan and Anupam Yadav},\n  title   = {An archive-based self-adaptive artificial electric field algorithm with orthogonal initialization for real-parameter optimization problems},\n  journal = {Applied Soft Computing},\n  volume  = {150},\n  pages   = {111109},\n  year    = {2024},\n  publisher = {Elsevier}\n}"
+  },
+  {
+    "id": "chauhan2024uaefa",
+    "type": "journal",
+    "year": 2024,
+    "authors": "Dikshit Chauhan, Anupam Trivedi, and Anupam Yadav",
+    "title": "U-AEFA: Online and offline learning-based unified artificial electric field algorithm for real parameter optimization",
+    "venue": "Knowledge-Based Systems",
+    "details": "vol. 305, p. 112636. Elsevier, 2024",
+    "bibtex": "@article{chauhan2024uaefa,\n  author  = {Dikshit Chauhan and Anupam Trivedi and Anupam Yadav},\n  title   = {{U-AEFA}: Online and offline learning-based unified artificial electric field algorithm for real parameter optimization},\n  journal = {Knowledge-Based Systems},\n  volume  = {305},\n  pages   = {112636},\n  year    = {2024},\n  publisher = {Elsevier}\n}"
+  },
+  {
+    "id": "bala2024water",
+    "type": "journal",
+    "year": 2024,
+    "authors": "Indu Bala, Anupam Yadav, and Joong Hoon Kim",
+    "title": "Optimization for cost-effective design of water distribution networks: a comprehensive learning approach",
+    "venue": "Evolutionary Intelligence",
+    "details": "pp. 1–33. Springer, 2024",
+    "bibtex": "@article{bala2024water,\n  author  = {Indu Bala and Anupam Yadav and Joong Hoon Kim},\n  title   = {Optimization for cost-effective design of water distribution networks: a comprehensive learning approach},\n  journal = {Evolutionary Intelligence},\n  pages   = {1--33},\n  year    = {2024},\n  publisher = {Springer}\n}"
+  },
+  {
+    "id": "khurana2023mona",
+    "type": "journal",
+    "year": 2023,
+    "authors": "Deepika Khurana, Anupam Yadav, and Ali Sadollah",
+    "title": "A non-dominated sorting based multi-objective neural network algorithm",
+    "venue": "MethodsX",
+    "details": "vol. 10, p. 102152. Elsevier, 2023",
+    "bibtex": "@article{khurana2023mona,\n  author  = {Deepika Khurana and Anupam Yadav and Ali Sadollah},\n  title   = {A non-dominated sorting based multi-objective neural network algorithm},\n  journal = {MethodsX},\n  volume  = {10},\n  pages   = {102152},\n  year    = {2023},\n  publisher = {Elsevier}\n}"
+  },
+  {
+    "id": "chauhan2023multiagent",
+    "type": "journal",
+    "year": 2023,
+    "authors": "Dikshit Chauhan, Anupam Yadav, and Ferrante Neri",
+    "title": "A multi-agent optimization algorithm and its application to training multilayer perceptron models",
+    "venue": "Evolving Systems",
+    "details": "pp. 1–31. Springer, 2023",
+    "bibtex": "@article{chauhan2023multiagent,\n  author  = {Dikshit Chauhan and Anupam Yadav and Ferrante Neri},\n  title   = {A multi-agent optimization algorithm and its application to training multilayer perceptron models},\n  journal = {Evolving Systems},\n  pages   = {1--31},\n  year    = {2023},\n  publisher = {Springer}\n}"
+  },
+  {
+    "id": "chauhan2023hapf",
+    "type": "journal",
+    "year": 2023,
+    "authors": "Dikshit Chauhan and Anupam Yadav",
+    "title": "Optimizing the parameters of hybrid active power filters through a comprehensive and dynamic multi-swarm gravitational search algorithm",
+    "venue": "Engineering Applications of Artificial Intelligence",
+    "details": "vol. 123, p. 106469. Elsevier, 2023",
+    "bibtex": "@article{chauhan2023hapf,\n  author  = {Dikshit Chauhan and Anupam Yadav},\n  title   = {Optimizing the parameters of hybrid active power filters through a comprehensive and dynamic multi-swarm gravitational search algorithm},\n  journal = {Engineering Applications of Artificial Intelligence},\n  volume  = {123},\n  pages   = {106469},\n  year    = {2023},\n  publisher = {Elsevier}\n}"
+  },
+  {
+    "id": "chauhan2023crossover",
+    "type": "journal",
+    "year": 2023,
+    "authors": "Dikshit Chauhan and Anupam Yadav",
+    "title": "A crossover-based optimization algorithm for multilevel image segmentation",
+    "venue": "Soft Computing",
+    "details": "pp. 1–33. Springer, 2023",
+    "bibtex": "@article{chauhan2023crossover,\n  author  = {Dikshit Chauhan and Anupam Yadav},\n  title   = {A crossover-based optimization algorithm for multilevel image segmentation},\n  journal = {Soft Computing},\n  pages   = {1--33},\n  year    = {2023},\n  publisher = {Springer}\n}"
+  },
+  {
+    "id": "chauhan2023cc",
+    "type": "journal",
+    "year": 2023,
+    "authors": "Dikshit Chauhan and Anupam Yadav",
+    "title": "A competitive and collaborative-based multilevel hierarchical artificial electric field algorithm for global optimization",
+    "venue": "Information Sciences",
+    "details": "vol. 648, p. 119535. Elsevier, 2023",
+    "bibtex": "@article{chauhan2023cc,\n  author  = {Dikshit Chauhan and Anupam Yadav},\n  title   = {A competitive and collaborative-based multilevel hierarchical artificial electric field algorithm for global optimization},\n  journal = {Information Sciences},\n  volume  = {648},\n  pages   = {119535},\n  year    = {2023},\n  publisher = {Elsevier}\n}"
+  },
+  {
+    "id": "chauhan2023binary",
+    "type": "journal",
+    "year": 2023,
+    "authors": "Dikshit Chauhan and Anupam Yadav",
+    "title": "Binary artificial electric field algorithm",
+    "venue": "Evolutionary Intelligence",
+    "details": "vol. 16, pp. 1155–1183. Springer, 2023",
+    "bibtex": "@article{chauhan2023binary,\n  author  = {Dikshit Chauhan and Anupam Yadav},\n  title   = {Binary artificial electric field algorithm},\n  journal = {Evolutionary Intelligence},\n  volume  = {16},\n  pages   = {1155--1183},\n  year    = {2023},\n  publisher = {Springer}\n}"
+  },
+  {
+    "id": "chauhan2023adaptive",
+    "type": "journal",
+    "year": 2023,
+    "authors": "Dikshit Chauhan and Anupam Yadav",
+    "title": "An adaptive artificial electric field algorithm for continuous optimization problems",
+    "venue": "Expert Systems",
+    "details": "p. e13380. Wiley, 2023",
+    "bibtex": "@article{chauhan2023adaptive,\n  author  = {Dikshit Chauhan and Anupam Yadav},\n  title   = {An adaptive artificial electric field algorithm for continuous optimization problems},\n  journal = {Expert Systems},\n  pages   = {e13380},\n  year    = {2023},\n  publisher = {Wiley}\n}"
+  },
+  {
+    "id": "sajwan2022exploratory",
+    "type": "journal",
+    "year": 2022,
+    "authors": "Anita Sajwan and Anupam Yadav",
+    "title": "A study of exploratory and stability analysis of artificial electric field algorithm",
+    "venue": "Applied Intelligence",
+    "details": "vol. 52, pp. 10805–10828. Springer, 2022",
+    "bibtex": "@article{sajwan2022exploratory,\n  author  = {Anita Sajwan and Anupam Yadav},\n  title   = {A study of exploratory and stability analysis of artificial electric field algorithm},\n  journal = {Applied Intelligence},\n  volume  = {52},\n  pages   = {10805--10828},\n  year    = {2022},\n  publisher = {Springer}\n}"
+  },
+  {
+    "id": "bala2022niching",
+    "type": "journal",
+    "year": 2022,
+    "authors": "Indu Bala and Anupam Yadav",
+    "title": "Niching comprehensive learning gravitational search algorithm for multimodal optimization problems",
+    "venue": "Evolutionary Intelligence",
+    "details": "vol. 15, pp. 695–721. Springer, 2022",
+    "bibtex": "@article{bala2022niching,\n  author  = {Indu Bala and Anupam Yadav},\n  title   = {Niching comprehensive learning gravitational search algorithm for multimodal optimization problems},\n  journal = {Evolutionary Intelligence},\n  volume  = {15},\n  pages   = {695--721},\n  year    = {2022},\n  publisher = {Springer}\n}"
+  },
+  {
+    "id": "anita2021wbc",
+    "type": "journal",
+    "year": 2021,
+    "authors": "Anita and Anupam Yadav",
+    "title": "An intelligent model for the detection of white blood cells using artificial intelligence",
+    "venue": "Computer Methods and Programs in Biomedicine",
+    "details": "vol. 199, p. 105893. Elsevier, 2021",
+    "bibtex": "@article{anita2021wbc,\n  author  = {Anita and Anupam Yadav},\n  title   = {An intelligent model for the detection of white blood cells using artificial intelligence},\n  journal = {Computer Methods and Programs in Biomedicine},\n  volume  = {199},\n  pages   = {105893},\n  year    = {2021},\n  publisher = {Elsevier}\n}"
+  },
+  {
+    "id": "yadav2020mine",
+    "type": "journal",
+    "year": 2020,
+    "authors": "Anupam Yadav, Ali Sadollah, Neha Yadav, and Joong-Hoon Kim",
+    "title": "Self-adaptive global mine blast algorithm for numerical optimization",
+    "venue": "Neural Computing and Applications",
+    "details": "vol. 32, pp. 2423–2444. Springer, 2020",
+    "bibtex": "@article{yadav2020mine,\n  author  = {Anupam Yadav and Ali Sadollah and Neha Yadav and Joong-Hoon Kim},\n  title   = {Self-adaptive global mine blast algorithm for numerical optimization},\n  journal = {Neural Computing and Applications},\n  volume  = {32},\n  pages   = {2423--2444},\n  year    = {2020},\n  publisher = {Springer}\n}"
+  },
+  {
+    "id": "anita2020aefa",
+    "type": "journal",
+    "year": 2020,
+    "authors": "Anita, Anupam Yadav, and Nitin Kumar",
+    "title": "Artificial electric field algorithm for engineering optimization problems",
+    "venue": "Expert Systems with Applications",
+    "details": "vol. 149, p. 113308. Pergamon, 2020",
+    "bibtex": "@article{anita2020aefa,\n  author  = {Anita and Anupam Yadav and Nitin Kumar},\n  title   = {Artificial electric field algorithm for engineering optimization problems},\n  journal = {Expert Systems with Applications},\n  volume  = {149},\n  pages   = {113308},\n  year    = {2020},\n  publisher = {Pergamon}\n}"
+  },
+  {
+    "id": "anita2020discrete",
+    "type": "journal",
+    "year": 2020,
+    "authors": "Anita and Anupam Yadav",
+    "title": "Discrete artificial electric field algorithm for high-order graph matching",
+    "venue": "Applied Soft Computing",
+    "details": "vol. 92, p. 106260. Elsevier, 2020",
+    "bibtex": "@article{anita2020discrete,\n  author  = {Anita and Anupam Yadav},\n  title   = {Discrete artificial electric field algorithm for high-order graph matching},\n  journal = {Applied Soft Computing},\n  volume  = {92},\n  pages   = {106260},\n  year    = {2020},\n  publisher = {Elsevier}\n}"
+  },
+  {
+    "id": "yadav2019softcomp",
+    "type": "journal",
+    "year": 2019,
+    "authors": "Anupam Yadav, Neha Yadav, Joong Hoon Kim, and Ali Sadollah",
+    "title": "Recent advances in soft computing and its applications",
+    "venue": "Journal of Experimental & Theoretical Artificial Intelligence",
+    "details": "vol. 31, pp. 699–700. Taylor & Francis, 2019",
+    "bibtex": "@article{yadav2019softcomp,\n  author  = {Anupam Yadav and Neha Yadav and Joong Hoon Kim and Ali Sadollah},\n  title   = {Recent advances in soft computing and its applications},\n  journal = {Journal of Experimental \\& Theoretical Artificial Intelligence},\n  volume  = {31},\n  pages   = {699--700},\n  year    = {2019}\n}"
+  },
+  {
+    "id": "sayyaadi2019water",
+    "type": "journal",
+    "year": 2019,
+    "authors": "Hassan Sayyaadi, Ali Sadollah, Anupam Yadav, and Neha Yadav",
+    "title": "Stability and iterative convergence of water cycle algorithm for computationally expensive and combinatorial internet shopping optimisation problems",
+    "venue": "Journal of Experimental & Theoretical Artificial Intelligence",
+    "details": "vol. 31, pp. 701–721. Taylor & Francis, 2019",
+    "bibtex": "@article{sayyaadi2019water,\n  author  = {Hassan Sayyaadi and Ali Sadollah and Anupam Yadav and Neha Yadav},\n  title   = {Stability and iterative convergence of water cycle algorithm for computationally expensive and combinatorial internet shopping optimisation problems},\n  journal = {Journal of Experimental \\& Theoretical Artificial Intelligence},\n  volume  = {31},\n  pages   = {701--721},\n  year    = {2019}\n}"
+  },
+  {
+    "id": "bala2019clgsa",
+    "type": "journal",
+    "year": 2019,
+    "authors": "Indu Bala and Anupam Yadav",
+    "title": "Comprehensive learning gravitational search algorithm for global optimization of multimodal functions",
+    "venue": "Neural Computing and Applications",
+    "details": "pp. 1–36. Springer, 2019",
+    "bibtex": "@article{bala2019clgsa,\n  author  = {Indu Bala and Anupam Yadav},\n  title   = {Comprehensive learning gravitational search algorithm for global optimization of multimodal functions},\n  journal = {Neural Computing and Applications},\n  pages   = {1--36},\n  year    = {2019},\n  publisher = {Springer}\n}"
+  },
+  {
+    "id": "anita2019aefa",
+    "type": "journal",
+    "year": 2019,
+    "authors": "Anita and Anupam Yadav",
+    "title": "AEFA: Artificial electric field algorithm for global optimization",
+    "venue": "Swarm and Evolutionary Computation",
+    "details": "vol. 48, pp. 93–108. Elsevier, 2019",
+    "bibtex": "@article{anita2019aefa,\n  author  = {Anita and Anupam Yadav},\n  title   = {{AEFA}: Artificial electric field algorithm for global optimization},\n  journal = {Swarm and Evolutionary Computation},\n  volume  = {48},\n  pages   = {93--108},\n  year    = {2019},\n  publisher = {Elsevier}\n}"
+  },
+  {
+    "id": "sadollah2018nna",
+    "type": "journal",
+    "year": 2018,
+    "authors": "Ali Sadollah, Hassan Sayyaadi, and Anupam Yadav",
+    "title": "A dynamic metaheuristic optimization model inspired by biological nervous systems: Neural network algorithm",
+    "venue": "Applied Soft Computing",
+    "details": "vol. 71, pp. 747–782. Elsevier, 2018",
+    "bibtex": "@article{sadollah2018nna,\n  author  = {Ali Sadollah and Hassan Sayyaadi and Anupam Yadav},\n  title   = {A dynamic metaheuristic optimization model inspired by biological nervous systems: Neural network algorithm},\n  journal = {Applied Soft Computing},\n  volume  = {71},\n  pages   = {747--782},\n  year    = {2018},\n  publisher = {Elsevier}\n}"
+  },
+  {
+    "id": "yadav2017troesch",
+    "type": "journal",
+    "year": 2017,
+    "authors": "Neha Yadav, Anupam Yadav, Manoj Kumar, and Joong Hoon Kim",
+    "title": "An efficient algorithm based on artificial neural networks and particle swarm optimization for solution of nonlinear Troesch's problem",
+    "venue": "Neural Computing and Applications",
+    "details": "vol. 28, pp. 171–178. Springer, 2017",
+    "bibtex": "@article{yadav2017troesch,\n  author  = {Neha Yadav and Anupam Yadav and Manoj Kumar and Joong Hoon Kim},\n  title   = {An efficient algorithm based on artificial neural networks and particle swarm optimization for solution of nonlinear {Troesch's} problem},\n  journal = {Neural Computing and Applications},\n  volume  = {28},\n  pages   = {171--178},\n  year    = {2017},\n  publisher = {Springer}\n}"
+  },
+  {
+    "id": "yadav2016advection",
+    "type": "journal",
+    "year": 2016,
+    "authors": "Neha Yadav, Anupam Yadav, and Joong Hoon Kim",
+    "title": "Numerical solution of unsteady advection dispersion equation arising in contaminant transport through porous media using neural networks",
+    "venue": "Computers & Mathematics with Applications",
+    "details": "vol. 72, pp. 1021–1030. Pergamon, 2016",
+    "bibtex": "@article{yadav2016advection,\n  author  = {Neha Yadav and Anupam Yadav and Joong Hoon Kim},\n  title   = {Numerical solution of unsteady advection dispersion equation arising in contaminant transport through porous media using neural networks},\n  journal = {Computers \\& Mathematics with Applications},\n  volume  = {72},\n  pages   = {1021--1030},\n  year    = {2016},\n  publisher = {Pergamon}\n}"
+  },
+  {
+    "id": "yadav2016gso",
+    "type": "journal",
+    "year": 2016,
+    "authors": "Anupam Yadav, Kusum Deep, Joong Hoon Kim, and Atulya K Nagar",
+    "title": "Gravitational swarm optimizer for global optimization",
+    "venue": "Swarm and Evolutionary Computation",
+    "details": "vol. 31, pp. 64–89. Elsevier, 2016",
+    "bibtex": "@article{yadav2016gso,\n  author  = {Anupam Yadav and Kusum Deep and Joong Hoon Kim and Atulya K Nagar},\n  title   = {Gravitational swarm optimizer for global optimization},\n  journal = {Swarm and Evolutionary Computation},\n  volume  = {31},\n  pages   = {64--89},\n  year    = {2016},\n  publisher = {Elsevier}\n}"
+  },
+  {
+    "id": "yadav2016shrinking",
+    "type": "journal",
+    "year": 2016,
+    "authors": "Anupam Yadav and Kusum Deep",
+    "title": "A shrinking hypersphere PSO for engineering optimisation problems",
+    "venue": "Journal of Experimental & Theoretical Artificial Intelligence",
+    "details": "vol. 28, pp. 1–33. Taylor & Francis, 2016",
+    "bibtex": "@article{yadav2016shrinking,\n  author  = {Anupam Yadav and Kusum Deep},\n  title   = {A shrinking hypersphere {PSO} for engineering optimisation problems},\n  journal = {Journal of Experimental \\& Theoretical Artificial Intelligence},\n  volume  = {28},\n  pages   = {1--33},\n  year    = {2016}\n}"
+  },
+  {
+    "id": "yadav2014coswarm",
+    "type": "journal",
+    "year": 2014,
+    "authors": "Anupam Yadav and Kusum Deep",
+    "title": "An efficient co-swarm particle swarm optimization for non-linear constrained optimization",
+    "venue": "Journal of Computational Science",
+    "details": "vol. 5, pp. 258–268. Elsevier, 2014",
+    "bibtex": "@article{yadav2014coswarm,\n  author  = {Anupam Yadav and Kusum Deep},\n  title   = {An efficient co-swarm particle swarm optimization for non-linear constrained optimization},\n  journal = {Journal of Computational Science},\n  volume  = {5},\n  pages   = {258--268},\n  year    = {2014},\n  publisher = {Elsevier}\n}"
+  },
+  {
+    "id": "yadav2013shrinking",
+    "type": "journal",
+    "year": 2013,
+    "authors": "Anupam Yadav and Kusum Deep",
+    "title": "Shrinking hypersphere based trajectory of particles in PSO",
+    "venue": "Applied Mathematics and Computation",
+    "details": "vol. 220, pp. 246–267. Elsevier, 2013",
+    "bibtex": "@article{yadav2013shrinking,\n  author  = {Anupam Yadav and Kusum Deep},\n  title   = {Shrinking hypersphere based trajectory of particles in {PSO}},\n  journal = {Applied Mathematics and Computation},\n  volume  = {220},\n  pages   = {246--267},\n  year    = {2013},\n  publisher = {Elsevier}\n}"
+  },
+  {
+    "id": "yadav2013gsa",
+    "type": "journal",
+    "year": 2013,
+    "authors": "Anupam Yadav and Kusum Deep",
+    "title": "Constrained optimization using gravitational search algorithm",
+    "venue": "National Academy Science Letters",
+    "details": "vol. 36, pp. 527–534. Springer India, 2013",
+    "bibtex": "@article{yadav2013gsa,\n  author  = {Anupam Yadav and Kusum Deep},\n  title   = {Constrained optimization using gravitational search algorithm},\n  journal = {National Academy Science Letters},\n  volume  = {36},\n  pages   = {527--534},\n  year    = {2013},\n  publisher = {Springer India}\n}"
+  },
+  {
+    "id": "yadav2012harmonic",
+    "type": "journal",
+    "year": 2012,
+    "authors": "Anupam Yadav, Kusum Deep, and Sushil Kumar",
+    "title": "An harmonic potential well based particle swarm optimization",
+    "venue": "Journal of Information and Operations Management",
+    "details": "vol. 3, p. 70. Bioinfo Publications, 2012",
+    "bibtex": "@article{yadav2012harmonic,\n  author  = {Anupam Yadav and Kusum Deep and Sushil Kumar},\n  title   = {An harmonic potential well based particle swarm optimization},\n  journal = {Journal of Information and Operations Management},\n  volume  = {3},\n  pages   = {70},\n  year    = {2012},\n  publisher = {Bioinfo Publications}\n}"
+  },
+  {
+    "id": "deep2012earthquake",
+    "type": "journal",
+    "year": 2012,
+    "authors": "Kusum Deep, Anupam Yadav, and Sushil Kumar",
+    "title": "Improving local and regional earthquake locations using an advance inversion technique: Particle swarm optimization",
+    "venue": "World Journal of Modelling and Simulation",
+    "details": "vol. 8, pp. 135–141, 2012",
+    "bibtex": "@article{deep2012earthquake,\n  author  = {Kusum Deep and Anupam Yadav and Sushil Kumar},\n  title   = {Improving local and regional earthquake locations using an advance inversion technique: Particle swarm optimization},\n  journal = {World Journal of Modelling and Simulation},\n  volume  = {8},\n  pages   = {135--141},\n  year    = {2012}\n}"
+  },
+  {
+    "id": "gupta2025gecco",
+    "type": "conference",
+    "year": 2025,
+    "authors": "Nitin Gupta, Indu Bala, Bapi Dutta, Luis Martínez, and Anupam Yadav",
+    "title": "Enhancing explainability and reliable decision-making in particle swarm optimization through communication topologies",
+    "venue": "GECCO '25 Companion",
+    "details": "10.1145/3712255.3726658, 2025",
+    "bibtex": "@inproceedings{gupta2025gecco,\n  author    = {Nitin Gupta and Indu Bala and Bapi Dutta and Luis Mart{\\'{i}}nez and Anupam Yadav},\n  title     = {Enhancing explainability and reliable decision-making in particle swarm optimization through communication topologies},\n  booktitle = {Genetic and Evolutionary Computation Conference (GECCO '25 Companion)},\n  doi       = {10.1145/3712255.3726658},\n  year      = {2025}\n}"
+  },
+  {
+    "id": "chauhan2025binary",
+    "type": "conference",
+    "year": 2025,
+    "authors": "Dikshit Chauhan and Anupam Yadav",
+    "title": "Binary AEFA for solving combinatorial optimization problems",
+    "venue": "Recent Trends in Communication and Intelligent Systems: Proceedings of ICRTCIS 2025",
+    "details": "p. 117. Springer Nature, 2025",
+    "bibtex": "@inproceedings{chauhan2025binary,\n  author    = {Dikshit Chauhan and Anupam Yadav},\n  title     = {Binary {AEFA} for solving combinatorial optimization problems},\n  booktitle = {Recent Trends in Communication and Intelligent Systems: Proceedings of ICRTCIS 2025},\n  pages     = {117},\n  year      = {2025},\n  publisher = {Springer Nature}\n}"
+  },
+  {
+    "id": "chauhan2022xor",
+    "type": "conference",
+    "year": 2022,
+    "authors": "Dikshit Chauhan and Anupam Yadav",
+    "title": "XOR-based binary AEFA: theoretical studies and applications",
+    "venue": "2022 IEEE Symposium Series on Computational Intelligence (SSCI)",
+    "details": "pp. 1706–1713. IEEE, 2022",
+    "bibtex": "@inproceedings{chauhan2022xor,\n  author    = {Dikshit Chauhan and Anupam Yadav},\n  title     = {{XOR}-based binary {AEFA}: theoretical studies and applications},\n  booktitle = {2022 {IEEE} Symposium Series on Computational Intelligence ({SSCI})},\n  pages     = {1706--1713},\n  year      = {2022},\n  publisher = {IEEE}\n}"
+  },
+  {
+    "id": "chauhan2022cec",
+    "type": "conference",
+    "year": 2022,
+    "authors": "Dikshit Chauhan and Anupam Yadav",
+    "title": "Performance of artificial electric field algorithm on 100 digit challenge benchmark problems (CEC-2019)",
+    "venue": "Proceedings of Academia-Industry Consortium for Data Science: AICDS 2020",
+    "details": "p. 387. Springer Nature, 2022",
+    "bibtex": "@inproceedings{chauhan2022cec,\n  author    = {Dikshit Chauhan and Anupam Yadav},\n  title     = {Performance of artificial electric field algorithm on 100 digit challenge benchmark problems ({CEC-2019})},\n  booktitle = {Proceedings of Academia-Industry Consortium for Data Science: {AICDS} 2020},\n  pages     = {387},\n  year      = {2022},\n  publisher = {Springer Nature}\n}"
+  },
+  {
+    "id": "chauhan2022hybrid",
+    "type": "conference",
+    "year": 2022,
+    "authors": "Dikshit Chauhan and Anupam Yadav",
+    "title": "A hybrid of artificial electric field algorithm and differential evolution for continuous optimization problems",
+    "venue": "Proceedings of 7th International Conference on Harmony Search, Soft Computing, and Applications: ICHSA 2022",
+    "details": "pp. 507–520. Springer Nature Singapore, 2022",
+    "bibtex": "@inproceedings{chauhan2022hybrid,\n  author    = {Dikshit Chauhan and Anupam Yadav},\n  title     = {A hybrid of artificial electric field algorithm and differential evolution for continuous optimization problems},\n  booktitle = {Proceedings of 7th International Conference on Harmony Search, Soft Computing, and Applications: ICHSA 2022},\n  pages     = {507--520},\n  year      = {2022},\n  publisher = {Springer Nature Singapore}\n}"
+  },
+  {
+    "id": "bala2022reactive",
+    "type": "conference",
+    "year": 2022,
+    "authors": "Indu Bala and Anupam Yadav",
+    "title": "Optimizing reactive power of IEEE-14 bus system using artificial electric field algorithm",
+    "venue": "Congress on Intelligent Systems",
+    "details": "pp. 651–665. Springer Nature Singapore, 2022",
+    "bibtex": "@inproceedings{bala2022reactive,\n  author    = {Indu Bala and Anupam Yadav},\n  title     = {Optimizing reactive power of {IEEE-14} bus system using artificial electric field algorithm},\n  booktitle = {Congress on Intelligent Systems},\n  pages     = {651--665},\n  year      = {2022},\n  publisher = {Springer Nature Singapore}\n}"
+  },
+  {
+    "id": "anita2021qap",
+    "type": "conference",
+    "year": 2021,
+    "authors": "Anita, Anupam Yadav, Nitin Kumar, and Joong Hoon Kim",
+    "title": "Development of discrete artificial electric field algorithm for quadratic assignment problems",
+    "venue": "Proceedings of 6th International Conference on Harmony Search, Soft Computing, and Applications: ICHSA 2020, Istanbul",
+    "details": "pp. 411–421. Springer Singapore, 2021",
+    "bibtex": "@inproceedings{anita2021qap,\n  author    = {Anita and Anupam Yadav and Nitin Kumar and Joong Hoon Kim},\n  title     = {Development of discrete artificial electric field algorithm for quadratic assignment problems},\n  booktitle = {Proceedings of 6th International Conference on Harmony Search, Soft Computing, and Applications: ICHSA 2020, Istanbul},\n  pages     = {411--421},\n  year      = {2021},\n  publisher = {Springer Singapore}\n}"
+  },
+  {
+    "id": "anita2021eld",
+    "type": "conference",
+    "year": 2021,
+    "authors": "Anita, Anupam Yadav, and Nitin Kumar",
+    "title": "Application of artificial electric field algorithm for economic load dispatch problem",
+    "venue": "Proceedings of the 11th International Conference on Soft Computing and Pattern Recognition (SoCPaR 2019)",
+    "details": "pp. 71–79. Springer International Publishing, 2021",
+    "bibtex": "@inproceedings{anita2021eld,\n  author    = {Anita and Anupam Yadav and Nitin Kumar},\n  title     = {Application of artificial electric field algorithm for economic load dispatch problem},\n  booktitle = {Proceedings of the 11th International Conference on Soft Computing and Pattern Recognition ({SoCPaR} 2019)},\n  pages     = {71--79},\n  year      = {2021},\n  publisher = {Springer International Publishing}\n}"
+  },
+  {
+    "id": "bala2020reactive",
+    "type": "conference",
+    "year": 2020,
+    "authors": "Indu Bala and Anupam Yadav",
+    "title": "Optimal reactive power dispatch using gravitational search algorithm to solve IEEE-14 bus system",
+    "venue": "Communication and Intelligent Systems: Proceedings of ICCIS 2019",
+    "details": "pp. 463–473. Springer Singapore, 2020",
+    "bibtex": "@inproceedings{bala2020reactive,\n  author    = {Indu Bala and Anupam Yadav},\n  title     = {Optimal reactive power dispatch using gravitational search algorithm to solve {IEEE-14} bus system},\n  booktitle = {Communication and Intelligent Systems: Proceedings of {ICCIS} 2019},\n  pages     = {463--473},\n  year      = {2020},\n  publisher = {Springer Singapore}\n}"
+  },
+  {
+    "id": "anita2020cec",
+    "type": "conference",
+    "year": 2020,
+    "authors": "Anita, Anupam Yadav, and Nitin Kumar",
+    "title": "Artificial electric field algorithm for solving real parameter CEC 2017 benchmark problems",
+    "venue": "Soft Computing for Problem Solving 2019: Proceedings of SocProS 2019, Volume 1",
+    "details": "pp. 161–169. Springer Singapore, 2020",
+    "bibtex": "@inproceedings{anita2020cec,\n  author    = {Anita and Anupam Yadav and Nitin Kumar},\n  title     = {Artificial electric field algorithm for solving real parameter {CEC} 2017 benchmark problems},\n  booktitle = {Soft Computing for Problem Solving 2019: Proceedings of SocProS 2019, Volume 1},\n  pages     = {161--169},\n  year      = {2020},\n  publisher = {Springer Singapore}\n}"
+  },
+  {
+    "id": "bala2019gsa",
+    "type": "conference",
+    "year": 2019,
+    "authors": "Indu Bala and Anupam Yadav",
+    "title": "Gravitational search algorithm: a state-of-the-art review",
+    "venue": "Harmony Search and Nature Inspired Optimization Algorithms: Theory and Applications, ICHSA 2018",
+    "details": "pp. 27–37. Springer Singapore, 2019",
+    "bibtex": "@inproceedings{bala2019gsa,\n  author    = {Indu Bala and Anupam Yadav},\n  title     = {Gravitational search algorithm: a state-of-the-art review},\n  booktitle = {Harmony Search and Nature Inspired Optimization Algorithms: Theory and Applications, ICHSA 2018},\n  pages     = {27--37},\n  year      = {2019},\n  publisher = {Springer Singapore}\n}"
+  },
+  {
+    "id": "yadav2017harmony3",
+    "type": "conference",
+    "year": 2017,
+    "authors": "Anupam Yadav, Neha Yadav, and Joong Hoon Kim",
+    "title": "A comparative study of exploration ability of harmony search algorithms",
+    "venue": "Harmony Search Algorithm: Proceedings of the 3rd International Conference on Harmony Search Algorithm (ICHSA 2017)",
+    "details": "pp. 22–31. Springer Singapore, 2017",
+    "bibtex": "@inproceedings{yadav2017harmony3,\n  author    = {Anupam Yadav and Neha Yadav and Joong Hoon Kim},\n  title     = {A comparative study of exploration ability of harmony search algorithms},\n  booktitle = {Harmony Search Algorithm: Proceedings of the 3rd International Conference on Harmony Search Algorithm (ICHSA 2017)},\n  pages     = {22--31},\n  year      = {2017},\n  publisher = {Springer Singapore}\n}"
+  },
+  {
+    "id": "yadav2016harmony2",
+    "type": "conference",
+    "year": 2016,
+    "authors": "Anupam Yadav, Neha Yadav, and Joong Hoon Kim",
+    "title": "A study of harmony search algorithms: Exploration and convergence ability",
+    "venue": "Harmony Search Algorithm: Proceedings of the 2nd International Conference on Harmony Search Algorithm (ICHSA2015)",
+    "details": "pp. 53–62. Springer Berlin Heidelberg, 2016",
+    "bibtex": "@inproceedings{yadav2016harmony2,\n  author    = {Anupam Yadav and Neha Yadav and Joong Hoon Kim},\n  title     = {A study of harmony search algorithms: Exploration and convergence ability},\n  booktitle = {Harmony Search Algorithm: Proceedings of the 2nd International Conference on Harmony Search Algorithm ({ICHSA2015})},\n  pages     = {53--62},\n  year      = {2016},\n  publisher = {Springer Berlin Heidelberg}\n}"
+  },
+  {
+    "id": "yadav2015niching",
+    "type": "conference",
+    "year": 2015,
+    "authors": "Anupam Yadav and Joong Hoon Kim",
+    "title": "A niching co-swarm gravitational search algorithm for multi-modal optimization",
+    "venue": "Proceedings of Fourth International Conference on Soft Computing for Problem Solving: SocProS 2014, Volume 1",
+    "details": "pp. 599–607. Springer India, 2015",
+    "bibtex": "@inproceedings{yadav2015niching,\n  author    = {Anupam Yadav and Joong Hoon Kim},\n  title     = {A niching co-swarm gravitational search algorithm for multi-modal optimization},\n  booktitle = {Proceedings of Fourth International Conference on Soft Computing for Problem Solving: SocProS 2014, Volume 1},\n  pages     = {599--607},\n  year      = {2015},\n  publisher = {Springer India}\n}"
+  },
+  {
+    "id": "yadav2014novel",
+    "type": "conference",
+    "year": 2014,
+    "authors": "Anupam Yadav and Kusum Deep",
+    "title": "A novel co-swarm gravitational search algorithm for constrained optimization",
+    "venue": "Proceedings of the Third International Conference on Soft Computing for Problem Solving: SocProS 2013, Volume 1",
+    "details": "pp. 629–640. Springer India, 2014",
+    "bibtex": "@inproceedings{yadav2014novel,\n  author    = {Anupam Yadav and Kusum Deep},\n  title     = {A novel co-swarm gravitational search algorithm for constrained optimization},\n  booktitle = {Proceedings of the Third International Conference on Soft Computing for Problem Solving: SocProS 2013, Volume 1},\n  pages     = {629--640},\n  year      = {2014},\n  publisher = {Springer India}\n}"
+  },
+  {
+    "id": "yadav2012disc",
+    "type": "conference",
+    "year": 2012,
+    "authors": "Anupam Yadav and Kusum Deep",
+    "title": "A new disc based particle swarm optimization",
+    "venue": "Proceedings of the International Conference on Soft Computing for Problem Solving (SocProS 2011)",
+    "details": "pp. 23–30. Springer India, 2012",
+    "bibtex": "@inproceedings{yadav2012disc,\n  author    = {Anupam Yadav and Kusum Deep},\n  title     = {A new disc based particle swarm optimization},\n  booktitle = {Proceedings of the International Conference on Soft Computing for Problem Solving ({SocProS} 2011)},\n  pages     = {23--30},\n  year      = {2012},\n  publisher = {Springer India}\n}"
+  }
+]
