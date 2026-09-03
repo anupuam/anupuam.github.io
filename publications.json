@@ -578,5 +578,225 @@
     "venue": "Proceedings of the International Conference on Soft Computing for Problem Solving (SocProS 2011)",
     "details": "pp. 23–30. Springer India, 2012",
     "bibtex": "@inproceedings{yadav2012disc,\n  author    = {Anupam Yadav and Kusum Deep},\n  title     = {A new disc based particle swarm optimization},\n  booktitle = {Proceedings of the International Conference on Soft Computing for Problem Solving ({SocProS} 2011)},\n  pages     = {23--30},\n  year      = {2012},\n  publisher = {Springer India}\n}"
+  },
+  {
+    "id": "yadav2017boundary",
+    "type": "conference",
+    "year": 2017,
+    "authors": "Neha Yadav, Thi Thuy Ngo, Anupam Yadav, and Joong Hoon Kim",
+    "title": "Numerical solution of boundary value problems using artificial neural networks and harmony search",
+    "venue": "Harmony Search Algorithm: Proceedings of the 3rd International Conference on Harmony Search Algorithm (ICHSA 2017)",
+    "details": "pp. 112–118. Springer Singapore, 2017",
+    "bibtex": "@inproceedings{yadav2017boundary,\n  author    = {Neha Yadav and Thi Thuy Ngo and Anupam Yadav and Joong Hoon Kim},\n  title     = {Numerical solution of boundary value problems using artificial neural networks and harmony search},\n  booktitle = {Harmony Search Algorithm: Proceedings of the 3rd International Conference on Harmony Search Algorithm (ICHSA 2017)},\n  pages     = {112--118},\n  year      = {2017},\n  publisher = {Springer Singapore}\n}"
+  },
+  {
+    "id": "yadav2016singular",
+    "type": "conference",
+    "year": 2016,
+    "authors": "Neha Yadav, Joong Hoon Kim, and Anupam Yadav",
+    "title": "Numerical solution of a class of singular boundary value problems arising in physiology based on neural networks",
+    "venue": "Proceedings of Fifth International Conference on Soft Computing for Problem Solving: SocProS 2015, Volume 2",
+    "details": "pp. 673–681. Springer Singapore, 2016",
+    "bibtex": "@inproceedings{yadav2016singular,\n  author    = {Neha Yadav and Joong Hoon Kim and Anupam Yadav},\n  title     = {Numerical solution of a class of singular boundary value problems arising in physiology based on neural networks},\n  booktitle = {Proceedings of Fifth International Conference on Soft Computing for Problem Solving: SocProS 2015, Volume 2},\n  pages     = {673--681},\n  year      = {2016},\n  publisher = {Springer Singapore}\n}"
+  },
+  {
+    "id": "yadav2015elliptic",
+    "type": "conference",
+    "year": 2015,
+    "authors": "Neha Yadav, Anupam Yadav, and Kusum Deep",
+    "title": "Artificial neural network technique for solution of nonlinear elliptic boundary value problems",
+    "venue": "Proceedings of Fourth International Conference on Soft Computing for Problem Solving: SocProS 2014, Volume 1",
+    "details": "pp. 113–121. Springer India, 2015",
+    "bibtex": "@inproceedings{yadav2015elliptic,\n  author    = {Neha Yadav and Anupam Yadav and Kusum Deep},\n  title     = {Artificial neural network technique for solution of nonlinear elliptic boundary value problems},\n  booktitle = {Proceedings of Fourth International Conference on Soft Computing for Problem Solving: SocProS 2014, Volume 1},\n  pages     = {113--121},\n  year      = {2015},\n  publisher = {Springer India}\n}"
+  },
+  {
+    "id": "kumar2012tsunami",
+    "type": "conference",
+    "year": 2012,
+    "authors": "Sushil Kumar, Rama Sushil, Anilesh Kumar, Vijay Kumar Ray, Pratik Ghosh, Sachin Kumar, Swati Shikha, Sourabh Kumar, Ajay Paul, Anupam Yadav, et al.",
+    "title": "Timely prediction of tsunami using under sea earthquake signals",
+    "venue": "Proceedings of the International Conference on Soft Computing for Problem Solving (SocProS 2011), Volume 2",
+    "details": "pp. 1011–1018. Springer India, 2012",
+    "bibtex": "@inproceedings{kumar2012tsunami,\n  author    = {Sushil Kumar and Rama Sushil and Anilesh Kumar and Vijay Kumar Ray and Pratik Ghosh and Sachin Kumar and Swati Shikha and Sourabh Kumar and Ajay Paul and Anupam Yadav and others},\n  title     = {Timely prediction of tsunami using under sea earthquake signals},\n  booktitle = {Proceedings of the International Conference on Soft Computing for Problem Solving (SocProS 2011), Volume 2},\n  pages     = {1011--1018},\n  year      = {2012},\n  publisher = {Springer India}\n}"
+  },
+  {
+    "id": "kumar2024maitri2",
+    "type": "book",
+    "year": 2024,
+    "authors": "Rajesh Kumar, Om Prakash Verma, Lipo Wang, and Anupam Yadav",
+    "title": "Machine Intelligence for Research and Innovations: Proceedings of MAITRI 2023, Volume 2",
+    "venue": "Edited Book / Conference Proceedings",
+    "details": "2024",
+    "bibtex": "@book{kumar2024maitri2,\n  author = {Rajesh Kumar, Om Prakash Verma, Lipo Wang, and Anupam Yadav},\n  title  = {Machine Intelligence for Research and Innovations: Proceedings of MAITRI 2023, Volume 2},\n  year   = {2024}\n}"
+  },
+  {
+    "id": "yadav2023icdac",
+    "type": "book",
+    "year": 2023,
+    "authors": "Anupam Yadav, Gaurav Gupta, Puneet Rana, and Joong Hoon Kim",
+    "title": "Proceedings on International Conference on Data Analytics and Computing: ICDAC 2022",
+    "venue": "Edited Book / Conference Proceedings",
+    "details": "2023",
+    "bibtex": "@book{yadav2023icdac,\n  author = {Anupam Yadav, Gaurav Gupta, Puneet Rana, and Joong Hoon Kim},\n  title  = {Proceedings on International Conference on Data Analytics and Computing: ICDAC 2022},\n  year   = {2023}\n}"
+  },
+  {
+    "id": "verma2023maitri1",
+    "type": "book",
+    "year": 2023,
+    "authors": "Om Prakash Verma, Lipo Wang, Rajesh Kumar, and Anupam Yadav",
+    "title": "Machine Intelligence for Research and Innovations",
+    "venue": "Edited Book / Conference Proceedings",
+    "details": "Proceedings of MAiTRI, vol. 1, 2023",
+    "bibtex": "@book{verma2023maitri1,\n  author = {Om Prakash Verma, Lipo Wang, Rajesh Kumar, and Anupam Yadav},\n  title  = {Machine Intelligence for Research and Innovations},\n  year   = {2023}\n}"
+  },
+  {
+    "id": "pundir2023icrtcis",
+    "type": "book",
+    "year": 2023,
+    "authors": "Aditya Kumar Singh Pundir, Anupam Yadav, and Swagatam Das",
+    "title": "Recent Trends in Communication and Intelligent Systems: Proceedings of ICRTCIS 2023",
+    "venue": "Edited Book / Conference Proceedings",
+    "details": "p. 1, 2023",
+    "bibtex": "@book{pundir2023icrtcis,\n  author = {Aditya Kumar Singh Pundir, Anupam Yadav, and Swagatam Das},\n  title  = {Recent Trends in Communication and Intelligent Systems: Proceedings of ICRTCIS 2023},\n  year   = {2023}\n}"
+  },
+  {
+    "id": "xie2022icnc",
+    "type": "book",
+    "year": 2022,
+    "authors": "Quan Xie, Liang Zhao, Kenli Li, Anupam Yadav, and Lipo Wang",
+    "title": "Advances in Natural Computation, Fuzzy Systems and Knowledge Discovery: Proceedings of the ICNC-FSKD 2021",
+    "venue": "Edited Book / Conference Proceedings",
+    "details": "2022",
+    "bibtex": "@book{xie2022icnc,\n  author = {Quan Xie, Liang Zhao, Kenli Li, Anupam Yadav, and Lipo Wang},\n  title  = {Advances in Natural Computation, Fuzzy Systems and Knowledge Discovery: Proceedings of the ICNC-FSKD 2021},\n  year   = {2022}\n}"
+  },
+  {
+    "id": "kim2022ichsa",
+    "type": "book",
+    "year": 2022,
+    "authors": "Joong Hoon Kim, Kusum Deep, Zong Woo Geem, Ali Sadollah, and Anupam Yadav",
+    "title": "Proceedings of 7th International Conference on Harmony Search, Soft Computing and Applications: ICHSA 2022",
+    "venue": "Edited Book / Conference Proceedings",
+    "details": "2022",
+    "bibtex": "@book{kim2022ichsa,\n  author = {Joong Hoon Kim, Kusum Deep, Zong Woo Geem, Ali Sadollah, and Anupam Yadav},\n  title  = {Proceedings of 7th International Conference on Harmony Search, Soft Computing and Applications: ICHSA 2022},\n  year   = {2022}\n}"
+  },
+  {
+    "id": "gupta2022aicds",
+    "type": "book",
+    "year": 2022,
+    "authors": "Gaurav Gupta, Lipo Wang, Anupam Yadav, Puneet Rana, and Zhenyu Wang",
+    "title": "Proceedings of Academia-Industry Consortium for Data Science",
+    "venue": "Edited Book / Conference Proceedings",
+    "details": "2022",
+    "bibtex": "@book{gupta2022aicds,\n  author = {Gaurav Gupta, Lipo Wang, Anupam Yadav, Puneet Rana, and Zhenyu Wang},\n  title  = {Proceedings of Academia-Industry Consortium for Data Science},\n  year   = {2022}\n}"
+  },
+  {
+    "id": "dua2022pccds",
+    "type": "book",
+    "year": 2022,
+    "authors": "Mohit Dua, Ankit Kumar Jain, Anupam Yadav, Nitin Kumar, and Patrick Siarry",
+    "title": "Proceedings of the International Conference on Paradigms of Communication, Computing and Data Sciences: PCCDS 2021",
+    "venue": "Edited Book / Conference Proceedings",
+    "details": "2022",
+    "bibtex": "@book{dua2022pccds,\n  author = {Mohit Dua, Ankit Kumar Jain, Anupam Yadav, Nitin Kumar, and Patrick Siarry},\n  title  = {Proceedings of the International Conference on Paradigms of Communication, Computing and Data Sciences: PCCDS 2021},\n  year   = {2022}\n}"
+  },
+  {
+    "id": "nagar2021socpros",
+    "type": "book",
+    "year": 2021,
+    "authors": "Atulya K Nagar, Kusum Deep, Jagdish Chand Bansal, Anupam Yadav, Kapil Ahuja, and Aruna Tiwari",
+    "title": "Soft Computing for Problem Solving: Proceedings of SocProS 2020, Volume 1",
+    "venue": "Edited Book / Conference Proceedings",
+    "details": "2021",
+    "bibtex": "@book{nagar2021socpros,\n  author = {Atulya K Nagar, Kusum Deep, Jagdish Chand Bansal, Anupam Yadav, Kapil Ahuja, and Aruna Tiwari},\n  title  = {Soft Computing for Problem Solving: Proceedings of SocProS 2020, Volume 1},\n  year   = {2021}\n}"
+  },
+  {
+    "id": "tiwari2020socpros",
+    "type": "book",
+    "year": 2020,
+    "authors": "Aruna Tiwari, Kapil Ahuja, Anupam Yadav, Jagdish Chand Bansal, Kusum Deep, and Atulya K Nagar",
+    "title": "Soft Computing for Problem Solving",
+    "venue": "Edited Book / Conference Proceedings",
+    "details": "2020",
+    "bibtex": "@book{tiwari2020socpros,\n  author = {Aruna Tiwari, Kapil Ahuja, Anupam Yadav, Jagdish Chand Bansal, Kusum Deep, and Atulya K Nagar},\n  title  = {Soft Computing for Problem Solving},\n  year   = {2020}\n}"
+  },
+  {
+    "id": "sharma2020cis",
+    "type": "book",
+    "year": 2020,
+    "authors": "Harish Sharma, Mukesh Saraswat, Anupam Yadav, Joong Hoon Kim, and Jagdish Chand Bansal",
+    "title": "Congress on Intelligent Systems",
+    "venue": "Edited Book / Conference Proceedings",
+    "details": "2020",
+    "bibtex": "@book{sharma2020cis,\n  author = {Harish Sharma, Mukesh Saraswat, Anupam Yadav, Joong Hoon Kim, and Jagdish Chand Bansal},\n  title  = {Congress on Intelligent Systems},\n  year   = {2020}\n}"
+  },
+  {
+    "id": "nigdeli2020ichsa",
+    "type": "book",
+    "year": 2020,
+    "authors": "Sinan Melih Nigdeli, Joong Hoon Kim, Gebrail Bekdaş, and Anupam Yadav",
+    "title": "Proceedings of 6th International Conference on Harmony Search, Soft Computing and Applications: ICHSA 2020, Istanbul",
+    "venue": "Edited Book / Conference Proceedings",
+    "details": "p. 10, 2020",
+    "bibtex": "@book{nigdeli2020ichsa,\n  author = {Sinan Melih Nigdeli, Joong Hoon Kim, Gebrail Bekdaş, and Anupam Yadav},\n  title  = {Proceedings of 6th International Conference on Harmony Search, Soft Computing and Applications: ICHSA 2020, Istanbul},\n  year   = {2020}\n}"
+  },
+  {
+    "id": "kim2020harmony",
+    "type": "book",
+    "year": 2020,
+    "authors": "Joong Hoon Kim, Zong Woo Geem, Donghwi Jung, and Anupam Yadav",
+    "title": "Advances in Harmony Search, Soft Computing and Applications",
+    "venue": "Edited Book / Conference Proceedings",
+    "details": "2020",
+    "bibtex": "@book{kim2020harmony,\n  author = {Joong Hoon Kim, Zong Woo Geem, Donghwi Jung, and Anupam Yadav},\n  title  = {Advances in Harmony Search, Soft Computing and Applications},\n  year   = {2020}\n}"
+  },
+  {
+    "id": "yadav2019ichsa",
+    "type": "book",
+    "year": 2019,
+    "authors": "Neha Yadav, Anupam Yadav, Jagdish Chand Bansal, Kusum Deep, and Joong Hoon Kim",
+    "title": "Harmony Search and Nature Inspired Optimization Algorithms: Theory and Applications, ICHSA 2018",
+    "venue": "Edited Book / Conference Proceedings",
+    "details": "2019",
+    "bibtex": "@book{yadav2019ichsa,\n  author = {Neha Yadav, Anupam Yadav, Jagdish Chand Bansal, Kusum Deep, and Joong Hoon Kim},\n  title  = {Harmony Search and Nature Inspired Optimization Algorithms: Theory and Applications, ICHSA 2018},\n  year   = {2019}\n}"
+  },
+  {
+    "id": "yadav2024mlchapter",
+    "type": "bookchapter",
+    "year": 2024,
+    "authors": "Anupam Yadav and Shrishti Chamoli",
+    "title": "Machine learning applications of evolutionary and metaheuristic algorithms",
+    "venue": "Advanced Machine Learning with Evolutionary and Metaheuristic Techniques",
+    "details": "pp. 185–211. Springer Nature Singapore, 2024",
+    "bibtex": "@incollection{yadav2024mlchapter,\n  author    = {Anupam Yadav and Shrishti Chamoli},\n  title     = {Machine learning applications of evolutionary and metaheuristic algorithms},\n  booktitle = {Advanced Machine Learning with Evolutionary and Metaheuristic Techniques},\n  pages     = {185--211},\n  year      = {2024},\n  publisher = {Springer Nature Singapore}\n}"
+  },
+  {
+    "id": "yadav2019gsachapter",
+    "type": "bookchapter",
+    "year": 2019,
+    "authors": "Anupam Yadav, Anita, and Joong Hoon Kim",
+    "title": "Convergence of gravitational search algorithm on linear and quadratic functions",
+    "venue": "Decision Science in Action: Theory and Applications of Modern Decision Analytic Optimisation",
+    "details": "pp. 31–39. Springer Singapore, 2019",
+    "bibtex": "@incollection{yadav2019gsachapter,\n  author    = {Anupam Yadav and Anita and Joong Hoon Kim},\n  title     = {Convergence of gravitational search algorithm on linear and quadratic functions},\n  booktitle = {Decision Science in Action: Theory and Applications of Modern Decision Analytic Optimisation},\n  pages     = {31--39},\n  year      = {2019},\n  publisher = {Springer Singapore}\n}"
+  },
+  {
+    "id": "yadav2012earthquakechapter",
+    "type": "bookchapter",
+    "year": 2012,
+    "authors": "Anupam Yadav, Kusum Deep, and Shushil Kumar",
+    "title": "Metaheuristic technique for finding earthquake locations in NW Himalayan region",
+    "venue": "Advances in Geosciences",
+    "details": "vol. 31, pp. 1–10. World Scientific, 2012",
+    "bibtex": "@incollection{yadav2012earthquakechapter,\n  author    = {Anupam Yadav and Kusum Deep and Shushil Kumar},\n  title     = {Metaheuristic technique for finding earthquake locations in {NW} Himalayan region},\n  booktitle = {Advances in Geosciences},\n  volume    = {31},\n  pages     = {1--10},\n  year      = {2012},\n  publisher = {World Scientific}\n}"
+  },
+  {
+    "id": "yadav2015textbook",
+    "type": "textbook",
+    "year": 2015,
+    "authors": "Neha Yadav, Anupam Yadav, and Manoj Kumar",
+    "title": "An Introduction to Neural Network Methods for Differential Equations",
+    "venue": "Springer",
+    "details": "2015",
+    "bibtex": "@book{yadav2015textbook,\n  author    = {Neha Yadav and Anupam Yadav and Manoj Kumar},\n  title     = {An Introduction to Neural Network Methods for Differential Equations},\n  year      = {2015},\n  publisher = {Springer}\n}"
   }
 ]

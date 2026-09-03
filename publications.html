@@ -44,6 +44,9 @@
             <div class="stat-box"><div class="num" id="count-all">–</div><div class="label">Total</div></div>
             <div class="stat-box"><div class="num" id="count-journal">–</div><div class="label">Journal</div></div>
             <div class="stat-box"><div class="num" id="count-conf">–</div><div class="label">Conference</div></div>
+            <div class="stat-box"><div class="num" id="count-book">–</div><div class="label">Books</div></div>
+            <div class="stat-box"><div class="num" id="count-bookchapter">–</div><div class="label">Book Chapters</div></div>
+            <div class="stat-box"><div class="num" id="count-textbook">–</div><div class="label">Textbooks</div></div>
         </div>
 
         <!-- Filter bar -->
@@ -52,6 +55,9 @@
             <button class="filter-btn active" id="btn-all"      onclick="setFilter('all')"       >All</button>
             <button class="filter-btn"        id="btn-journal"  onclick="setFilter('journal')"   >Journal</button>
             <button class="filter-btn"        id="btn-conference" onclick="setFilter('conference')">Conference</button>
+            <button class="filter-btn"        id="btn-book" onclick="setFilter('book')">Books</button>
+            <button class="filter-btn"        id="btn-bookchapter" onclick="setFilter('bookchapter')">Book Chapters</button>
+            <button class="filter-btn"        id="btn-textbook" onclick="setFilter('textbook')">Textbooks</button>
         </div>
 
         <p id="no-results" style="display:none;color:#888;text-align:center;padding:20px;">No publications match your search.</p>
@@ -70,7 +76,7 @@
         </p>
         <pre style="background:#eef2ff;border-radius:6px;padding:14px;font-size:.82rem;margin-top:12px;overflow-x:auto;">{
   "id": "unique_cite_key",
-  "type": "journal",          // "journal" or "conference"
+  "type": "journal",          // "journal", "conference", "book", "bookchapter", or "textbook"
   "year": 2025,
   "authors": "A. Author, B. Author, and C. Author",
   "title": "Full paper title here",
@@ -105,15 +111,18 @@ fetch('publications.json')
     });
 
 function updateCounts() {
-    document.getElementById('count-all').textContent     = allPubs.length;
-    document.getElementById('count-journal').textContent = allPubs.filter(p => p.type === 'journal').length;
-    document.getElementById('count-conf').textContent    = allPubs.filter(p => p.type === 'conference').length;
+    document.getElementById('count-all').textContent        = allPubs.length;
+    document.getElementById('count-journal').textContent    = allPubs.filter(p => p.type === 'journal').length;
+    document.getElementById('count-conf').textContent       = allPubs.filter(p => p.type === 'conference').length;
+    document.getElementById('count-book').textContent       = allPubs.filter(p => p.type === 'book').length;
+    document.getElementById('count-bookchapter').textContent= allPubs.filter(p => p.type === 'bookchapter').length;
+    document.getElementById('count-textbook').textContent   = allPubs.filter(p => p.type === 'textbook').length;
 }
 
 function setFilter(f) {
     currentFilter = f;
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('btn-' + (f === 'conference' ? 'conference' : f)).classList.add('active');
+    document.getElementById('btn-' + f).classList.add('active');
     renderPubs();
 }
 
@@ -163,7 +172,7 @@ function renderPubs() {
             <span class="pub-num">[${idx + 1}]</span>
             <span class="pub-body">
                 <span class="pub-title">${escHtml(p.title)}</span>
-                <span class="pub-year-badge">${p.type === 'journal' ? 'J' : 'C'}</span>
+                <span class="pub-year-badge">${({journal:'J', conference:'C', book:'B', bookchapter:'BC', textbook:'T'})[p.type] || '?'}</span>
                 <br>
                 <span class="pub-authors">${escHtml(p.authors)}</span><br>
                 <span class="pub-venue">${escHtml(p.venue)}</span>${p.details ? ' &mdash; ' + escHtml(p.details) : ''}
