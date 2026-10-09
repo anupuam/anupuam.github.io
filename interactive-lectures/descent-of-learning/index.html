@@ -172,9 +172,9 @@ svg text{font-family:var(--body)}
 .navbar{display:flex;align-items:center;gap:1rem;padding:.5rem clamp(16px,2.5vw,2.5rem);padding-bottom:calc(.5rem + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line)}
 .navbar .count{font-family:var(--mono);font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums}
 .navbar .ttl{flex:1;min-width:0;font-size:.82rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.notes{position:fixed;right:1rem;bottom:3.6rem;width:min(26rem,calc(100% - 2rem));max-height:45vh;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:.6rem;padding:1rem 1.1rem;box-shadow:0 10px 40px rgba(0,0,0,.35);font-size:.9rem;z-index:20}
-.notes h4{margin:0 0 .4rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
-.notes p{color:var(--fg)}
+
+
+
 
 @media (prefers-reduced-motion: reduce){
   .slide.active .inner,.slide.active .tl .m{animation:none}
@@ -544,7 +544,6 @@ table.cmp thead th{font-size:1.1rem}
   <header class="topbar">
     <nav class="eras" id="eras" aria-label="Lecture acts"></nav>
     <div class="tools">
-      <button class="iconbtn" id="notesBtn" aria-pressed="false" title="Speaker notes (N)">Notes</button>
       <button class="iconbtn" id="fsBtn" title="Full screen (F)">Full screen</button>
     </div>
   </header>
@@ -553,7 +552,7 @@ table.cmp thead th{font-size:1.1rem}
   <main class="slides" id="slides">
 
 <!-- ============ PROLOGUE ============ -->
-<section class="slide" id="s-title" data-era="0" data-title="Title" data-notes="Let the landscape animate behind you while students settle in. Each amber dot is a 'hiker' rolling downhill. By the end of the hour they will know exactly what that dot is doing and why it runs the modern world.">
+<section class="slide" id="s-title" data-era="0" data-title="Title">
   <div class="inner title-wrap">
     <div class="hero-bg"><canvas id="heroCanvas" aria-hidden="true"></canvas></div>
     <img class="title-logo inst-logo" src="../../Logo_of_NIT_Jalandhar.png" alt="Dr B R Ambedkar National Institute of Technology Jalandhar logo" onerror="this.hidden=true">
@@ -567,7 +566,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-hook" data-era="0" data-title="Did you use optimization today?" data-notes="Ask for a show of hands first. Most students will not raise a hand. Then click Reveal one card at a time and ask them to raise hands as each one applies. By the end almost everyone should have a hand up.">
+<section class="slide" id="s-hook" data-era="0" data-title="Did you use optimization today?">
   <div class="inner">
     <p class="eyebrow">A show of hands</p>
     <h2>Raise your hand if you used <span class="hl">optimization</span> today.</h2>
@@ -583,7 +582,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-thesis" data-era="0" data-title="One idea from 1847" data-notes="Pause here. This is the thesis of the talk. Repeat the phrase 'take a step downhill'; it will come back in every act.">
+<section class="slide" id="s-thesis" data-era="0" data-title="One idea from 1847">
   <div class="inner">
     <p class="eyebrow">The thesis</p>
     <p class="quote">Behind almost every intelligent system you used today is one humble idea written down in <em>1847</em>.</p>
@@ -591,7 +590,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-relay" data-era="0" data-title="A relay race of ideas" data-notes="This is the map of the whole talk. Every idea on this chain solved one problem and exposed a new one, and that new problem is what the next idea was invented to fix. Tell students to watch for the red 'Where it breaks' box at the bottom of each slide: that box is the baton being handed on. Any card can be clicked to jump there.">
+<section class="slide" id="s-relay" data-era="0" data-title="A relay race of ideas">
   <div class="inner">
     <p class="eyebrow">Prologue · The map of this lecture</p>
     <h2>A relay race of ideas</h2>
@@ -601,7 +600,7 @@ table.cmp thead th{font-size:1.1rem}
 </section>
 
 <!-- ============ ACT I ============ -->
-<section class="slide" id="s-act1" data-era="1" data-title="Act I · Where is the bottom?" data-notes="Act opener. The question of Act I: given a landscape, how do we find its lowest point? We will meet three answers in order, each one fixing the weakness of the one before.">
+<section class="slide" id="s-act1" data-era="1" data-title="Act I · Where is the bottom?">
   <div class="inner act">
     <div class="act-head"><span class="num">I</span><span class="years">c. 1636 – 1847</span><h2>Where is the bottom?</h2></div>
     <div class="act-body">
@@ -617,7 +616,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-fermat" data-era="1" data-title="At the bottom, the ground is flat" data-notes="Fermat was a lawyer in Toulouse who did mathematics as a hobby. His insight: near a peak or a valley floor, the quantity hardly changes, so the tangent is flat. Calculus turned this into the rule f'(x) = 0. It is beautiful, but it only moves the problem: now we must solve an equation, and for big problems that equation is a huge system with no formula.">
+<section class="slide" id="s-fermat" data-era="1" data-title="At the bottom, the ground is flat">
   <div class="inner">
     <p class="eyebrow">Act I · c. 1636 · Pierre de Fermat, then Newton and Leibniz</p>
     <h2>At the bottom, the ground is flat</h2>
@@ -635,7 +634,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-newton" data-era="1" data-title="Newton: use the curvature" data-notes="Press 'Newton step' a few times: the violet ball fits a parabola to the ground under it and jumps to the parabola's bottom. It arrives in about 5 steps. Then press 'Gradient step' repeatedly: the rose ball only knows the slope and needs many more steps. Newton looks unbeatable, until you count the cost: the curvature of a function of n variables is an n by n matrix.">
+<section class="slide" id="s-newton" data-era="1" data-title="Newton: use the curvature">
   <div class="inner">
     <div class="demo">
       <div class="stage wide"><canvas id="nwCanvas"></canvas><span class="hint">Dashed: what each method believes the ground looks like</span></div>
@@ -654,7 +653,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-hiker" data-era="1" data-title="The blindfolded hiker" data-notes="A thought experiment to narrate. Ask the audience to imagine standing on a mountain at night in thick fog, blindfolded. They cannot see the valley and cannot measure how the ground curves, so Newton's method is out of reach. All they can feel is the slope under their feet. Walk through the four steps of the strategy, then the three things that can go wrong: steps too big, steps too small, and stopping in a small dip. Close with the translation into mathematics: slope is the gradient, step length is the step size alpha, flat ground means the gradient is zero. That is gradient descent, which Cauchy will write down in 1847.">
+<section class="slide" id="s-hiker" data-era="1" data-title="The blindfolded hiker">
   <div class="inner">
     <p class="eyebrow">Act I · A thought experiment</p>
     <h2>The blindfolded hiker</h2>
@@ -684,7 +683,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-contour" data-era="1" data-title="Reading the map: contour plots" data-notes="Almost every picture in this lecture is a contour plot, so teach students to read one now. Drag the slider: a horizontal slice cuts the 3D mountain at height c, and the amber curve where it cuts is drawn flat on the map. Every line on the map is one such slice. Then click on the map at several places. The rose arrow (the gradient) always points uphill straight across the lines, and the teal arrow points straight downhill. Ask: where is the ground steepest? (Where the lines bunch together.) Connect to the hiker: the fastest way down crosses the lines at right angles. That is exactly Cauchy's rule on the next slide.">
+<section class="slide" id="s-contour" data-era="1" data-title="Reading the map: contour plots">
   <div class="inner">
     <div class="ctr-grid">
       <div class="ctr-fig">
@@ -717,7 +716,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-cauchy" data-era="1" data-title="Meet Cauchy, 1847" data-notes="Cauchy needed to solve systems of equations arising in astronomy. His trick: turn 'solve these equations' into 'make this error as small as possible', then walk downhill on the error using only the gradient. The nice twist: the proof that minus the gradient is the steepest way down uses the Cauchy–Schwarz inequality, his own result from 1821. Cost per step: n numbers instead of n squared.">
+<section class="slide" id="s-cauchy" data-era="1" data-title="Meet Cauchy, 1847">
   <div class="inner">
     <p class="eyebrow">Act I · 1847 · Paris · Augustin-Louis Cauchy</p>
     <h2>The method of steepest descent</h2>
@@ -741,7 +740,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-lr" data-era="1" data-title="How big a step?" data-notes="Click anywhere on the map to drop a ball. Try the three presets in order: tiny steps crawl, just right converges, too big overshoots and flies off the map. The valley is 6 times steeper across than along, so the rule alpha less than 2 over 6 decides stability. Point to the slider maximum, 0.36, just beyond that limit.">
+<section class="slide" id="s-lr" data-era="1" data-title="How big a step?">
   <div class="inner">
     <div class="demo">
       <div class="stage"><canvas id="lrCanvas"></canvas><span class="hint">Click anywhere to drop a ball</span></div>
@@ -766,7 +765,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-bump" data-era="1" data-title="Stuck in the wrong valley" data-notes="Drop a single ball from a few places. Sometimes it gets trapped in a shallow valley. Ask the class: how would you escape? Collect answers (bigger jumps, keep rolling, start from many places). Then press 'Send 25 hikers' to show random restarts. Close Act I with the three problems handed to the 20th century: constraints, traps, and slowness.">
+<section class="slide" id="s-bump" data-era="1" data-title="Stuck in the wrong valley">
   <div class="inner">
     <div class="demo">
       <div class="stage"><canvas id="bumpCanvas"></canvas><span class="hint">Click to drop a hiker · the flag marks the deepest point</span></div>
@@ -786,7 +785,7 @@ table.cmp thead th{font-size:1.1rem}
 </section>
 
 <!-- ============ ACT II ============ -->
-<section class="slide" id="s-act2" data-era="2" data-title="Act II · Optimization becomes a discipline" data-notes="Act opener. Set the scene: World War II and post-war reconstruction created enormous planning problems. Optimization turned from a calculus trick into a field of its own, with theory about constraints, guarantees and speed.">
+<section class="slide" id="s-act2" data-era="2" data-title="Act II · Optimization becomes a discipline">
   <div class="inner act">
     <div class="act-head"><span class="num">II</span><span class="years">1939 – 1983</span><h2>Optimization becomes a discipline</h2></div>
     <div class="act-body">
@@ -802,7 +801,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-kkt" data-era="2" data-title="Optimizing with rules attached" data-notes="At the best point along a constraint, the level curve of the objective just touches the constraint curve. If it crossed, you could slide along the constraint and do better. Touching means the two gradients are parallel: that is the Lagrange condition. Lambda has a real meaning: the price of the constraint, how much the optimum improves if the limit is relaxed by one unit. Karush (in a 1939 master's thesis) and Kuhn and Tucker (1951) extended it to inequality limits.">
+<section class="slide" id="s-kkt" data-era="2" data-title="Optimizing with rules attached">
   <div class="inner">
     <p class="eyebrow">Act II · 1788 → 1939 → 1951 · Lagrange, Karush, Kuhn &amp; Tucker</p>
     <h2>Optimizing with rules attached</h2>
@@ -821,7 +820,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-lp" data-era="2" data-title="Linear programming" data-notes="Drag the profit slider up. The profit line slides outward across the feasible region. The last point it touches before leaving the region is a corner: 10 chairs and 15 tables, profit ₹10,500. This is the fundamental theorem of linear programming: the best plan is at a vertex. Dantzig's simplex method walks from vertex to vertex, uphill each time. Mention Stigler's diet problem: nine clerks with desk calculators, about 120 person-days.">
+<section class="slide" id="s-lp" data-era="2" data-title="Linear programming">
   <div class="inner">
     <p class="eyebrow">Act II · 1939 Kantorovich · 1947 Dantzig</p>
     <h2>Linear programming: the best plan is at a corner</h2>
@@ -843,7 +842,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-routes" data-era="2" data-title="How many routes?" data-notes="Run the poll by show of hands first, then click an answer. The answer is 1,81,440 distinct round trips for 10 cities, (n−1)!/2. Then drag the slider to 20 and 50. At 50 cities, even a billion routes per second would take vastly longer than the age of the universe. Karp showed in 1972 that this problem is NP-hard: nobody knows a fast method that always finds the best tour.">
+<section class="slide" id="s-routes" data-era="2" data-title="How many routes?">
   <div class="inner">
     <div class="cols-2">
       <div class="stack">
@@ -873,7 +872,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-tsp" data-era="2" data-title="Untangling a route" data-notes="Start with Scramble, which gives a terrible tour. Press Untangle: the 2-opt method (Croes, 1958) repeatedly finds two crossing roads and reverses the stretch between them. Each fix makes the tour shorter. It is a descent too, just on a landscape of routes. Click on the map to add cities. Then point out: when it stops, it is at a local optimum, the same trap as Act I.">
+<section class="slide" id="s-tsp" data-era="2" data-title="Untangling a route">
   <div class="inner">
     <div class="demo">
       <div class="stage"><canvas id="tspCanvas"></canvas><span class="hint">Click to add a city · positions are approximate</span></div>
@@ -898,7 +897,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-convex" data-era="2" data-title="Convexity: landscapes with no traps" data-notes="The geometric test: pick any two points on the curve and join them with a straight chord. If the chord always stays above the curve, the function is convex, and it cannot have a second, shallower valley. That single property guarantees that any local minimum is the global one. Least squares, linear programming, logistic regression and support vector machines are all convex. Rockafellar's 1970 book Convex Analysis became the foundation.">
+<section class="slide" id="s-convex" data-era="2" data-title="Convexity: landscapes with no traps">
   <div class="inner">
     <p class="eyebrow">Act II · 1960s – 1970s · Rockafellar, Nemirovski, Yudin and others</p>
     <h2>Convexity: landscapes with no traps</h2>
@@ -916,7 +915,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-mom" data-era="2" data-title="The ball that remembers its speed" data-notes="Press Roll. The plain hiker stops in the first shallow dip. The heavy ball keeps its speed and rolls through into the deep valley. Lower the memory slider to 0.8 and roll again: too much friction and the heavy ball also gets stuck. Polyak's 1964 heavy-ball method was designed for narrow valleys: speed builds up along the valley floor while the zig-zags across it cancel out.">
+<section class="slide" id="s-mom" data-era="2" data-title="The ball that remembers its speed">
   <div class="inner">
     <div class="demo">
       <div class="stage wide"><canvas id="momCanvas"></canvas><span class="hint">Side view of a mountain path</span></div>
@@ -937,7 +936,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-nesterov" data-era="2" data-title="The speed limit, and how to reach it" data-notes="Nemirovski and Yudin proved that no method using only gradients can beat a certain speed on all smooth convex functions. Nesterov, then a young researcher in Moscow, found a method that reaches that limit by computing the slope at the point momentum is about to carry you to. The chart is a real computation on a bowl 100 times steeper in one direction. Then plant the seed: Robbins and Monro, 1951, asked what happens when every slope you measure is noisy. That question waits until Act IV.">
+<section class="slide" id="s-nesterov" data-era="2" data-title="The speed limit, and how to reach it">
   <div class="inner">
     <p class="eyebrow">Act II · 1983 · Yurii Nesterov</p>
     <h2>The speed limit, and how to reach it</h2>
@@ -955,7 +954,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-wins" data-era="2" data-title="Optimization at work" data-notes="Each card is a documented result. UPS reports its ORION routing system saves around 100 million miles a year. DeepMind reported in 2016 that machine learning cut the energy used to cool Google's data centres by up to 40 percent. Kidney exchange matching contributed to the 2012 economics Nobel for Alvin Roth and Lloyd Shapley. Then turn to the next question: optimization runs the physical world, but can it make machines learn?">
+<section class="slide" id="s-wins" data-era="2" data-title="Optimization at work">
   <div class="inner">
     <p class="eyebrow">Act II · Real-world wins</p>
     <h2>Small improvements, multiplied by the whole world</h2>
@@ -970,7 +969,7 @@ table.cmp thead th{font-size:1.1rem}
 </section>
 
 <!-- ============ ACT III ============ -->
-<section class="slide" id="s-act3" data-era="3" data-title="Act III · Optimization meets learning" data-notes="Act opener. Note the overlap in dates: the perceptron (1958) is older than momentum (1964). Act III is a second thread that ran in parallel and then merged with optimization theory.">
+<section class="slide" id="s-act3" data-era="3" data-title="Act III · Optimization meets learning">
   <div class="inner act">
     <div class="act-head"><span class="num">III</span><span class="years">1958 – 2009</span><h2>Optimization meets learning</h2></div>
     <div class="act-body">
@@ -986,7 +985,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-learn" data-era="3" data-title="Learning is descent" data-notes="This is the pivot of the talk. A model is a machine with knobs. Training means turning the knobs so the error gets smaller. The oldest example is least squares: Legendre (1805) and Gauss (1809), who also fitted orbits. Now the landscape has one direction per knob, which can mean billions of directions, but the hiker's rule is unchanged.">
+<section class="slide" id="s-learn" data-era="3" data-title="Learning is descent">
   <div class="inner cols-2">
     <div class="stack">
       <p class="eyebrow">Act III · The key insight</p>
@@ -1010,7 +1009,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-fit" data-era="3" data-title="A line that fits itself" data-notes="Press Learn. On the left, the line adjusts and the red error sticks shrink. On the right is the error landscape over the two knobs: slope w and intercept b. The ball rolling downhill IS the line improving. Click anywhere on the right map to start from a different bad line. Note the landscape is a perfect bowl: least squares is convex, so the flag is the guaranteed best line.">
+<section class="slide" id="s-fit" data-era="3" data-title="A line that fits itself">
   <div class="inner">
     <p class="eyebrow">Act III · Live demo</p>
     <h2>Watch a line learn, and watch the hiker that does it</h2>
@@ -1031,7 +1030,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-perceptron" data-era="3" data-title="The perceptron, 1958" data-notes="Rosenblatt's perceptron learned by correcting itself after every mistake. Novikoff proved in 1962 that if a separating line exists, the perceptron finds one after a bounded number of mistakes. The press coverage was wildly optimistic. The catch is in the 'if'.">
+<section class="slide" id="s-perceptron" data-era="3" data-title="The perceptron, 1958">
   <div class="inner">
     <p class="eyebrow">Act III · 1958 · Cornell · Frank Rosenblatt</p>
     <h2>The perceptron: a machine that learns from mistakes</h2>
@@ -1052,7 +1051,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-xor" data-era="3" data-title="The XOR wall" data-notes="Start with the staircase light: a two-way switch that almost every home in India has. The light is ON when exactly one switch is up, and OFF when both are up or both are down. That rule is called XOR, exclusive or. Put the four situations on a grid. Press 'Try another line' several times: every straight line leaves at least one point on the wrong side, marked with a red cross. A single perceptron can only draw one straight line, so it can never learn this. Minsky and Papert made this famous in 1969 and funding collapsed: the first AI winter. Then press 'Use two lines'. Line 1 asks 'is at least one switch up?' Line 2 asks 'are both switches up?' The light is ON in the strip between them. Two lines plus one neuron that combines them is a hidden layer. The catch: Rosenblatt's rule cannot train the hidden lines. That is the next slide.">
+<section class="slide" id="s-xor" data-era="3" data-title="The XOR wall">
   <div class="inner">
     <div class="demo xor-demo">
       <div class="stage sq sqbox"><svg id="xorSvg" viewBox="0 0 300 300" style="position:absolute;inset:0;width:100%;height:100%" role="img" aria-label="Four points for the XOR pattern and a dividing line"></svg></div>
@@ -1080,7 +1079,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-backprop" data-era="3" data-title="Backpropagation, 1986" data-notes="Press Forward, then Send blame back. The forward pass makes a prediction. Backpropagation sends the error backward so every connection learns its share of the blame. It is the chain rule, organized so one backward sweep gives the gradient for every weight at once. Linnainmaa (1970) and Werbos (1974) had the mathematics earlier; Rumelhart, Hinton and Williams made it famous in Nature in 1986. Then the catch: each sigmoid layer multiplies the blame by at most a quarter.">
+<section class="slide" id="s-backprop" data-era="3" data-title="Backpropagation, 1986">
   <div class="inner">
     <p class="eyebrow">Act III · 1986 · Rumelhart, Hinton &amp; Williams</p>
     <h2>Backpropagation: sharing the blame</h2>
@@ -1099,7 +1098,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-nn" data-era="3" data-title="Teaching a network to see a pattern" data-notes="Choose Spiral. No straight line can separate two spirals. Press Train: a network with two hidden layers of 16 neurons (337 knobs) bends its boundary until every point is on the correct side, trained with backpropagation. Each frame is one step downhill. Press 'Forget everything' and train again: the final boundary differs each time, because the landscape is not convex.">
+<section class="slide" id="s-nn" data-era="3" data-title="Teaching a network to see a pattern">
   <div class="inner">
     <div class="demo">
       <div class="stage sq sqbox"><canvas id="nnCanvas"></canvas><span class="hint">Shading shows what the network believes</span></div>
@@ -1123,7 +1122,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-svm" data-era="3" data-title="Support vector machines" data-notes="The SVM chooses, among all separating lines, the one with the widest empty street between the classes. This is a convex problem, so there is one guaranteed answer. Connect back to Act II: the solution is found through KKT conditions, and only the circled points on the edge of the street get non-zero multipliers: these are the support vectors. The kernel trick lets the line bend by working in a higher-dimensional space.">
+<section class="slide" id="s-svm" data-era="3" data-title="Support vector machines">
   <div class="inner">
     <p class="eyebrow">Act III · 1992 – 1995 · Vapnik, Cortes, Boser &amp; Guyon</p>
     <h2>Support vector machines: learning with a guarantee</h2>
@@ -1141,7 +1140,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-netflix" data-era="3" data-title="The Netflix Prize" data-notes="From 2006 to 2009 Netflix offered a million dollars to beat its recommender's error by 10 percent. A breakthrough came early from Simon Funk's 2006 blog post: describe every user and every movie by a short list of numbers, and learn them by stochastic gradient descent, updating after each single rating rather than after reading all 100 million. That idea, updating on one example at a time, is the bridge to Act IV.">
+<section class="slide" id="s-netflix" data-era="3" data-title="The Netflix Prize">
   <div class="inner">
     <p class="eyebrow">Act III · 2006 – 2009 · The Netflix Prize</p>
     <h2>A million dollars for a smaller error</h2>
@@ -1171,7 +1170,7 @@ table.cmp thead th{font-size:1.1rem}
 </section>
 
 <!-- ============ ACT IV ============ -->
-<section class="slide" id="s-act4" data-era="4" data-title="Act IV · Optimization at planetary scale" data-notes="Act opener. Three problems arrive together: billions of examples, deep networks that will not train (vanishing gradients), and the need for one step size that works across millions of very different knobs. Each slide in this act solves one of them.">
+<section class="slide" id="s-act4" data-era="4" data-title="Act IV · Optimization at planetary scale">
   <div class="inner act">
     <div class="act-head"><span class="num">IV</span><span class="years">2010s → today</span><h2>Optimization at planetary scale</h2></div>
     <div class="act-body">
@@ -1186,7 +1185,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-2012" data-era="4" data-title="2012: deep learning wakes up" data-notes="Toggle between Sigmoid and ReLU. With sigmoid, the gradient reaching the first layer is about a millionth of the gradient at the output. With ReLU, active neurons pass the gradient through unchanged. AlexNet combined ReLU, two consumer GPUs, 1.2 million labelled images, and stochastic gradient descent with momentum (Polyak's idea from 1964). Top-5 error fell from 26.2% for the runner-up to 15.3%.">
+<section class="slide" id="s-2012" data-era="4" data-title="2012: deep learning wakes up">
   <div class="inner">
     <p class="eyebrow">Act IV · 2012 · Krizhevsky, Sutskever &amp; Hinton</p>
     <h2>The year deep learning woke up</h2>
@@ -1208,7 +1207,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-sgd" data-era="4" data-title="Taste a spoonful" data-notes="Toggle between the whole pot and a spoonful. With 4 random points per step, the path wobbles but each step is 50 times cheaper. Highlighted dots are the current spoonful. On average the spoonful's slope is the true slope, which is why it works. This is Robbins and Monro's 1951 idea, the seed from Act II, made central by Léon Bottou and others around 2010.">
+<section class="slide" id="s-sgd" data-era="4" data-title="Taste a spoonful">
   <div class="inner">
     <p class="eyebrow">Act IV · Robbins &amp; Monro 1951 → Bottou 2010 · Stochastic gradient descent</p>
     <h2>You don't drink the whole pot to check the salt</h2>
@@ -1229,7 +1228,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-adaptive" data-era="4" data-title="A step size for every direction" data-notes="Walk the lineage left to right; each method fixes the one before. AdaGrad gives every knob its own step size, but its steps only shrink. RMSProp, proposed by Hinton in a 2012 online lecture slide and never formally published, forgets old gradients. Adam adds Polyak's momentum and a bias correction. Point out that Adam literally contains ideas from 1964 and 2011 in one formula.">
+<section class="slide" id="s-adaptive" data-era="4" data-title="A step size for every direction">
   <div class="inner">
     <p class="eyebrow">Act IV · 2011 – 2014</p>
     <h2>A step size for every direction</h2>
@@ -1244,7 +1243,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-race" data-era="4" data-title="The optimizer race" data-notes="Ask students to bet first. The landscape is Rosenbrock's banana valley (1960), a classic test: easy to reach the valley floor, hard to walk along it. Plain descent crawls. Momentum and Adam both finish; which wins depends on tuning, which itself is a lesson. Connect: this is 1847 versus 1964 versus 2014 on the same landscape.">
+<section class="slide" id="s-race" data-era="4" data-title="The optimizer race">
   <div class="inner">
     <div class="demo">
       <div class="stage"><canvas id="raceCanvas"></canvas><span class="hint">Flag marks the finish (the lowest point)</span></div>
@@ -1266,7 +1265,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-llm" data-era="4" data-title="Inside a language model" data-notes="A language model is trained on one task: predict the next word. Press Learn: the model sees the right answer and takes one gradient step, which shifts probability toward the correct word. The update on screen is exactly the formula: logits minus step size times (p minus y). Real models do this for trillions of words, adjusting billions of knobs at once.">
+<section class="slide" id="s-llm" data-era="4" data-title="Inside a language model">
   <div class="inner cols-2">
     <div class="stack">
       <p class="eyebrow">Act IV · Large language models</p>
@@ -1290,7 +1289,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-scale" data-era="4" data-title="Training across thousands of GPUs" data-notes="Data parallelism: every GPU holds a copy of the model and a different slice of the data. Each computes a gradient on its slice, the gradients are averaged across all GPUs, and everyone takes the same step. Mathematically it is still one mini-batch SGD step, just with a very large spoon. The limits are now physical: communication between machines, memory, and electricity.">
+<section class="slide" id="s-scale" data-era="4" data-title="Training across thousands of GPUs">
   <div class="inner">
     <p class="eyebrow">Act IV · Today</p>
     <h2>One step downhill, computed by thousands of GPUs</h2>
@@ -1307,7 +1306,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-beyond" data-era="4" data-title="Beyond language" data-notes="Close Act IV with the scale of impact. In 2024, the Nobel Prize in Physics went to Hopfield and Hinton for foundations of machine learning, and half the Chemistry prize went to Hassabis and Jumper for AlphaFold. The Aravind Eye Hospital collaboration is a good Indian example of learned models in screening.">
+<section class="slide" id="s-beyond" data-era="4" data-title="Beyond language">
   <div class="inner">
     <p class="eyebrow">Act IV · Every one is a loss being minimized</p>
     <h2>The same walk downhill, everywhere</h2>
@@ -1321,7 +1320,7 @@ table.cmp thead th{font-size:1.1rem}
 </section>
 
 <!-- ============ EPILOGUE ============ -->
-<section class="slide" id="s-recap" data-era="5" data-title="The relay, completed" data-notes="Read down the right-hand column: every 'left open' is answered by the next row. That is the story of the whole lecture in one table. Click any row to jump back to it.">
+<section class="slide" id="s-recap" data-era="5" data-title="The relay, completed">
   <div class="inner">
     <p class="eyebrow">Epilogue · Recap</p>
     <h2>The relay, completed</h2>
@@ -1329,7 +1328,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-open" data-era="5" data-title="Open questions" data-notes="Emphasize that these are genuinely unsolved. Deep learning works far better than theory predicts. Students in this room could be the ones to explain why.">
+<section class="slide" id="s-open" data-era="5" data-title="Open questions">
   <div class="inner">
     <p class="eyebrow">Epilogue · The baton is now yours</p>
     <h2>What nobody fully understands yet</h2>
@@ -1342,7 +1341,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-mnc" data-era="5" data-title="Why you" data-notes="Connect each course in the B.Tech MnC curriculum to a piece of the story they have just seen. The message: this programme is training exactly the people the field needs.">
+<section class="slide" id="s-mnc" data-era="5" data-title="Why you">
   <div class="inner">
     <p class="eyebrow">Epilogue · Mathematics &amp; Computing</p>
     <h2>Every course you take is a tool for the descent</h2>
@@ -1357,14 +1356,14 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-close" data-era="5" data-title="Closing" data-notes="Deliver the closing line slowly, then pause before moving to questions.">
+<section class="slide" id="s-close" data-era="5" data-title="Closing">
   <div class="inner">
     <p class="quote">Every time an AI answers you, it is the end point of a very long walk downhill.</p>
     <p class="quote" style="color:var(--accent)">Cauchy took the first step.</p>
   </div>
 </section>
 
-<section class="slide" id="s-thanks" data-era="5" data-title="Questions and further reading" data-notes="Invite questions. Share the link to this presentation so students can replay the demos themselves.">
+<section class="slide" id="s-thanks" data-era="5" data-title="Questions and further reading">
   <div class="inner cols-2">
     <div class="stack">
       <p class="eyebrow">Thank you</p>
@@ -1385,7 +1384,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-mnc-now" data-era="5" data-title="Why Mathematics and Computing matters now" data-notes="Make the case for the branch in today's context. Every headline technology of this decade is mathematics turned into code. Mention the two national missions as concrete signals of demand: the IndiaAI Mission approved in March 2024 with an outlay of about 10,372 crore rupees, and the National Quantum Mission approved in April 2023 with about 6,004 crore rupees. Emphasise the last card: tools and frameworks change every few years, but linear algebra, probability and optimization do not.">
+<section class="slide" id="s-mnc-now" data-era="5" data-title="Why Mathematics and Computing matters now">
   <div class="inner">
     <p class="eyebrow">Epilogue · Mathematics &amp; Computing today</p>
     <h2>Why this branch matters now</h2>
@@ -1401,7 +1400,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-mnc-vs" data-era="5" data-title="MnC, CSE and IT compared" data-notes="Be fair to all three branches: the overlap is large and all three lead to software roles. The difference is emphasis. CSE goes deepest into computing systems, IT into deploying and running technology for organisations, and MnC into the mathematics that algorithms, AI and finance are built on, combined with a strong computing core. Curricula vary between institutes, so present this as the typical pattern.">
+<section class="slide" id="s-mnc-vs" data-era="5" data-title="MnC, CSE and IT compared">
   <div class="inner">
     <p class="eyebrow">Epilogue · Choosing a branch</p>
     <h2>MnC, CSE and IT: same family, different emphasis</h2>
@@ -1419,7 +1418,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-mnc-careers" data-era="5" data-title="Career sectors after MnC" data-notes="Nine sectors where MnC graduates are especially well placed. For each, point out the mathematics it draws on, and connect back to the lecture: operations research is Act II (linear programming and routes), AI and ML is Acts III and IV, quantitative finance uses the stochastic ideas of Robbins and Monro. Mention that GATE now has a Data Science and Artificial Intelligence paper (from 2024), alongside the Mathematics and CS papers, for those heading to higher studies or PSUs.">
+<section class="slide" id="s-mnc-careers" data-era="5" data-title="Career sectors after MnC">
   <div class="inner">
     <p class="eyebrow">Epilogue · Where MnC graduates build careers</p>
     <h2>Major career sectors</h2>
@@ -1437,7 +1436,7 @@ table.cmp thead th{font-size:1.1rem}
   </div>
 </section>
 
-<section class="slide" id="s-mnc-cos" data-era="5" data-title="Organisations relevant to MnC" data-notes="These are organisations that commonly hire mathematics and computing graduates in India, grouped by the kind of work. Stress that this is illustrative: campus recruiters change from year to year and from institute to institute. The quant trading and AI categories value the mathematical depth of this branch most directly.">
+<section class="slide" id="s-mnc-cos" data-era="5" data-title="Organisations relevant to MnC">
   <div class="inner">
     <p class="eyebrow">Epilogue · Who hires for these skills</p>
     <h2>Organisations relevant to Mathematics &amp; Computing</h2>
@@ -1465,7 +1464,6 @@ table.cmp thead th{font-size:1.1rem}
     <span class="ttl" id="ttl"></span>
     <button class="btn primary" id="nextBtn" aria-label="Next slide">→</button>
   </footer>
-  <aside class="notes" id="notes" hidden><h4>Speaker notes</h4><p id="notesTxt"></p></aside>
 </div>
 
 <script>
@@ -1990,15 +1988,13 @@ let rzT=0;addEventListener('resize',()=>{clearTimeout(rzT);rzT=setTimeout(()=>{l
 layout();
 function go(i){i=Math.max(0,Math.min(slides.length-1,i));if(i===cur)return;if(cur>=0){slides[cur].classList.remove('active');demos[cur]?.off()}
   cur=i;activeIdx=i;const s=slides[i];s.classList.add('active');s.scrollTop=0;fitSlide(s);$('#viewport').style.setProperty('--glow-c',`var(--a${s.dataset.era})`);$('#instFoot').hidden=s.id==='s-title';
-  $('#count').textContent=`${i+1} / ${slides.length}`;$('#ttl').textContent=s.dataset.title||'';$('#notesTxt').textContent=s.dataset.notes||'';
+  $('#count').textContent=`${i+1} / ${slides.length}`;$('#ttl').textContent=s.dataset.title||'';
   const era=+s.dataset.era;$$('.era').forEach((b,k)=>{b.classList.toggle('on',k===era);const inEra=slides.filter(x=>+x.dataset.era===k);const pos=inEra.indexOf(s);
     b.querySelector('i').style.width=k<era?'100%':k>era?'0%':((pos+1)/inEra.length*100)+'%'});
   try{history.replaceState(null,'','#s'+(i+1))}catch(_){}
   requestAnimationFrame(()=>demos[i]?.on())}
 document.addEventListener('click',e=>{const t=e.target.closest('[data-goto]');if(!t)return;const k=slides.findIndex(x=>x.id===t.dataset.goto);if(k>=0)go(k)});
 $('#prevBtn').onclick=()=>go(cur-1);$('#nextBtn').onclick=()=>go(cur+1);
-const toggleNotes=()=>{const n=$('#notes');n.hidden=!n.hidden;$('#notesBtn').setAttribute('aria-pressed',!n.hidden)};
-$('#notesBtn').onclick=toggleNotes;
 const fs=()=>{try{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen().catch(()=>{})}catch(_){}};
 $('#fsBtn').onclick=fs;
 document.addEventListener('keydown',e=>{const t=e.target;if(t.isContentEditable)return;if(t.tagName==='INPUT'&&/Arrow/.test(e.key))return;
@@ -2006,7 +2002,7 @@ document.addEventListener('keydown',e=>{const t=e.target;if(t.isContentEditable)
   if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1)}
   else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1)}
   else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1);
-  else if(e.key==='n'||e.key==='N')toggleNotes();else if(e.key==='f'||e.key==='F')fs()});
+  else if(e.key==='f'||e.key==='F')fs()});
 let tx=null;$('#slides').addEventListener('touchstart',e=>{tx=e.target.closest('canvas,input,button')?null:e.touches[0].clientX},{passive:true});
 $('#slides').addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>70)go(cur+(dx<0?1:-1));tx=null});
 const retheme=()=>Object.values(demos).forEach(d=>{try{d.retheme()}catch(_){}});
