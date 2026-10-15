@@ -99,7 +99,7 @@ let allPubs = [];
 let currentFilter = 'all';
 
 // Load publications from JSON backend
-fetch('publications.json')
+fetch('publications.json?v=20261015-chamoli2026novel', { cache: 'no-store' })
     .then(r => r.json())
     .then(data => {
         allPubs = data;
