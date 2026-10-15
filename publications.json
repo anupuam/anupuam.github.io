@@ -70,6 +70,16 @@
     "bibtex": "@article{chamoli2026uav,\n  author  = {Shrishti Chamoli and Anupam Yadav},\n  title   = {An ensemble of swarm-based evolutionary learning strategies for {UAV} path-planning problem},\n  journal = {Concurrency and Computation: Practice and Experience},\n  volume  = {38},\n  pages   = {e70536},\n  year    = {2026},\n  publisher = {Wiley}\n}"
   },
   {
+    "id": "chamoli2026novel",
+    "type": "journal",
+    "year": 2026,
+    "authors": "Shrishti Chamoli, Rammohan Mallipeddi, and Anupam Yadav",
+    "title": "A Novel Framework for Energy-Aware Optimal Path Planning of Unmanned Aerial Vehicles",
+    "venue": "Mathematics",
+    "details": "MDPI, 2026",
+    "bibtex": "@article{chamoli2026novel,\n  author  = {Shrishti Chamoli and Rammohan Mallipeddi and Anupam Yadav},\n  title   = {A Novel Framework for Energy-Aware Optimal Path Planning of Unmanned Aerial Vehicles},\n  journal = {Mathematics},\n  year    = {2026},\n  publisher = {Multidisciplinary Digital Publishing Institute}\n}"
+  },
+  {
     "id": "chauhan2025eaefa",
     "type": "journal",
     "year": 2025,
