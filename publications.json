@@ -618,5 +618,36 @@
     "venue": "Springer, Berlin",
     "details": "2015",
     "bibtex": "@book{yadav2015introduction,\n  title     = {An introduction to neural network methods for differential equations},\n  author    = {Neha Yadav and Anupam Yadav and Manoj Kumar and others},\n  year      = {2015},\n  publisher = {Springer, Berlin}\n}"
+  },
+  {
+    "id": "yadav2024machine",
+    "type": "bookchapter",
+    "year": 2024,
+    "authors": "A. Yadav and S. Chamoli",
+    "title": "Machine Learning Applications of Evolutionary and Metaheuristic Algorithms",
+    "venue": "Advanced Machine Learning with Evolutionary and Metaheuristic Techniques",
+    "details": "pp. 185–211. Springer Nature Singapore, 2024",
+    "bibtex": "@incollection{yadav2024machine,\n  title = {Machine Learning Applications of Evolutionary and Metaheuristic Algorithms},\n  author = {Yadav, Anupam and Chamoli, Shrishti},\n  booktitle = {Advanced Machine Learning with Evolutionary and Metaheuristic Techniques},\n  pages = {185--211},\n  year = {2024},\n  publisher = {Springer Nature Singapore}\n}"
+  },
+  {
+    "id": "yadav2012metaheuristic",
+    "type": "bookchapter",
+    "year": 2012,
+    "authors": "A. Yadav, K. Deep, and S. Kumar",
+    "title": "Metaheuristic Technique for Finding Earthquake Locations in N W Himalayan Region",
+    "venue": "Advances in Geosciences",
+    "details": "vol. 31, pp. 1–10. World Scientific, 2012",
+    "bibtex": "@incollection{yadav2012metaheuristic,\n  title = {Metaheuristic Technique for Finding Earthquake Locations in N W Himalayan Region},\n  author = {Yadav, Anupam and Deep, Kusum and Kumar, Shushil},\n  booktitle = {Advances in Geosciences},\n  volume = {31},\n  pages = {1--10},\n  year = {2012},\n  publisher = {World Scientific}\n}"
+  },
+  {
+    "id": "yadav2019convergence",
+    "type": "bookchapter",
+    "year": 2019,
+    "authors": "A. Yadav, Anita, and J. H. Kim",
+    "title": "Convergence of gravitational search algorithm on linear and quadratic functions",
+    "venue": "Decision Science in Action: Theory and Applications of Modern Decision Analytic Optimisation",
+    "details": "pp. 31–39. Springer Singapore, 2019",
+    "bibtex": "@incollection{yadav2019convergence,\n  title = {Convergence of gravitational search algorithm on linear and quadratic functions},\n  author = {Yadav, Anupam and Anita and Kim, Joong Hoon},\n  booktitle = {Decision Science in Action: Theory and Applications of Modern Decision Analytic Optimisation},\n  pages = {31--39},\n  year = {2019},\n  publisher = {Springer Singapore}\n}"
   }
+]
 ]
