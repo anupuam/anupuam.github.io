@@ -76,8 +76,8 @@
     "authors": "Shrishti Chamoli, Rammohan Mallipeddi, and Anupam Yadav",
     "title": "A Novel Framework for Energy-Aware Optimal Path Planning of Unmanned Aerial Vehicles",
     "venue": "Mathematics",
-    "details": "MDPI, 2026",
-    "bibtex": "@article{chamoli2026novel,\n  author  = {Shrishti Chamoli and Rammohan Mallipeddi and Anupam Yadav},\n  title   = {A Novel Framework for Energy-Aware Optimal Path Planning of Unmanned Aerial Vehicles},\n  journal = {Mathematics},\n  year    = {2026},\n  publisher = {Multidisciplinary Digital Publishing Institute}\n}"
+    "details": "vol. 14, no. 19, p. 3593. MDPI AG, 2026",
+    "bibtex": "@article{chamoli2026novel,\n  author  = {Shrishti Chamoli and Rammohan Mallipeddi and Anupam Yadav},\n  title   = {A Novel Framework for Energy-Aware Optimal Path Planning of Unmanned Aerial Vehicles},\n  journal = {Mathematics},\n  volume  = {14},\n  number  = {19},\n  pages   = {3593},\n  year    = {2026},\n  publisher = {MDPI AG}\n}"
   },
   {
     "id": "chauhan2025eaefa",
@@ -430,6 +430,26 @@
     "bibtex": "@article{deep2012earthquake,\n  author  = {Kusum Deep and Anupam Yadav and Sushil Kumar},\n  title   = {Improving local and regional earthquake locations using an advance inversion technique: Particle swarm optimization},\n  journal = {World Journal of Modelling and Simulation},\n  volume  = {8},\n  pages   = {135--141},\n  year    = {2012}\n}"
   },
   {
+    "id": "shree2026interpretability",
+    "type": "conference",
+    "year": 2026,
+    "authors": "Uma Shree and Anupam Yadav",
+    "title": "Interpretability of metaheuristic algorithms with decision trees via partial solution mining",
+    "venue": "IET Conference Proceedings CP999",
+    "details": "vol. 2026, no. 15, pp. 855–861. IET, 2026",
+    "bibtex": "@inproceedings{shree2026interpretability,\n  author       = {Uma Shree and Anupam Yadav},\n  title        = {Interpretability of metaheuristic algorithms with decision trees via partial solution mining},\n  booktitle    = {IET Conference Proceedings CP999},\n  volume       = {2026},\n  number       = {15},\n  pages        = {855--861},\n  year         = {2026},\n  organization = {The Institution of Engineering and Technology, Stevenage, UK}\n}"
+  },
+  {
+    "id": "behera2026pattern",
+    "type": "conference",
+    "year": 2026,
+    "authors": "Pritam Kr Behera and Anupam Yadav",
+    "title": "Pattern-based partial solution decision trees for interpretability of metaheuristic algorithms",
+    "venue": "IET Conference Proceedings CP999",
+    "details": "vol. 2026, no. 15, pp. 848–854. IET, 2026",
+    "bibtex": "@inproceedings{behera2026pattern,\n  author       = {Pritam Kr Behera and Anupam Yadav},\n  title        = {Pattern-based partial solution decision trees for interpretability of metaheuristic algorithms},\n  booktitle    = {IET Conference Proceedings CP999},\n  volume       = {2026},\n  number       = {15},\n  pages        = {848--854},\n  year         = {2026},\n  organization = {The Institution of Engineering and Technology, Stevenage, UK}\n}"
+  },
+  {
     "id": "gupta2025gecco",
     "type": "conference",
     "year": 2025,
@@ -588,5 +608,15 @@
     "venue": "Proceedings of the International Conference on Soft Computing for Problem Solving (SocProS 2011)",
     "details": "pp. 23–30. Springer India, 2012",
     "bibtex": "@inproceedings{yadav2012disc,\n  author    = {Anupam Yadav and Kusum Deep},\n  title     = {A new disc based particle swarm optimization},\n  booktitle = {Proceedings of the International Conference on Soft Computing for Problem Solving ({SocProS} 2011)},\n  pages     = {23--30},\n  year      = {2012},\n  publisher = {Springer India}\n}"
+  },
+  {
+    "id": "yadav2015introduction",
+    "type": "book",
+    "year": 2015,
+    "authors": "Neha Yadav, Anupam Yadav, Manoj Kumar, and others",
+    "title": "An introduction to neural network methods for differential equations",
+    "venue": "Springer, Berlin",
+    "details": "2015",
+    "bibtex": "@book{yadav2015introduction,\n  title     = {An introduction to neural network methods for differential equations},\n  author    = {Neha Yadav and Anupam Yadav and Manoj Kumar and others},\n  year      = {2015},\n  publisher = {Springer, Berlin}\n}"
   }
 ]
