@@ -1,0 +1,1071 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Supervised ML Lab</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Kalam:wght@400;700&family=Zilla+Slab:wght@600;700&display=swap">
+<style>
+/* Layout: a lab bench in the workshop's exercise-book style. Left: task cards; middle: a ruled set-up page with six numbered steps; right: a framed blackboard where results are chalked up; below: the experiment log. */
+:root {
+  --desk: #E3E8F1;
+  --paper: #FAFBFD;
+  --paper-2: #EEF2F9;
+  --ink: #1A2240;
+  --ink-soft: #505A7A;
+  --rule: #D6DEED;
+  --rule-faint: #E7ECF6;
+  --accent: #2445C4;
+  --accent-ink: #FFFFFF;
+  --accent-wash: #E5EAFB;
+  --margin: #CF3F3B;
+  --margin-wash: #FBE8E6;
+  --board: #2D4A3C;
+  --frame: #7A5634;
+  --chalk: #F2F5EE;
+  --chalk-dim: #B7C5BA;
+  --lemon: #F3D35B;
+  --ripe: #F5A524;
+  --raw: #8FCB5A;
+  --c-blue: #8CC6F2;
+  --c-pink: #F4A3BE;
+  --c-green: #A8DB8F;
+  --orange: #F39A4A;
+  --good: #1D7448;
+  --good-bg: #E2F2E8;
+  --bad: #B3362F;
+  --f-display: "Zilla Slab", Rockwell, "Roboto Slab", Georgia, serif;
+  --f-body: "Hind", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-hand: "Kalam", "Segoe Print", "Comic Sans MS", cursive;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --desk: #0B0F1C; --paper: #131A2C; --paper-2: #1B2339; --ink: #E3E8F5; --ink-soft: #A3ACC8; --rule: #2B3553; --rule-faint: #1C2540;
+    --accent: #93A8FF; --accent-ink: #0E1326; --accent-wash: #1F2A4D; --margin: #EF7C77; --margin-wash: #3A2026;
+    --board: #22392F; --frame: #5E4229; --good: #72D3A2; --good-bg: #15302A; --bad: #F6918A; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --desk: #0B0F1C; --paper: #131A2C; --paper-2: #1B2339; --ink: #E3E8F5; --ink-soft: #A3ACC8; --rule: #2B3553; --rule-faint: #1C2540;
+  --accent: #93A8FF; --accent-ink: #0E1326; --accent-wash: #1F2A4D; --margin: #EF7C77; --margin-wash: #3A2026;
+  --board: #22392F; --frame: #5E4229; --good: #72D3A2; --good-bg: #15302A; --bad: #F6918A; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--desk); color: var(--ink); font: 400 15.5px/1.45 var(--f-body); -webkit-font-smoothing: antialiased; }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.board :focus-visible { outline-color: var(--lemon); }
+h1, h2, h3, p, ol, ul { margin: 0; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+
+.wrap { max-width: 1560px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* header */
+.top { padding-block: 18px 14px; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 10px 24px; }
+.kicker { font: 600 12px/1.2 var(--f-body); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+.top h1 { font: 700 34px/1.05 var(--f-display); margin-top: 4px; }
+.top h1 span { color: var(--margin); }
+.top-note { font-size: 13.5px; color: var(--ink-soft); max-width: 46ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.chip { font: 600 12px/1 var(--f-body); letter-spacing: .04em; border: 1.5px solid var(--ink-soft); color: var(--ink-soft); border-radius: 99px; padding: 5px 10px 4px; white-space: nowrap; }
+
+/* three columns */
+.lab { display: grid; grid-template-columns: 300px minmax(340px, 410px) minmax(0, 1fr); gap: 16px; align-items: start; padding-bottom: 16px; }
+.lab > * { min-width: 0; }
+
+/* tasks */
+.tasks { position: sticky; top: max(12px, env(safe-area-inset-top, 0px)); background: var(--paper); border: 1.5px solid color-mix(in srgb, var(--ink) 18%, transparent); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; max-height: calc(100vh - 24px); }
+.tasks-head { padding: 12px 14px 10px; border-bottom: 1px solid var(--rule); display: flex; flex-direction: column; gap: 8px; }
+.tasks-head h2 { font: 700 19px/1.1 var(--f-display); }
+.tab-row { display: flex; gap: 6px; }
+.tab-row button { flex: 1; appearance: none; border: 1.5px solid var(--ink); border-radius: 8px; background: var(--paper); padding: 6px 8px 5px; font-weight: 600; font-size: 13.5px; cursor: pointer; }
+.tab-row button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.tab-time { font-size: 12.5px; color: var(--ink-soft); }
+.task-list { list-style: none; padding: 6px; overflow: auto; display: flex; flex-direction: column; gap: 6px; }
+.task { border-radius: 8px; border: 1.5px solid transparent; padding: 9px 10px 10px; }
+.task:hover { background: var(--paper-2); }
+.task.on { border-color: var(--accent); background: var(--accent-wash); }
+.task-h { display: grid; grid-template-columns: 2.6em minmax(0, 1fr); gap: 4px; align-items: baseline; }
+.task-n { font: 700 16px/1 var(--f-hand); color: var(--margin); }
+.task-t { font: 600 14.5px/1.25 var(--f-body); }
+.task-m { grid-column: 2; font-size: 12.5px; color: var(--ink-soft); }
+.task-body { grid-column: 1 / -1; margin-top: 8px; display: none; flex-direction: column; gap: 8px; }
+.task.on .task-body { display: flex; }
+.task-body ol { padding-left: 1.2em; font-size: 13.5px; display: flex; flex-direction: column; gap: 3px; }
+.task-body ol li::marker { color: var(--margin); font-weight: 700; }
+.task-go { align-self: flex-start; }
+
+/* buttons */
+.btn { appearance: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 36px; padding: 6px 12px 5px; border: 1.5px solid var(--ink); border-radius: 8px; background: var(--paper); color: var(--ink); font-weight: 600; font-size: 14px; cursor: pointer; }
+.btn:hover { background: var(--paper-2); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.primary:hover { filter: brightness(1.08); }
+.btn.sm { min-height: 30px; padding: 3px 10px 2px; font-size: 13px; }
+.btn:disabled { opacity: .45; cursor: default; }
+.board .btn { background: transparent; color: var(--chalk); border-color: var(--chalk-dim); }
+.board .btn:hover { background: rgba(255,255,255,.07); }
+.board .btn.primary { background: var(--chalk); border-color: var(--chalk); color: var(--board); }
+
+/* set-up page */
+.setup { background-color: var(--paper); background-image: repeating-linear-gradient(to bottom, transparent 0 29px, var(--rule-faint) 29px 30px); border: 1.5px solid color-mix(in srgb, var(--ink) 18%, transparent); border-radius: 10px; position: relative; padding: 4px 16px 0 50px; }
+.setup::before { content: ""; position: absolute; top: 0; bottom: 0; left: 36px; width: 2px; background: var(--margin); opacity: .75; }
+.step { padding: 14px 0 16px; border-bottom: 1px dashed var(--rule); display: flex; flex-direction: column; gap: 9px; }
+.step h2 { font: 700 18px/1.15 var(--f-display); position: relative; }
+.sn { position: absolute; left: -42px; top: -3px; width: 30px; text-align: center; font: 700 24px/1 var(--f-display); color: var(--margin); }
+.hint { font-size: 13px; color: var(--ink-soft); }
+.qgrid { display: grid; grid-template-columns: 1fr; gap: 6px; }
+.qbtn { appearance: none; text-align: left; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 2px 10px; padding: 8px 10px 7px; border: 1.5px solid var(--rule); border-radius: 8px; background: var(--paper); }
+.qbtn:hover { border-color: var(--ink-soft); }
+.qbtn[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-wash); box-shadow: inset 4px 0 0 var(--accent); }
+.qbtn b { font-weight: 600; font-size: 14.5px; }
+.qbtn small { grid-column: 1; font-size: 12.5px; color: var(--ink-soft); }
+.qtag { grid-row: 1 / span 2; grid-column: 2; font: 700 11px/1 var(--f-body); letter-spacing: .08em; text-transform: uppercase; border-radius: 99px; padding: 5px 8px 4px; border: 1.5px solid currentColor; }
+.qtag.class { color: var(--good); }
+.qtag.reg { color: var(--accent); }
+.data-sum { font-size: 14px; }
+.data-sum b { font-variant-numeric: tabular-nums; }
+.dist { display: flex; flex-wrap: wrap; gap: 6px; }
+.dist span { font-size: 12.5px; border-radius: 99px; padding: 3px 9px 2px; background: var(--paper-2); border: 1px solid var(--rule); font-variant-numeric: tabular-nums; }
+details.tbl summary { cursor: pointer; font-weight: 600; font-size: 14px; color: var(--accent); }
+.tbl-wrap { overflow: auto; max-height: 300px; margin-top: 8px; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); }
+table.data { border-collapse: collapse; font-size: 13px; width: 100%; font-variant-numeric: tabular-nums; }
+.data th, .data td { padding: 4px 8px 3px; border-bottom: 1px solid var(--rule); text-align: left; white-space: nowrap; }
+.data th { position: sticky; top: 0; background: var(--paper-2); font-weight: 600; z-index: 1; }
+.data td.n, .data th.n { text-align: right; }
+.data .lab-col { color: var(--margin); font-weight: 700; font-family: var(--f-hand); }
+.data td.gap { background: var(--margin-wash); color: var(--margin); text-align: center; }
+.opt-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.seg { display: inline-flex; border: 1.5px solid var(--ink); border-radius: 8px; overflow: hidden; }
+.seg button { appearance: none; border: 0; background: var(--paper); padding: 5px 11px 4px; font-size: 13.5px; font-weight: 600; cursor: pointer; }
+.seg button + button { border-left: 1.5px solid var(--ink); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.opt-lbl { font-size: 13.5px; font-weight: 600; min-width: 9.5em; }
+.clues { display: flex; flex-direction: column; gap: 2px; }
+.clue { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 4px 6px; border-radius: 6px; cursor: pointer; font-size: 14px; }
+.clue:hover { background: var(--paper-2); }
+.clue input { width: 17px; height: 17px; accent-color: var(--accent); margin: 0; }
+.ctype { font-size: 11.5px; color: var(--ink-soft); border: 1px solid var(--rule); border-radius: 99px; padding: 1px 7px 0; }
+.range-row { display: grid; grid-template-columns: minmax(0, 1fr) 4.2em; gap: 10px; align-items: center; }
+.range-row output { font: 700 15px/1 var(--f-body); font-variant-numeric: tabular-nums; text-align: right; }
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+.board input[type="range"] { accent-color: var(--lemon); }
+.piles { display: flex; gap: 10px; font-size: 13.5px; }
+.piles span { display: inline-flex; align-items: center; gap: 6px; }
+.piles i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.seed-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 14px; }
+.seed-row input { width: 4.2em; padding: 5px 6px; border: 1.5px solid var(--ink-soft); border-radius: 6px; background: var(--paper); }
+.models { display: flex; flex-direction: column; gap: 6px; }
+.mbtn { appearance: none; text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 1px; padding: 7px 10px 6px; border: 1.5px solid var(--rule); border-radius: 8px; background: var(--paper); }
+.mbtn b { font-weight: 600; font-size: 14.5px; }
+.mbtn small { font-size: 12.5px; color: var(--ink-soft); }
+.mbtn[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-wash); box-shadow: inset 4px 0 0 var(--accent); }
+.mset { padding: 4px 2px 0 10px; display: flex; flex-direction: column; gap: 4px; }
+.run-bar { position: sticky; bottom: 0; padding: 12px 0 14px; background: linear-gradient(to bottom, transparent, var(--paper) 30%); display: flex; flex-direction: column; gap: 6px; }
+.btn.run { min-height: 46px; font-size: 16.5px; width: 100%; }
+.run-note { font-size: 12.5px; color: var(--ink-soft); text-align: center; }
+
+/* results blackboard */
+.results { background: var(--frame); border-radius: 10px; padding: 9px; }
+.bd { background-color: var(--board); background-image: radial-gradient(ellipse at 15% 8%, rgba(255,255,255,.07), transparent 55%), radial-gradient(ellipse at 88% 95%, rgba(255,255,255,.05), transparent 50%); border-radius: 6px; color: var(--chalk); padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 16px; position: relative; box-shadow: inset 0 0 40px rgba(0,0,0,.22); }
+.r-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
+.r-head h2 { font: 700 26px/1.1 var(--f-hand); }
+.r-sub { font-size: 13.5px; color: var(--chalk-dim); }
+.stale { position: absolute; inset: 0; background: rgba(20, 32, 26, .72); border-radius: 6px; display: grid; place-items: start center; padding-top: 120px; z-index: 3; }
+.stale[hidden] { display: none; }
+.stale p { font: 700 20px/1.3 var(--f-hand); color: var(--lemon); text-align: center; max-width: 24ch; }
+.scores { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.score { border: 1.5px dashed var(--chalk-dim); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; }
+.score.main { border-style: solid; border-color: var(--lemon); background: rgba(243, 211, 91, .07); }
+.score .k { font: 600 11.5px/1.2 var(--f-body); letter-spacing: .1em; text-transform: uppercase; color: var(--chalk-dim); }
+.score .v { font: 700 34px/1.05 var(--f-hand); font-variant-numeric: tabular-nums; }
+.score.main .v { color: var(--lemon); }
+.score .d { font-size: 12.5px; color: var(--chalk-dim); }
+.flag { font: 400 16px/1.35 var(--f-hand); border-left: 4px solid var(--lemon); padding: 2px 0 2px 10px; }
+.flag b { color: var(--lemon); }
+.flag.warn { border-color: var(--c-pink); }
+.flag.warn b { color: var(--c-pink); }
+.sec h3 { font: 700 15px/1.2 var(--f-body); letter-spacing: .02em; color: var(--chalk); margin-bottom: 8px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: baseline; }
+.sec h3 small { font-weight: 400; color: var(--chalk-dim); font-size: 12.5px; }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
+.two > * { min-width: 0; }
+
+/* four boxes / grid */
+.cm { display: grid; gap: 5px; font-size: 13px; }
+.cm .h { font-weight: 600; text-align: center; color: var(--chalk-dim); align-self: end; padding-bottom: 2px; }
+.cm .rh { font-weight: 600; color: var(--chalk-dim); align-self: center; text-align: right; padding-right: 4px; line-height: 1.2; }
+.cm .c { border-radius: 8px; padding: 8px 6px 7px; text-align: center; border: 1.5px solid; display: flex; flex-direction: column; gap: 1px; }
+.cm .c b { font: 700 26px/1 var(--f-hand); font-variant-numeric: tabular-nums; }
+.cm .c span { font-size: 12px; }
+.cm .c.ok { border-color: var(--c-green); color: var(--c-green); background: rgba(168,219,143,.08); }
+.cm .c.no { border-color: var(--c-pink); color: var(--c-pink); background: rgba(244,163,190,.08); }
+.cm .c.zero { opacity: .45; }
+.pr { display: flex; flex-direction: column; gap: 8px; }
+.pr-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: baseline; font-size: 14px; }
+.pr-row b { font: 700 22px/1 var(--f-hand); color: var(--lemon); font-variant-numeric: tabular-nums; }
+.pr-row small { grid-column: 1 / -1; color: var(--chalk-dim); font-size: 12.5px; }
+.strict { display: flex; flex-direction: column; gap: 4px; border-top: 1px dashed rgba(242,245,238,.25); padding-top: 10px; }
+.strict label { font-size: 13.5px; font-weight: 600; }
+.strict small { color: var(--chalk-dim); font-size: 12.5px; }
+
+/* picture */
+canvas.pic { display: block; width: 100%; aspect-ratio: 16 / 10; }
+.pic-cap { font: 400 14px/1.35 var(--f-hand); color: var(--chalk-dim); margin-top: 6px; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12.5px; color: var(--chalk-dim); margin-bottom: 4px; }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.legend i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+.legend i.ring { background: transparent !important; border: 2px solid var(--chalk); }
+
+/* what it learned */
+.learned { font-size: 14px; line-height: 1.5; }
+.learned .big { font: 400 17px/1.4 var(--f-hand); }
+.tree-ol, .tree-ol ul { list-style: none; margin: 0; padding: 0; }
+.tree-ol ul { padding-left: 16px; border-left: 1.5px solid rgba(242,245,238,.25); margin-left: 6px; }
+.tree-ol li { padding: 3px 0 3px 4px; }
+.tree-ol .q { font-weight: 600; color: var(--lemon); }
+.tree-ol .br { font: 700 13px/1 var(--f-hand); color: var(--c-pink); margin-right: 4px; }
+.tree-ol .lf { font-family: var(--f-hand); font-size: 15px; }
+.tree-ol .lf small { color: var(--chalk-dim); font-family: var(--f-body); font-size: 12px; }
+.tree-scroll { max-height: 300px; overflow: auto; padding-right: 6px; }
+.line-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 3px; font-size: 14px; }
+.line-list li { display: grid; grid-template-columns: 6.5em minmax(0, 1fr); gap: 8px; }
+.line-list .amt { font: 700 15px/1.35 var(--f-hand); color: var(--lemon); text-align: right; font-variant-numeric: tabular-nums; }
+.line-list .amt.neg { color: var(--c-pink); }
+
+/* repeat + predict */
+.rep-out { font: 400 16px/1.4 var(--f-hand); min-height: 1.4em; }
+.rep-out b { color: var(--lemon); }
+.pred-form { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px 12px; }
+.axes { display: flex; flex-wrap: wrap; gap: 6px 12px; margin-bottom: 6px; font-size: 12.5px; color: var(--chalk-dim); }
+.axes label { display: inline-flex; align-items: center; gap: 6px; }
+.axes select { padding: 3px 6px; border-radius: 6px; border: 1.5px solid var(--chalk-dim); background: rgba(0,0,0,.18); color: var(--chalk); font-size: 13px; max-width: 13em; }
+.axes select option { color: #1A2240; }
+.pred-form label { display: flex; flex-direction: column; gap: 3px; font-size: 12.5px; color: var(--chalk-dim); }
+.pred-form input, .pred-form select { padding: 5px 7px; border-radius: 6px; border: 1.5px solid var(--chalk-dim); background: rgba(0,0,0,.18); color: var(--chalk); font-size: 14px; }
+.pred-form select option { color: #1A2240; }
+.pred-out { font: 700 22px/1.3 var(--f-hand); color: var(--lemon); margin-top: 10px; }
+.pred-out small { display: block; font: 400 13px/1.4 var(--f-body); color: var(--chalk-dim); }
+
+/* log */
+.log { background: var(--paper); border: 1.5px solid color-mix(in srgb, var(--ink) 18%, transparent); border-radius: 10px; padding: 14px 16px 16px; margin-bottom: 24px; display: flex; flex-direction: column; gap: 10px; }
+.log-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; }
+.log-head h2 { font: 700 21px/1.1 var(--f-display); }
+.log-head p { font-size: 13.5px; color: var(--ink-soft); }
+table.logt { border-collapse: collapse; width: 100%; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+.logt th, .logt td { padding: 6px 9px 5px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+.logt th { background: var(--paper-2); font-weight: 600; white-space: nowrap; }
+.logt td.n { text-align: right; white-space: nowrap; }
+.logt td.ex { font-weight: 700; color: var(--accent); }
+.logt tr.new td { animation: flash 1.2s ease; }
+@keyframes flash { from { background: var(--accent-wash); } to { background: transparent; } }
+.empty { color: var(--ink-soft); font-size: 14px; padding: 6px 0; }
+.confirm { display: inline-flex; gap: 6px; align-items: center; font-size: 13.5px; }
+
+/* responsive */
+@media (max-width: 1180px) {
+  .lab { grid-template-columns: minmax(320px, 400px) minmax(0, 1fr); }
+  .tasks { grid-column: 1 / -1; position: static; max-height: none; }
+  .task-list { flex-direction: row; overflow-x: auto; padding: 8px; }
+  .task { min-width: 260px; flex: 0 0 auto; border-color: var(--rule); }
+}
+@media (max-width: 820px) {
+  .lab { grid-template-columns: minmax(0, 1fr); }
+  .two { grid-template-columns: minmax(0, 1fr); }
+  .scores { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .score.lazy { grid-column: 1 / -1; }
+  .top h1 { font-size: 28px; }
+  .setup { padding-left: 42px; }
+  .setup::before { left: 30px; }
+  .sn { left: -36px; }
+  .logt-wrap { overflow-x: auto; }
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <p class="kicker">Supervised Machine Learning Workshop · Hands-on lab</p>
+      <h1>Supervised <span>ML</span> Lab</h1>
+      <div class="chips"><span class="chip">Hands-on I · 14:00–16:00</span><span class="chip">Hands-on II · 16:15–18:15</span></div>
+    </div>
+    <p class="top-note">Train real models on small practice datasets, test them on examples they have never seen, and judge the results. The data is made up for learning. Nothing you do here leaves this browser.</p>
+  </header>
+
+  <div class="lab">
+    <aside class="tasks" aria-label="Lab tasks">
+      <div class="tasks-head">
+        <h2>Tasks</h2>
+        <div class="tab-row" role="group" aria-label="Lab session">
+          <button type="button" data-tab="I" aria-pressed="true">Hands-on I</button>
+          <button type="button" data-tab="II" aria-pressed="false">Hands-on II</button>
+        </div>
+        <p class="tab-time" id="tab-time"></p>
+      </div>
+      <ol class="task-list" id="task-list"></ol>
+    </aside>
+
+    <section class="setup" aria-label="Set up your model">
+      <div class="step">
+        <h2><span class="sn">1</span>Choose a question</h2>
+        <div class="qgrid" id="q-list"></div>
+      </div>
+      <div class="step">
+        <h2><span class="sn">2</span>Look at the data</h2>
+        <p class="data-sum" id="data-sum"></p>
+        <div class="dist" id="data-dist"></div>
+        <details class="tbl" id="data-details"><summary>Show the table</summary><div class="tbl-wrap"><table class="data" id="data-table"></table></div></details>
+      </div>
+      <div class="step">
+        <h2><span class="sn">3</span>Prepare the data</h2>
+        <div class="opt-row" id="miss-row"><span class="opt-lbl">Missing values</span><div class="seg" id="miss-seg"><button type="button" data-v="fill" aria-pressed="true">Fill with average</button><button type="button" data-v="drop" aria-pressed="false">Remove those rows</button></div></div>
+        <p class="hint" id="miss-note"></p>
+        <div class="opt-row"><span class="opt-lbl">Fair scales</span><div class="seg" id="scale-seg"><button type="button" data-v="on" aria-pressed="true">On</button><button type="button" data-v="off" aria-pressed="false">Off</button></div></div>
+        <p class="hint">Fair scales put every number clue on a 0 to 1 range, so big numbers do not shout louder.</p>
+      </div>
+      <div class="step">
+        <h2><span class="sn">4</span>Choose the clues</h2>
+        <div class="clues" id="clue-list"></div>
+      </div>
+      <div class="step">
+        <h2><span class="sn">5</span>Split into practice and exam piles</h2>
+        <label class="hint" for="test-r">Share kept hidden for the exam</label>
+        <div class="range-row"><input type="range" id="test-r" min="10" max="50" step="5" value="20"><output id="test-o">20%</output></div>
+        <div class="piles" id="piles"></div>
+        <div class="seed-row"><label for="seed-i">Shuffle number</label><input type="number" id="seed-i" min="1" max="999" value="1"><button type="button" class="btn sm" id="seed-new">New shuffle</button></div>
+      </div>
+      <div class="step">
+        <h2><span class="sn">6</span>Choose a model</h2>
+        <div class="models" id="model-list"></div>
+      </div>
+      <div class="run-bar">
+        <button type="button" class="btn primary run" id="run">Train and test</button>
+        <p class="run-note">Trains on the practice pile, then sits the exam.</p>
+      </div>
+    </section>
+
+    <section class="results" aria-label="Results">
+      <div class="bd">
+        <div class="stale" id="stale" hidden><p>Settings changed. Press “Train and test” to see the new results.</p></div>
+        <div class="r-head"><h2>Results</h2><p class="r-sub" id="r-sub"></p></div>
+        <div class="scores" id="scores"></div>
+        <p class="flag" id="flag"></p>
+        <div class="two">
+          <div class="sec" id="boxes-sec"></div>
+          <div class="sec">
+            <h3><span id="pic-title">Picture</span><small id="pic-sub"></small></h3>
+            <div class="axes" id="axes"></div>
+            <div class="legend" id="pic-legend"></div>
+            <canvas class="pic" id="pic" role="img" aria-label="Chart of the results"></canvas>
+            <p class="pic-cap" id="pic-cap"></p>
+          </div>
+        </div>
+        <div class="two">
+          <div class="sec"><h3>What the model learned</h3><div class="learned" id="learned"></div></div>
+          <div class="sec">
+            <h3>Test 5 times <small>five different exam piles</small></h3>
+            <button type="button" class="btn sm" id="rep">Test 5 times</button>
+            <p class="rep-out" id="rep-out" aria-live="polite"></p>
+          </div>
+        </div>
+        <div class="sec">
+          <h3>Try a new example <small>change the clues and the model answers</small></h3>
+          <div class="pred-form" id="pred-form"></div>
+          <p class="pred-out" id="pred-out" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="log" aria-label="My experiments">
+    <div class="log-head">
+      <div><h2>My experiments</h2><p>Every “Train and test” is added here, newest first. Copy the numbers you need onto your worksheet.</p></div>
+      <div id="log-actions"><button type="button" class="btn sm" id="log-clear">Clear the list</button></div>
+    </div>
+    <div class="logt-wrap"><table class="logt" id="log"></table></div>
+  </section>
+</div>
+<script>
+const LAB_DATA = {"mangoes":{"cols":["Weight (g)","Farm distance (km)","Colour","Softness (1-10)","Smell (1-10)","Days since picked","Ripe?","Price (Rs)"],"rows":[[171,185,"Orange",10,8,12,"Yes",20],[303,289,"Green",3,3,2,"No",42],[249,271,"Green",2,1,3,"No",38],[207,199,"Yellow",5,2,3,"No",30],[313,853,"Green",3,3,7,"No",41],[308,228,"Yellow",8,9,6,"Yes",45],[238,460,"Green",10,7,11,"Yes",38],[221,314,"Yellow",5,4,null,"Yes",33],[284,118,"Orange",1,1,3,"No",40],[346,293,"Yellow",6,8,10,"Yes",52],[207,697,"Orange",8,8,13,"Yes",21],[281,557,"Green",7,3,9,"No",38],[352,396,"Green",9,7,14,"Yes",43],[241,281,"Green",3,6,4,"No",34],[238,645,"Orange",9,8,12,"Yes",29],[214,337,"Green",6,2,11,"No",26],[197,128,"Green",4,4,1,"No",28],[215,141,"Green",3,3,3,"No",28],[316,347,"Yellow",5,9,4,"No",40],[227,863,"Orange",10,7,10,"Yes",33],[252,769,"Green",5,8,4,"Yes",42],[336,170,"Yellow",8,6,8,"Yes",49],[281,339,"Orange",10,10,14,"Yes",32],[283,808,"Green",9,8,null,"Yes",37],[247,829,"Yellow",7,6,6,"Yes",41],[279,530,"Yellow",5,4,8,"Yes",41],[295,620,"Yellow",6,5,11,"Yes",44],[356,460,"Green",7,2,2,"No",49],[329,571,"Orange",8,4,4,"Yes",46],[326,713,"Yellow",5,4,7,"No",46],[320,899,"Green",6,7,8,"Yes",50],[160,687,"Green",2,3,6,"No",21],[248,703,"Yellow",6,7,10,"Yes",39],[405,473,"Green",3,2,4,"No",53],[302,370,"Yellow",3,5,8,"No",43],[218,377,"Green",3,4,1,"No",25],[260,304,"Green",4,1,6,"No",33],[242,379,"Orange",8,8,12,"Yes",30],[244,674,"Green",5,2,4,"No",30],[243,388,"Orange",7,2,10,"Yes",39],[321,706,"Green",3,1,5,"No",47],[325,355,"Green",10,6,13,"Yes",39],[235,235,"Green",8,8,12,"Yes",31],[229,246,"Yellow",5,4,9,"Yes",35],[324,623,"Green",6,2,5,"No",44],[262,59,"Green",9,8,13,"Yes",29],[319,786,"Yellow",5,4,6,"Yes",45],[366,35,"Green",7,6,7,"Yes",52],[386,840,"Green",1,4,1,"No",53],[316,292,"Green",1,5,1,"No",40],[315,686,"Green",4,3,1,"No",44],[282,317,"Green",1,2,5,"No",39],[195,400,"Orange",8,6,12,"Yes",24],[275,107,"Yellow",7,2,10,"Yes",41],[221,462,"Green",1,3,4,"No",30],[283,549,"Green",3,4,1,"No",35],[284,172,"Green",2,3,5,"No",38],[214,120,"Green",2,1,2,"No",21],[310,461,"Yellow",7,8,null,"Yes",44],[170,617,"Orange",10,10,14,"Yes",22],[245,685,"Green",2,4,3,"No",32],[304,109,"Yellow",6,2,6,"No",45],[314,414,"Green",1,1,1,"No",42],[201,807,"Green",1,4,3,"No",29],[172,842,"Green",1,1,4,"No",21],[212,176,"Orange",8,10,14,"Yes",33],[336,255,"Green",6,6,3,"No",45],[205,362,"Orange",7,6,10,"Yes",32],[232,818,"Green",4,3,7,"No",29],[339,778,"Green",9,8,12,"Yes",46],[251,750,"Orange",10,9,11,"Yes",38],[388,537,"Green",3,3,2,"No",58],[342,734,"Green",3,1,1,"No",47],[244,142,"Green",3,2,7,"No",32],[294,863,"Green",1,1,1,"Yes",45],[265,339,"Orange",4,1,8,"No",34],[285,383,"Green",1,1,4,"No",35],[219,857,"Orange",8,9,13,"Yes",27],[279,653,"Orange",8,10,11,"Yes",42],[273,119,"Green",8,9,9,"Yes",43],[296,164,"Yellow",7,3,8,"Yes",39],[307,272,"Yellow",7,7,11,"Yes",41],[304,156,"Green",1,3,3,"No",45],[255,679,"Green",3,2,2,"No",36],[322,163,"Yellow",5,4,12,"Yes",41],[278,210,"Green",9,6,13,"Yes",38],[354,420,"Yellow",5,8,9,"Yes",55],[285,828,"Orange",9,7,11,"Yes",41],[271,83,"Orange",8,10,14,"Yes",30],[377,656,"Green",4,2,6,"No",55],[353,375,"Green",3,5,7,"No",49],[292,565,"Green",1,1,null,"No",39],[327,891,"Yellow",6,6,11,"Yes",52],[254,687,"Green",5,6,6,"No",36],[239,242,"Yellow",6,5,9,"Yes",32],[338,394,"Green",1,1,1,"No",41],[267,803,"Green",4,2,5,"No",37],[223,533,"Green",3,1,3,"No",30],[350,696,"Orange",9,9,9,"Yes",55],[370,402,"Yellow",5,3,4,"Yes",52],[342,722,"Green",1,1,3,"No",51],[201,104,"Green",1,1,1,"No",25],[236,368,"Yellow",6,8,8,"Yes",32],[353,826,"Yellow",6,6,7,"No",51],[288,641,"Yellow",8,6,10,"Yes",45],[336,590,"Green",1,1,3,"No",44],[263,859,"Orange",10,8,14,"Yes",28],[302,873,"Green",10,8,11,"No",39],[259,659,"Yellow",5,4,6,"No",35],[208,508,"Green",1,1,3,"No",27],[229,135,"Orange",8,6,13,"Yes",31],[288,723,"Orange",8,8,12,"Yes",41],[218,640,"Green",5,1,10,"No",29],[272,655,"Orange",9,8,10,"No",32],[175,855,"Green",6,6,12,"Yes",22],[329,54,"Green",3,3,4,"No",39],[297,732,"Orange",9,7,11,"Yes",45],[248,280,"Orange",4,2,null,"No",34],[299,422,"Green",5,3,9,"Yes",49],[295,112,"Green",10,6,12,"Yes",38],[327,411,"Orange",8,4,12,"Yes",41],[308,89,"Orange",10,8,14,"Yes",41],[181,582,"Green",9,8,11,"Yes",26],[306,595,"Green",2,3,2,"No",42],[313,848,"Yellow",4,4,6,"No",39],[256,832,"Orange",4,5,5,"No",31],[235,107,"Yellow",6,3,11,"Yes",35],[353,885,"Yellow",8,7,9,"Yes",52],[371,149,"Orange",6,6,14,"Yes",44],[329,622,"Orange",1,1,3,"No",46],[267,561,"Green",3,3,3,"No",33],[206,864,"Green",5,6,8,"Yes",34],[277,455,"Green",1,1,2,"No",40],[299,151,"Yellow",8,6,11,"Yes",46],[219,290,"Green",3,2,11,"No",26],[299,41,"Yellow",5,3,14,"Yes",39],[294,265,"Yellow",6,4,10,"Yes",46],[254,467,"Green",4,4,4,"No",39],[286,179,"Green",5,3,6,"No",45],[266,700,"Yellow",8,5,7,"Yes",47],[221,678,"Green",5,5,null,"Yes",35],[288,341,"Orange",9,5,10,"Yes",48],[343,732,"Green",10,10,14,"Yes",45],[204,827,"Green",4,2,5,"No",27],[345,360,"Orange",8,8,13,"Yes",45],[311,410,"Yellow",7,4,11,"Yes",43],[300,853,"Orange",6,8,9,"Yes",43],[395,782,"Yellow",5,3,3,"No",50],[262,833,"Orange",8,6,12,"Yes",36],[287,540,"Orange",6,5,10,"Yes",43],[282,471,"Yellow",6,8,9,"Yes",44],[177,424,"Yellow",4,6,10,"Yes",29],[271,711,"Orange",10,10,13,"Yes",31],[220,575,"Green",3,1,2,"No",27],[226,354,"Yellow",4,1,8,"No",29],[223,615,"Orange",7,6,13,"Yes",32],[293,876,"Green",8,7,10,"Yes",47],[300,278,"Orange",5,6,12,"Yes",36],[380,316,"Yellow",6,5,10,"No",49],[223,780,"Orange",8,7,13,"Yes",29]]},"leaves":{"cols":["Length (cm)","Width (cm)","Toothed edge","Long pointed tip","Tree"],"rows":[[7.0,1.0,"Yes","No","Neem"],[8.4,1.6,"Yes","No","Neem"],[11.1,8.0,"No","No","Peepal"],[28.7,4.8,"No","No","Mango"],[19.3,4.6,"No","No","Mango"],[13.6,9.7,"No","Yes","Peepal"],[6.6,2.0,"Yes","No","Neem"],[3.9,2.2,"Yes","No","Neem"],[15.5,8.7,"No","Yes","Peepal"],[6.9,1.8,"No","No","Neem"],[13.2,10.7,"No","Yes","Peepal"],[5.2,0.9,"No","No","Neem"],[18.9,6.2,"No","No","Mango"],[5.4,1.3,"Yes","No","Neem"],[7.0,1.7,"Yes","No","Neem"],[6.3,1.6,"No","Yes","Neem"],[13.1,9.5,"No","Yes","Peepal"],[5.8,1.5,"Yes","No","Neem"],[5.2,1.3,"Yes","Yes","Neem"],[5.5,1.3,"No","No","Neem"],[5.5,1.7,"Yes","Yes","Neem"],[15.1,9.6,"Yes","Yes","Peepal"],[16.3,5.4,"Yes","No","Mango"],[13.9,9.2,"No","Yes","Peepal"],[12.3,10.4,"No","Yes","Peepal"],[7.2,2.1,"Yes","No","Neem"],[12.8,7.5,"No","Yes","Peepal"],[12.1,10.5,"No","No","Peepal"],[6.0,1.9,"Yes","No","Neem"],[7.0,1.9,"Yes","No","Neem"],[13.5,11.3,"No","Yes","Peepal"],[4.9,1.8,"No","No","Neem"],[15.6,9.6,"No","Yes","Peepal"],[19.8,7.2,"No","Yes","Mango"],[6.3,1.5,"Yes","Yes","Neem"],[9.7,10.7,"No","Yes","Peepal"],[10.0,5.5,"No","Yes","Peepal"],[22.8,4.0,"No","Yes","Mango"],[5.2,1.9,"Yes","Yes","Neem"],[12.4,7.7,"No","Yes","Peepal"],[5.1,2.0,"Yes","No","Neem"],[14.4,7.9,"No","Yes","Peepal"],[16.5,5.0,"No","Yes","Mango"],[20.4,7.3,"No","Yes","Mango"],[22.8,7.0,"No","No","Mango"],[13.6,6.7,"No","Yes","Peepal"],[20.9,5.7,"No","Yes","Mango"],[8.0,1.5,"Yes","No","Neem"],[12.4,10.2,"No","Yes","Peepal"],[7.5,1.2,"Yes","No","Neem"],[4.7,1.0,"No","No","Neem"],[22.1,3.6,"No","No","Mango"],[19.7,5.7,"No","No","Mango"],[16.5,3.9,"No","No","Mango"],[14.4,6.8,"No","Yes","Peepal"],[16.5,7.8,"Yes","Yes","Peepal"],[14.2,10.1,"No","Yes","Peepal"],[18.8,5.7,"No","No","Mango"],[21.1,5.5,"No","No","Mango"],[19.0,5.0,"No","Yes","Mango"],[13.7,5.4,"No","No","Mango"],[16.5,7.7,"No","Yes","Mango"],[12.5,6.1,"No","Yes","Peepal"],[17.0,3.2,"No","No","Mango"],[7.5,1.6,"Yes","No","Neem"],[8.9,7.7,"No","Yes","Peepal"],[20.2,6.5,"No","No","Mango"],[19.7,6.8,"No","No","Mango"],[5.8,1.3,"Yes","No","Neem"],[19.0,7.7,"No","Yes","Peepal"],[20.0,4.8,"No","No","Mango"],[7.0,2.0,"Yes","No","Neem"],[5.4,1.7,"Yes","No","Neem"],[16.6,8.6,"Yes","Yes","Peepal"],[6.5,1.3,"Yes","No","Neem"],[7.9,1.8,"Yes","No","Neem"],[23.2,5.9,"No","No","Mango"],[11.0,8.4,"No","Yes","Peepal"],[11.3,10.1,"Yes","Yes","Peepal"],[5.3,2.2,"Yes","No","Neem"],[12.2,8.4,"No","Yes","Peepal"],[16.1,9.4,"No","Yes","Peepal"],[20.1,4.0,"No","No","Mango"],[14.7,8.1,"No","Yes","Peepal"],[14.5,5.2,"No","Yes","Mango"],[4.8,1.3,"Yes","Yes","Neem"],[26.3,6.2,"No","No","Mango"],[20.5,6.8,"No","No","Mango"],[14.1,9.9,"No","No","Peepal"],[16.2,10.2,"No","Yes","Peepal"],[22.9,5.2,"No","No","Mango"],[6.5,0.8,"Yes","No","Neem"],[7.1,1.4,"Yes","No","Neem"],[5.2,1.8,"Yes","No","Neem"],[11.7,11.3,"No","Yes","Peepal"],[15.4,3.3,"No","No","Mango"],[18.1,5.7,"No","No","Mango"],[18.4,7.6,"No","Yes","Peepal"],[4.9,1.8,"No","No","Neem"],[6.3,1.1,"Yes","No","Neem"],[4.3,1.4,"Yes","No","Neem"],[14.2,10.8,"No","Yes","Peepal"],[5.7,1.8,"Yes","No","Neem"],[6.9,1.5,"Yes","No","Neem"],[13.9,9.8,"No","Yes","Peepal"],[20.0,3.5,"No","Yes","Mango"],[4.7,1.0,"Yes","No","Neem"],[16.9,9.2,"No","Yes","Peepal"],[12.6,9.8,"No","Yes","Peepal"],[15.5,6.6,"No","No","Mango"],[12.3,8.4,"No","Yes","Peepal"],[18.1,5.2,"No","No","Mango"],[6.2,1.4,"Yes","No","Neem"],[24.3,7.0,"No","No","Mango"],[24.8,7.2,"No","No","Mango"],[12.5,4.5,"Yes","No","Mango"],[20.3,4.9,"No","Yes","Mango"],[17.9,4.9,"No","No","Mango"],[6.8,1.7,"Yes","Yes","Neem"],[12.4,9.7,"No","Yes","Peepal"],[16.4,13.0,"No","Yes","Peepal"],[23.7,6.5,"No","No","Mango"],[6.1,1.9,"Yes","Yes","Neem"],[20.5,6.9,"No","No","Mango"],[19.1,4.4,"Yes","No","Mango"],[14.3,8.0,"No","Yes","Peepal"],[16.0,9.2,"No","Yes","Peepal"],[14.8,7.9,"No","Yes","Peepal"],[21.3,7.4,"No","No","Mango"],[7.0,2.1,"No","No","Neem"],[23.7,4.7,"No","No","Mango"],[6.2,1.9,"Yes","No","Neem"],[11.7,9.6,"No","Yes","Peepal"],[11.9,7.5,"No","Yes","Peepal"],[15.8,11.8,"No","Yes","Peepal"],[16.1,4.6,"No","No","Mango"],[21.1,4.1,"No","No","Mango"],[5.2,1.8,"Yes","No","Neem"],[4.3,1.6,"Yes","No","Neem"],[20.8,4.6,"No","Yes","Mango"],[17.2,6.6,"No","Yes","Peepal"],[14.9,9.1,"No","Yes","Peepal"],[13.0,9.5,"No","Yes","Peepal"],[16.3,5.6,"No","No","Mango"],[5.1,1.9,"Yes","No","Neem"],[16.2,6.4,"No","No","Mango"],[7.3,2.0,"Yes","No","Neem"],[15.5,5.2,"No","No","Mango"],[17.7,4.7,"No","No","Mango"],[6.2,1.4,"Yes","No","Neem"]]},"canteen":{"cols":["Day","Rainy?","Exam week?","Holiday tomorrow?","Temperature (C)","Samosas sold"],"rows":[["Mon","No","No","No",30.2,105],["Tue","No","No","No",26.9,101],["Wed","Yes","No","No",24.8,144],["Thu","Yes","No","No",27.9,146],["Fri","No","No","No",36.2,122],["Sat","No","No","No",35.3,74],["Mon","Yes","No","No",26.1,113],["Tue","No","No","No",29.4,87],["Wed","No","No","No",26.6,112],["Thu","No","No","No",31.7,119],["Fri","No","No","No",29.6,133],["Sat","No","No","No",33.7,90],["Mon","No","No","No",null,101],["Tue","No","No","No",30.4,103],["Wed","No","No","No",27.7,110],["Thu","No","No","No",27.1,117],["Fri","No","No","No",32.0,129],["Sat","No","No","No",31.0,78],["Mon","No","No","No",32.3,98],["Tue","Yes","No","No",25.2,142],["Wed","No","No","No",30.2,103],["Thu","Yes","No","No",21.3,138],["Fri","No","No","Yes",32.8,155],["Sat","Yes","No","No",28.1,103],["Mon","No","No","No",28.6,93],["Tue","Yes","No","No",27.3,136],["Wed","No","No","No",28.5,117],["Thu","No","No","No",32.3,106],["Fri","Yes","No","No",28.3,157],["Sat","Yes","No","No",21.3,119],["Mon","Yes","No","No",30.6,103],["Tue","No","No","No",34.2,115],["Wed","No","No","No",33.7,105],["Thu","No","No","No",29.8,114],["Fri","No","No","No",31.6,132],["Sat","No","No","No",34.0,67],["Mon","Yes","Yes","No",27.6,110],["Tue","Yes","Yes","No",30.7,84],["Wed","No","Yes","Yes",28.4,100],["Thu","No","Yes","No",30.5,88],["Fri","No","Yes","No",29.4,103],["Sat","No","Yes","No",33.3,32],["Mon","No","Yes","No",31.0,64],["Tue","Yes","Yes","No",25.5,99],["Wed","Yes","Yes","Yes",25.2,130],["Thu","Yes","Yes","No",26.4,118],["Fri","No","Yes","No",35.2,90],["Sat","No","Yes","No",null,47],["Mon","No","No","No",28.8,104],["Tue","Yes","No","No",20.7,144],["Wed","No","No","Yes",28.9,138],["Thu","Yes","No","Yes",22.9,167],["Fri","No","No","No",31.6,125],["Sat","No","No","No",31.3,81],["Mon","No","No","No",33.3,90],["Tue","Yes","No","Yes",26.8,155],["Wed","No","No","No",30.6,102],["Thu","No","No","No",27.8,120],["Fri","No","No","No",32.6,124],["Sat","No","No","No",29.1,75],["Mon","No","No","No",26.9,91],["Tue","No","No","No",27.9,103],["Wed","No","No","No",29.7,112],["Thu","No","No","No",28.3,126],["Fri","No","No","No",30.4,126],["Sat","No","No","No",34.2,78],["Mon","No","No","No",30.6,105],["Tue","No","No","No",33.3,106],["Wed","No","No","No",25.3,108],["Thu","No","No","No",31.5,123],["Fri","No","No","No",32.5,140],["Sat","No","No","No",33.2,88],["Mon","No","No","No",33.5,93],["Tue","Yes","No","No",24.6,127],["Wed","No","No","No",30.6,104],["Thu","No","No","No",30.2,106],["Fri","No","No","No",28.8,135],["Sat","No","No","No",31.4,83],["Mon","No","No","No",33.9,88],["Tue","No","No","No",30.5,103],["Wed","No","No","No",null,111],["Thu","No","No","No",37.4,113],["Fri","No","No","No",29.6,120],["Sat","No","No","No",32.8,75],["Mon","No","No","No",21.1,101],["Tue","Yes","No","No",24.1,135],["Wed","No","No","No",26.5,120],["Thu","No","No","No",27.2,124],["Fri","No","No","No",24.2,123],["Sat","No","No","No",24.3,86],["Mon","No","Yes","No",28.4,73],["Tue","No","Yes","No",28.9,63],["Wed","No","Yes","No",28.0,84],["Thu","Yes","Yes","No",19.1,116],["Fri","No","Yes","No",28.6,114],["Sat","No","Yes","No",27.9,51],["Mon","No","No","No",24.2,92],["Tue","No","No","No",25.2,120],["Wed","No","No","No",24.9,112],["Thu","No","No","Yes",25.2,136],["Fri","Yes","No","No",21.0,168],["Sat","No","No","No",27.4,85],["Mon","No","No","No",28.0,95],["Tue","No","No","No",27.0,105],["Wed","No","No","No",23.4,105],["Thu","No","No","No",30.5,111],["Fri","Yes","No","No",25.5,165],["Sat","No","No","No",21.6,88],["Mon","Yes","No","No",20.0,129],["Tue","No","No","No",24.2,114],["Wed","No","No","Yes",22.5,136],["Thu","No","No","No",null,121],["Fri","No","No","No",22.7,140],["Sat","No","No","No",29.3,69],["Mon","No","No","No",24.0,100],["Tue","No","No","No",23.5,107],["Wed","Yes","No","Yes",18.4,169],["Thu","No","No","No",29.0,107],["Fri","No","No","No",29.1,131],["Sat","No","No","No",29.3,79],["Mon","No","No","No",29.4,106],["Tue","No","No","No",25.8,108],["Wed","No","No","No",27.4,111],["Thu","No","No","No",26.6,128],["Fri","No","No","No",27.5,144],["Sat","No","No","No",22.3,82]]},"messages":{"cols":["Links","Prize words","Capital letters (%)","Sender in contacts?","Length (words)","Spam?"],"rows":[[0,0,14,"No",20,"No"],[0,0,6,"Yes",24,"No"],[1,0,5,"Yes",2,"No"],[0,0,9,"Yes",18,"No"],[0,0,13,"No",18,"No"],[1,0,0,"Yes",7,"No"],[0,0,1,"Yes",33,"No"],[0,0,22,"Yes",6,"No"],[2,0,50,"No",18,"Yes"],[0,0,3,"Yes",22,"No"],[0,0,6,"Yes",27,"No"],[0,0,15,"No",24,"No"],[0,1,13,"Yes",23,"No"],[2,0,25,"No",22,"Yes"],[0,0,0,"Yes",29,"No"],[0,0,48,"No",20,"Yes"],[0,0,9,"Yes",25,"No"],[0,0,4,"No",5,"No"],[0,0,19,"Yes",7,"No"],[0,0,9,"No",19,"No"],[1,0,12,"No",36,"No"],[1,0,1,"No",2,"No"],[0,1,15,"No",21,"Yes"],[0,0,10,"No",10,"No"],[0,0,2,"No",4,"No"],[0,0,13,"Yes",37,"No"],[0,0,12,"Yes",2,"No"],[0,1,5,"Yes",31,"No"],[0,0,1,"Yes",8,"No"],[0,0,2,"Yes",25,"No"],[3,0,42,"No",37,"Yes"],[0,1,12,"Yes",15,"No"],[0,1,46,"No",30,"Yes"],[1,3,32,"No",21,"Yes"],[3,1,34,"No",32,"Yes"],[1,1,22,"No",16,"Yes"],[0,1,11,"Yes",20,"No"],[0,0,7,"No",26,"No"],[0,0,3,"No",11,"No"],[0,0,20,"Yes",17,"No"],[0,1,0,"Yes",6,"No"],[0,1,6,"Yes",18,"No"],[0,0,13,"Yes",22,"No"],[0,0,11,"No",44,"No"],[0,0,19,"Yes",11,"No"],[0,0,9,"Yes",10,"No"],[0,0,5,"Yes",29,"No"],[0,0,12,"No",26,"No"],[0,0,0,"No",20,"No"],[1,0,15,"Yes",13,"No"],[0,0,4,"Yes",18,"No"],[0,0,0,"No",16,"No"],[0,2,24,"No",11,"Yes"],[1,0,6,"Yes",17,"No"],[1,2,19,"No",24,"Yes"],[0,0,12,"Yes",13,"No"],[0,0,3,"Yes",11,"No"],[0,0,0,"Yes",26,"No"],[0,0,6,"No",11,"No"],[0,0,5,"Yes",25,"No"],[1,0,17,"No",27,"No"],[0,1,4,"Yes",20,"No"],[0,1,5,"No",25,"No"],[0,0,11,"Yes",21,"No"],[0,0,6,"Yes",19,"No"],[0,0,7,"Yes",25,"No"],[1,1,20,"No",31,"Yes"],[0,0,9,"Yes",33,"No"],[0,0,0,"Yes",3,"No"],[1,0,9,"No",23,"No"],[1,3,36,"No",29,"Yes"],[0,0,2,"Yes",23,"No"],[0,0,12,"No",24,"No"],[0,0,12,"Yes",4,"No"],[1,4,62,"Yes",25,"Yes"],[0,1,12,"Yes",4,"No"],[0,0,0,"No",15,"No"],[0,1,8,"Yes",2,"No"],[0,0,11,"Yes",2,"No"],[0,0,9,"Yes",2,"No"],[0,0,0,"Yes",5,"No"],[1,1,5,"Yes",10,"No"],[0,0,4,"Yes",3,"No"],[0,0,18,"Yes",24,"No"],[0,1,7,"Yes",36,"No"],[0,0,10,"No",14,"No"],[0,0,3,"Yes",27,"No"],[0,0,1,"Yes",23,"No"],[0,0,1,"Yes",14,"No"],[1,0,22,"No",41,"Yes"],[0,0,14,"Yes",15,"No"],[0,0,8,"No",11,"No"],[1,1,4,"Yes",17,"No"],[1,1,2,"Yes",3,"No"],[0,0,0,"Yes",17,"No"],[0,0,7,"Yes",30,"No"],[1,3,12,"No",24,"Yes"],[0,0,13,"Yes",3,"No"],[0,0,0,"Yes",30,"No"],[0,0,1,"No",30,"No"],[1,4,32,"No",37,"Yes"],[0,0,4,"No",45,"No"],[1,0,11,"No",13,"Yes"],[0,0,10,"Yes",5,"No"],[1,0,1,"Yes",16,"No"],[0,1,10,"Yes",35,"No"],[0,0,15,"No",23,"No"],[0,0,10,"Yes",25,"No"],[0,1,18,"No",18,"No"],[0,0,9,"Yes",20,"No"],[0,0,4,"No",39,"No"],[0,0,0,"No",22,"No"],[0,0,9,"Yes",16,"No"],[0,0,3,"Yes",44,"No"],[1,0,10,"No",27,"No"],[0,0,10,"Yes",28,"No"],[1,1,6,"No",2,"No"],[1,0,10,"No",35,"No"],[0,0,10,"No",32,"No"],[1,1,43,"No",25,"Yes"],[2,1,29,"No",31,"Yes"],[1,4,22,"No",23,"Yes"],[2,1,14,"No",30,"Yes"],[0,0,3,"No",24,"No"],[0,0,5,"Yes",23,"No"],[1,2,38,"No",24,"Yes"],[0,1,10,"Yes",18,"No"],[0,0,13,"Yes",17,"No"],[0,0,1,"Yes",33,"No"],[0,0,8,"Yes",10,"No"],[0,0,0,"No",20,"No"],[1,0,0,"No",20,"No"],[2,1,25,"No",8,"Yes"],[0,0,11,"Yes",25,"No"],[0,0,4,"Yes",46,"No"],[0,0,16,"Yes",25,"No"],[0,0,3,"Yes",39,"No"],[0,0,3,"No",15,"No"],[0,0,15,"Yes",2,"No"],[0,0,9,"Yes",31,"No"],[0,0,0,"No",32,"No"],[0,0,7,"No",24,"No"],[0,0,2,"Yes",48,"No"],[1,0,4,"Yes",25,"No"],[0,0,12,"Yes",23,"No"],[0,1,9,"No",19,"No"],[0,0,10,"Yes",2,"No"],[0,0,16,"No",18,"No"],[1,0,5,"Yes",2,"No"],[0,0,18,"Yes",22,"No"],[0,0,18,"Yes",31,"No"],[1,1,0,"Yes",23,"No"],[1,0,7,"Yes",18,"No"],[1,0,3,"Yes",26,"No"],[0,0,15,"Yes",2,"No"],[0,0,12,"Yes",14,"No"],[1,0,4,"Yes",24,"No"],[0,0,8,"Yes",31,"No"],[0,0,4,"No",30,"No"],[0,0,14,"Yes",9,"No"],[1,0,12,"Yes",23,"No"],[0,0,4,"No",19,"No"],[1,2,45,"No",29,"Yes"],[0,0,14,"No",18,"No"],[0,0,9,"Yes",2,"No"],[1,0,15,"No",22,"Yes"],[0,0,4,"Yes",3,"No"],[1,1,0,"Yes",14,"No"],[3,1,34,"No",26,"Yes"],[3,1,29,"No",28,"Yes"],[0,0,16,"Yes",2,"No"],[0,0,13,"No",4,"No"],[0,0,14,"Yes",15,"No"],[0,0,4,"Yes",39,"No"],[0,0,8,"Yes",2,"No"],[0,0,9,"Yes",32,"No"],[0,1,8,"No",32,"No"],[0,0,9,"Yes",5,"No"],[0,0,5,"Yes",18,"No"],[0,0,15,"Yes",27,"No"],[1,0,10,"Yes",27,"No"],[1,2,44,"No",27,"Yes"],[0,0,14,"Yes",16,"No"],[0,0,17,"Yes",4,"No"],[0,0,16,"Yes",29,"No"],[0,0,10,"Yes",35,"No"],[0,0,7,"Yes",21,"No"],[0,0,17,"No",27,"No"],[0,0,19,"Yes",29,"No"],[0,0,13,"No",2,"No"],[0,0,14,"Yes",15,"No"],[1,0,9,"Yes",35,"No"],[0,0,24,"Yes",4,"No"],[0,0,0,"No",13,"No"],[0,0,13,"Yes",3,"No"],[0,0,14,"No",24,"No"],[0,1,7,"Yes",26,"No"],[1,2,36,"No",31,"Yes"],[0,0,14,"Yes",24,"No"],[1,0,10,"No",33,"No"]]}};
+</script>
+<script>
+/* ===== Supervised ML Lab: models, preparation and scoring (no libraries) ===== */
+(function (root) {
+  "use strict";
+  function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  const mean = a => a.reduce((s, v) => s + v, 0) / (a.length || 1);
+
+  /* ---------- columns ---------- */
+  function schema(ds) {
+    return ds.cols.map((name, j) => {
+      const vals = ds.rows.map(r => r[j]).filter(v => v !== null && v !== undefined);
+      if (vals.every(v => typeof v === "number")) return { name, type: "num", min: Math.min(...vals), max: Math.max(...vals) };
+      const cats = [...new Set(vals)];
+      if (cats.length === 2 && cats.includes("Yes") && cats.includes("No")) return { name, type: "yesno", cats: ["No", "Yes"] };
+      return { name, type: "cat", cats };
+    });
+  }
+
+  /* ---------- preparation: missing values, encoding, fair scales ---------- */
+  function prepare(ds, opts) {
+    // opts: { label, clues:[names], missing:"fill"|"drop", scale:true|false }
+    const sch = schema(ds), idx = n => ds.cols.indexOf(n);
+    const li = idx(opts.label), clueCols = opts.clues.map(n => sch[idx(n)]);
+    const means = {};
+    clueCols.forEach(c => { if (c.type === "num") { const j = idx(c.name); means[c.name] = mean(ds.rows.map(r => r[j]).filter(v => v !== null)); } });
+    let rows = ds.rows.map((r, i) => ({ r, i }));
+    const gaps = rows.filter(({ r }) => clueCols.some(c => r[idx(c.name)] === null)).length;
+    if (opts.missing === "drop") rows = rows.filter(({ r }) => clueCols.every(c => r[idx(c.name)] !== null));
+    const feats = []; // encoded feature descriptions
+    clueCols.forEach(c => {
+      if (c.type === "num") feats.push({ col: c.name, kind: "num", label: c.name });
+      else if (c.type === "yesno") feats.push({ col: c.name, kind: "bin", eq: "Yes", label: c.name.replace(/\?$/, "") });
+      else c.cats.forEach(cat => feats.push({ col: c.name, kind: "bin", eq: cat, label: `${c.name} is ${cat}` }));
+    });
+    const encode = (get) => feats.map(f => {
+      const v = get(f.col);
+      if (f.kind === "num") return v === null || v === undefined || v === "" ? means[f.col] : +v;
+      return v === f.eq ? 1 : 0;
+    });
+    const X = rows.map(({ r }) => encode(col => r[idx(col)]));
+    const y = rows.map(({ r }) => r[li]);
+    // fair scales: 0 to 1 using the whole column
+    const lo = feats.map((_, j) => Math.min(...X.map(x => x[j]))), hi = feats.map((_, j) => Math.max(...X.map(x => x[j])));
+    const scaleRow = x => x.map((v, j) => hi[j] > lo[j] ? (v - lo[j]) / (hi[j] - lo[j]) : 0);
+    const Xs = opts.scale ? X.map(scaleRow) : X;
+    return { X: Xs, Xraw: X, y, feats, rowIds: rows.map(o => o.i), gaps, dropped: ds.rows.length - rows.length, means,
+      encodeRaw: encode, toModel: x => opts.scale ? scaleRow(x) : x, schema: sch };
+  }
+
+  /* ---------- split into practice and exam piles ---------- */
+  function split(n, testPct, seed) {
+    const order = [...Array(n).keys()], R = mulberry32(seed * 7919 + 13);
+    for (let i = n - 1; i > 0; i--) { const j = Math.floor(R() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
+    const nt = Math.max(1, Math.round(n * testPct / 100));
+    return { test: order.slice(0, nt), train: order.slice(nt) };
+  }
+
+  /* ---------- models ---------- */
+  function lazy(isClass, classes) {
+    return {
+      name: "Lazy guess", fit(X, y) {
+        if (isClass) { const c = {}; y.forEach(v => c[v] = (c[v] || 0) + 1); this.counts = c; this.best = classes.reduce((a, b) => (c[b] || 0) > (c[a] || 0) ? b : a, classes[0]); this.n = y.length; }
+        else this.avg = mean(y);
+        return this;
+      },
+      predict() { return isClass ? this.best : this.avg; },
+      proba(x, pos) { return (this.counts[pos] || 0) / this.n; },
+      explain() { return isClass ? { kind: "lazy", text: `Always says “${this.best}”, the most common answer in the practice pile.` } : { kind: "lazy", text: `Always guesses the practice-pile average: ${this.avg.toFixed(1)}.` }; }
+    };
+  }
+  function knn(k, isClass, classes) {
+    return {
+      name: `Nearest neighbours (k = ${k})`, fit(X, y) { this.X = X; this.y = y; return this; },
+      near(x) {
+        const d = this.X.map((p, i) => { let s = 0; for (let j = 0; j < p.length; j++) { const t = p[j] - x[j]; s += t * t; } return [s, i]; });
+        d.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+        return d.slice(0, Math.min(k, d.length)).map(p => p[1]);
+      },
+      predict(x) {
+        const nb = this.near(x);
+        if (!isClass) return mean(nb.map(i => this.y[i]));
+        const c = {}; nb.forEach(i => c[this.y[i]] = (c[this.y[i]] || 0) + 1);
+        const top = Math.max(...Object.values(c)), tied = Object.keys(c).filter(v => c[v] === top);
+        return tied.length === 1 ? tied[0] : nb.map(i => this.y[i]).find(v => tied.includes(v));
+      },
+      proba(x, pos) { const nb = this.near(x); return nb.filter(i => this.y[i] === pos).length / nb.length; },
+      votes(x) { const nb = this.near(x), c = {}; nb.forEach(i => c[this.y[i]] = (c[this.y[i]] || 0) + 1); return { c, n: nb.length }; },
+      explain() { return { kind: "knn", text: `Finds the ${k} practice examples most like the new one and ${isClass ? "goes with the majority" : "averages their answers"}.` }; }
+    };
+  }
+  function tree(maxDepth, isClass, classes) {
+    function stats(y) {
+      if (isClass) { const c = {}; y.forEach(v => c[v] = (c[v] || 0) + 1); return c; }
+      return { n: y.length, avg: mean(y) };
+    }
+    function impurity(y) {
+      if (!y.length) return 0;
+      if (isClass) { const c = stats(y); let g = 1; Object.values(c).forEach(v => { const p = v / y.length; g -= p * p; }); return g * y.length; }
+      const m = mean(y); return y.reduce((s, v) => s + (v - m) * (v - m), 0);
+    }
+    function leaf(y) {
+      if (isClass) { const c = stats(y); const best = classes.reduce((a, b) => (c[b] || 0) > (c[a] || 0) ? b : a, classes[0]); return { leaf: true, n: y.length, counts: c, value: best }; }
+      return { leaf: true, n: y.length, value: mean(y) };
+    }
+    function build(X, y, depth) {
+      const node = leaf(y);
+      if (depth >= maxDepth || y.length < 2) return node;
+      const base = impurity(y);
+      if (base <= 1e-12) return node;
+      let best = null;
+      const p = X[0].length;
+      for (let j = 0; j < p; j++) {
+        const order = X.map((x, i) => [x[j], y[i]]).sort((a, b) => a[0] - b[0]);
+        for (let i = 1; i < order.length; i++) {
+          if (order[i][0] === order[i - 1][0]) continue;
+          const thr = (order[i][0] + order[i - 1][0]) / 2;
+          const L = order.slice(0, i).map(o => o[1]), Rr = order.slice(i).map(o => o[1]);
+          const gain = base - impurity(L) - impurity(Rr);
+          if (!best || gain > best.gain + 1e-9) best = { j, thr, gain };
+        }
+      }
+      if (!best || best.gain <= 1e-9) return node;
+      const li = [], ri = [];
+      X.forEach((x, i) => (x[best.j] <= best.thr ? li : ri).push(i));
+      node.leaf = false; node.j = best.j; node.thr = best.thr;
+      node.left = build(li.map(i => X[i]), li.map(i => y[i]), depth + 1);
+      node.right = build(ri.map(i => X[i]), ri.map(i => y[i]), depth + 1);
+      return node;
+    }
+    return {
+      name: `Decision tree (depth ${maxDepth})`,
+      fit(X, y) { this.root = build(X, y, 0); return this; },
+      leafOf(x) { let n = this.root; while (!n.leaf) n = x[n.j] <= n.thr ? n.left : n.right; return n; },
+      path(x) { const p = []; let n = this.root; while (!n.leaf) { const left = x[n.j] <= n.thr; p.push({ node: n, left }); n = left ? n.left : n.right; } return { steps: p, leaf: n }; },
+      predict(x) { return this.leafOf(x).value; },
+      proba(x, pos) { const l = this.leafOf(x); return (l.counts[pos] || 0) / l.n; },
+      explain() { return { kind: "tree", root: this.root }; }
+    };
+  }
+  function line() {
+    // best straight line: least squares on the raw (unscaled) clues, so the numbers read in real units
+    function solve(A, b) {
+      const n = b.length, M = A.map((r, i) => [...r, b[i]]);
+      for (let c = 0; c < n; c++) {
+        let p = c; for (let r = c + 1; r < n; r++) if (Math.abs(M[r][c]) > Math.abs(M[p][c])) p = r;
+        [M[c], M[p]] = [M[p], M[c]];
+        const d = M[c][c] || 1e-12;
+        for (let r = 0; r < n; r++) { if (r === c) continue; const f = M[r][c] / d; for (let k = c; k <= n; k++) M[r][k] -= f * M[c][k]; }
+      }
+      return M.map((r, i) => r[n] / (r[i] || 1e-12));
+    }
+    return {
+      name: "Best straight line",
+      fit(X, y) {
+        const p = X[0].length + 1, A = Array.from({ length: p }, () => Array(p).fill(0)), b = Array(p).fill(0);
+        X.forEach((x, i) => { const z = [1, ...x]; for (let a = 0; a < p; a++) { b[a] += z[a] * y[i]; for (let c = 0; c < p; c++) A[a][c] += z[a] * z[c]; } });
+        const lam = 1e-6 * X.length; for (let a = 1; a < p; a++) A[a][a] += lam;
+        this.w = solve(A, b); return this;
+      },
+      predict(x) { return this.w[0] + x.reduce((s, v, j) => s + v * this.w[j + 1], 0); },
+      explain() { return { kind: "line", w: this.w }; }
+    };
+  }
+
+  /* ---------- train and test ---------- */
+  function run(ds, q, opts) {
+    // opts: { clues, missing, scale, testPct, seed, model, k, depth }
+    const isClass = q.type === "class";
+    const P = prepare(ds, { label: q.label, clues: opts.clues, missing: opts.missing, scale: opts.scale && opts.model !== "line" });
+    const classes = isClass ? [...new Set(ds.rows.map(r => r[ds.cols.indexOf(q.label)]))].sort((a, b) => (q.order ? q.order.indexOf(a) - q.order.indexOf(b) : a < b ? -1 : 1)) : null;
+    const make = () => opts.model === "knn" ? knn(opts.k, isClass, classes) : opts.model === "tree" ? tree(opts.depth, isClass, classes) : opts.model === "line" ? line() : lazy(isClass, classes);
+    const sp = split(P.X.length, opts.testPct, opts.seed);
+    const Xtr = sp.train.map(i => P.X[i]), ytr = sp.train.map(i => P.y[i]);
+    const m = make().fit(Xtr, ytr);
+    // for k-NN, a practice example is its own nearest neighbour (as in most textbooks): practice score shows memorising
+    const predTr = sp.train.map(i => m.predict(P.X[i])), predTe = sp.test.map(i => m.predict(P.X[i]));
+    const yte = sp.test.map(i => P.y[i]);
+    const res = { q, isClass, classes, P, split: sp, model: m, predTr, predTe, ytr, yte, nTrain: sp.train.length, nTest: sp.test.length };
+    if (isClass) {
+      res.trainScore = predTr.filter((v, i) => v === ytr[i]).length / ytr.length;
+      res.testScore = predTe.filter((v, i) => v === yte[i]).length / yte.length;
+      if (q.positive) res.probTe = sp.test.map(i => m.proba ? m.proba(P.X[i], q.positive) : (m.predict(P.X[i]) === q.positive ? 1 : 0));
+      const base = lazy(true, classes).fit(Xtr, ytr); res.lazyScore = yte.filter(v => v === base.best).length / yte.length;
+    } else {
+      res.trainScore = mean(predTr.map((v, i) => Math.abs(v - ytr[i])));
+      res.testScore = mean(predTe.map((v, i) => Math.abs(v - yte[i])));
+      const avg = mean(ytr); res.lazyScore = mean(yte.map(v => Math.abs(v - avg)));
+    }
+    return res;
+  }
+  function confusion(classes, actual, pred) {
+    const M = classes.map(() => classes.map(() => 0)); // rows: machine said, cols: actually
+    actual.forEach((a, i) => { const r = classes.indexOf(pred[i]), c = classes.indexOf(a); if (r >= 0 && c >= 0) M[r][c]++; });
+    return M;
+  }
+  function binaryBoxes(actual, probs, pos, t) {
+    let tp = 0, fp = 0, fn = 0, tn = 0;
+    actual.forEach((a, i) => { const said = probs[i] >= t; const yes = a === pos; if (said && yes) tp++; else if (said) fp++; else if (yes) fn++; else tn++; });
+    return { tp, fp, fn, tn, acc: (tp + tn) / actual.length, recall: tp + fn ? tp / (tp + fn) : null, precision: tp + fp ? tp / (tp + fp) : null };
+  }
+  function repeat(ds, q, opts, times) {
+    const out = [];
+    for (let s = 0; s < times; s++) out.push(run(ds, q, { ...opts, seed: opts.seed + s }).testScore);
+    return out;
+  }
+  const api = { schema, prepare, split, run, confusion, binaryBoxes, repeat, mulberry32, mean };
+  if (typeof module !== "undefined") module.exports = api; else root.ML = api;
+})(this);
+
+</script>
+<script>
+/* ===== Supervised ML Lab: interface ===== */
+(function () {
+  "use strict";
+  const $ = (s, r) => (r || document).querySelector(s), $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+  const token = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  /* ---------- data ---------- */
+  const RENAME = { "Price (Rs)": "Price (₹)", "Temperature (C)": "Temperature (°C)" };
+  const D = {};
+  Object.entries(LAB_DATA).forEach(([k, v]) => { D[k] = { cols: v.cols.map(c => RENAME[c] || c), rows: v.rows }; });
+  const QS = [
+    { id: "ripe", data: "mangoes", title: "Mangoes · Is it ripe?", about: "160 mangoes from Ramesh’s stall", label: "Ripe?", type: "class", positive: "Yes", order: ["Yes", "No"], exclude: ["Price (₹)"], map: ["Softness (1-10)", "Smell (1-10)"], noun: "mango", nouns: "mangoes", colors: { Yes: "--ripe", No: "--raw" } },
+    { id: "price", data: "mangoes", title: "Mangoes · What price?", about: "the same 160 mangoes", label: "Price (₹)", type: "reg", pre: "₹", post: "", exclude: [], noun: "mango", nouns: "mangoes" },
+    { id: "leaf", data: "leaves", title: "Leaves · Which tree?", about: "150 leaves from three trees", label: "Tree", type: "class", order: ["Neem", "Peepal", "Mango"], exclude: [], map: ["Length (cm)", "Width (cm)"], noun: "leaf", nouns: "leaves", colors: { Neem: "--c-green", Peepal: "--lemon", Mango: "--orange" } },
+    { id: "samosa", data: "canteen", title: "Canteen · How many samosas?", about: "126 school days of canteen sales", label: "Samosas sold", type: "reg", pre: "", post: " samosas", exclude: [], noun: "school day", nouns: "school days" },
+    { id: "spam", data: "messages", title: "Messages · Is it spam?", about: "200 phone messages", label: "Spam?", type: "class", positive: "Yes", order: ["Yes", "No"], exclude: [], map: ["Capital letters (%)", "Prize words"], noun: "message", nouns: "messages", colors: { Yes: "--c-pink", No: "--c-blue" } }
+  ];
+  const Q = id => QS.find(q => q.id === id);
+  const allClues = q => D[q.data].cols.filter(c => c !== q.label && !q.exclude.includes(c));
+  const SCH = {}; Object.keys(D).forEach(k => { SCH[k] = ML.schema(D[k]); });
+  const colInfo = (q, name) => SCH[q.data][D[q.data].cols.indexOf(name)];
+
+  /* ---------- tasks ---------- */
+  const TASKS = {
+    I: { time: "14:00–16:00 · Implementing classification and regression models", list: [
+      { n: "1.1", t: "Meet the data", m: "10 min", set: { q: "ripe", model: "knn", k: 5, depth: 3, missing: "fill", scale: true, test: 20, seed: 1, clues: "all" },
+        steps: ["Open step 2 and press “Show the table”.", "Count the mangoes. Find the answer column (in red).", "Sort the clues into numbers, yes/no and categories."] },
+      { n: "1.2", t: "Your first classifier: nearest neighbours", m: "20 min", set: { q: "ripe", model: "knn", k: 5, depth: 3, missing: "fill", scale: true, test: 20, seed: 1, clues: "all" },
+        steps: ["Press “Train and test”.", "Write the practice score and the exam score.", "Copy the four boxes onto your sheet.", "Use “Try a new example” for the mango on your sheet."] },
+      { n: "1.3", t: "A decision tree", m: "15 min", set: { q: "ripe", model: "tree", depth: 3, k: 5, missing: "fill", scale: true, test: 20, seed: 1, clues: "all" },
+        steps: ["Press “Train and test”.", "Read “What the model learned”. Which clue is asked first?", "Try depth 1 and depth 2. Record the scores."] },
+      { n: "1.4", t: "Three possible answers: leaves", m: "15 min", set: { q: "leaf", model: "knn", k: 5, depth: 3, missing: "fill", scale: true, test: 20, seed: 1, clues: "all" },
+        steps: ["Press “Train and test”. Read the grid of boxes.", "Which two trees get mixed up most?", "Switch to a decision tree, depth 3, and compare."] },
+      { n: "1.5", t: "Your first regression: mango price", m: "20 min", set: { q: "price", model: "line", k: 5, depth: 3, missing: "fill", scale: true, test: 20, seed: 1, clues: ["Weight (g)"] },
+        steps: ["Press “Train and test”. Look at the line in the picture.", "Write the average error in rupees.", "Predict the price of a 350 g mango.", "Tick all the clues, train and test again. Did the error fall?"] },
+      { n: "1.6", t: "Which clue matters most? Samosas", m: "20 min", set: { q: "samosa", model: "line", k: 5, depth: 3, missing: "fill", scale: true, test: 20, seed: 1, clues: "all" },
+        steps: ["Press “Train and test”. Write the exam average error.", "Untick one clue, train and test, write the error, tick it again.", "Repeat for every clue. The biggest jump shows the clue that matters most."] }
+    ] },
+    II: { time: "16:15–18:15 · Model training, testing and evaluation", list: [
+      { n: "2.1", t: "Prepare the data", m: "15 min", set: { q: "ripe", model: "knn", k: 5, depth: 3, missing: "fill", scale: true, test: 20, seed: 1, clues: "all" },
+        steps: ["Train and test. Write the exam score.", "Turn Fair scales Off. Train and test again.", "Untick Farm distance, keep scales Off, train and test.", "Tick Farm distance again. Set missing values to “Remove those rows”. How many mangoes are left?"] },
+      { n: "2.2", t: "Practice score vs exam score", m: "20 min", set: { q: "ripe", model: "tree", depth: 1, k: 5, missing: "fill", scale: true, test: 20, seed: 1, clues: "all" },
+        steps: ["Train and test the tree at depth 1, 2, 3 and so on up to 8.", "Fill in the table: practice and exam score for each depth.", "Then try nearest neighbours with k = 1."] },
+      { n: "2.3", t: "One exam is not enough", m: "15 min", set: { q: "ripe", model: "tree", depth: 3, k: 5, missing: "fill", scale: true, test: 20, seed: 1, clues: "all" },
+        steps: ["Train and test with shuffle number 1, 2, 3, 4 and 5.", "Write the exam score each time.", "Press “Test 5 times” for the tree, then for nearest neighbours (k = 5)."] },
+      { n: "2.4", t: "Better than a lazy guess? Spam", m: "25 min", set: { q: "spam", model: "lazy", k: 5, depth: 3, missing: "fill", scale: true, test: 20, seed: 1, clues: "all", strict: 50 },
+        steps: ["Train and test the Lazy guess. Read the four boxes.", "Switch to nearest neighbours, k = 5. Compare.", "Move the strictness slider. Watch the false alarms and the missed spam."] },
+      { n: "2.5", t: "Compare models: samosas", m: "15 min", set: { q: "samosa", model: "lazy", k: 5, depth: 3, missing: "fill", scale: true, test: 20, seed: 1, clues: "all" },
+        steps: ["Train and test: Lazy guess, Best straight line, Decision tree (depth 3), Nearest neighbours (k = 5).", "Record each exam average error.", "Press “Test 5 times” on your best model."] },
+      { n: "2.6", t: "Choose and defend your model", m: "15 min", set: null,
+        steps: ["Pick any question.", "Build the best model you can.", "Fill in the model card on your worksheet."] }
+    ] }
+  };
+
+  /* ---------- state ---------- */
+  const S = { q: "ripe", clues: {}, missing: "fill", scale: true, test: 20, seed: 1, model: "knn", k: 5, depth: 3, strict: 50, tab: "I", task: "1.1" };
+  QS.forEach(q => { S.clues[q.id] = allClues(q); });
+  const MAP = {}; QS.forEach(q => { if (q.map) MAP[q.id] = q.map.slice(); });
+  let last = null, lastOpts = null;
+
+  /* ---------- tasks panel ---------- */
+  function renderTasks() {
+    $$(".tab-row button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.tab === S.tab)));
+    $("#tab-time").textContent = TASKS[S.tab].time;
+    const ol = $("#task-list"); ol.innerHTML = "";
+    TASKS[S.tab].list.forEach(t => {
+      const li = document.createElement("li"); li.className = "task" + (t.n === S.task ? " on" : "");
+      li.innerHTML = `<div class="task-h"><span class="task-n">${t.n}</span><span class="task-t">${esc(t.t)}</span><span class="task-m">${t.m}</span>
+        <div class="task-body"><ol>${t.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
+        ${t.set ? `<button type="button" class="btn sm primary task-go">Set up this task</button>` : `<p class="hint">Keep your current set-up and explore.</p>`}</div></div>`;
+      li.addEventListener("click", e => { if (e.target.closest(".task-go")) return; if (S.task !== t.n) { S.task = t.n; renderTasks(); } });
+      const go = $(".task-go", li); if (go) go.addEventListener("click", () => { applyTask(t); });
+      ol.appendChild(li);
+    });
+  }
+  function applyTask(t) {
+    const s = t.set; S.task = t.n;
+    Object.assign(S, { q: s.q, model: s.model, k: s.k, depth: s.depth, missing: s.missing, scale: s.scale, test: s.test, seed: s.seed, strict: s.strict || 50 });
+    S.clues[s.q] = s.clues === "all" ? allClues(Q(s.q)) : s.clues.slice();
+    renderSetup(); renderTasks(); markStale(true);
+    flash($(".setup"));
+  }
+  function flash(el) { el.animate && el.animate([{ boxShadow: "0 0 0 4px var(--accent)" }, { boxShadow: "0 0 0 0 transparent" }], { duration: 900 }); }
+  $$(".tab-row button").forEach(b => b.addEventListener("click", () => { S.tab = b.dataset.tab; S.task = TASKS[S.tab].list[0].n; renderTasks(); }));
+
+  /* ---------- set-up panel ---------- */
+  function renderSetup() {
+    const q = Q(S.q), ds = D[q.data];
+    // 1 question
+    const ql = $("#q-list"); ql.innerHTML = "";
+    QS.forEach(x => {
+      const b = document.createElement("button"); b.type = "button"; b.className = "qbtn"; b.setAttribute("aria-pressed", String(x.id === S.q));
+      b.innerHTML = `<b>${esc(x.title)}</b><small>${esc(x.about)}</small><span class="qtag ${x.type}">${x.type === "class" ? "Which box?" : "How much?"}</span>`;
+      b.addEventListener("click", () => { if (S.q === x.id) return; S.q = x.id; if (x.type === "class" && S.model === "line") S.model = "knn"; renderSetup(); markStale(true); });
+      ql.appendChild(b);
+    });
+    // 2 data
+    const li = ds.cols.indexOf(q.label), cl = allClues(q);
+    const gaps = ds.rows.filter(r => cl.some(c => r[ds.cols.indexOf(c)] === null)).length;
+    $("#data-sum").innerHTML = `<b>${ds.rows.length}</b> ${q.nouns} · <b>${cl.length}</b> clues · answer column: <b style="color:var(--margin)">${esc(q.label)}</b>` + (gaps ? ` · <b>${gaps}</b> with a blank` : "");
+    const dist = $("#data-dist"); dist.innerHTML = "";
+    if (q.type === "class") {
+      const c = {}; ds.rows.forEach(r => c[r[li]] = (c[r[li]] || 0) + 1);
+      q.order.forEach(v => dist.insertAdjacentHTML("beforeend", `<span>${esc(q.label)} ${esc(v)}: ${c[v] || 0}</span>`));
+    } else {
+      const ys = ds.rows.map(r => r[li]); dist.insertAdjacentHTML("beforeend", `<span>lowest ${fmtVal(q, Math.min(...ys))}</span><span>average ${fmtVal(q, ML.mean(ys))}</span><span>highest ${fmtVal(q, Math.max(...ys))}</span>`);
+    }
+    const t = $("#data-table"), show = ds.cols.filter(c => c === q.label || cl.includes(c));
+    const sch = SCH[q.data];
+    t.innerHTML = `<thead><tr><th class="n">#</th>${show.map(c => `<th class="${sch[ds.cols.indexOf(c)].type === "num" ? "n" : ""}${c === q.label ? " lab-col" : ""}">${esc(c)}</th>`).join("")}</tr></thead><tbody>` +
+      ds.rows.map((r, i) => `<tr><td class="n">${i + 1}</td>${show.map(c => { const v = r[ds.cols.indexOf(c)], num = sch[ds.cols.indexOf(c)].type === "num"; return v === null ? `<td class="gap">blank</td>` : `<td class="${num ? "n" : ""}${c === q.label ? " lab-col" : ""}">${esc(v)}</td>`; }).join("")}</tr>`).join("") + "</tbody>";
+    // 3 prepare
+    setSeg("#miss-seg", S.missing); setSeg("#scale-seg", S.scale ? "on" : "off");
+    $("#miss-row").style.display = gaps ? "" : "none";
+    const selGaps = ds.rows.filter(r => S.clues[q.id].some(c => r[ds.cols.indexOf(c)] === null)).length;
+    $("#miss-note").textContent = !gaps ? "No blanks in this data." : S.missing === "drop" ? `${selGaps} ${selGaps === 1 ? q.noun : q.nouns} with a blank in your chosen clues will be left out: ${ds.rows.length - selGaps} remain.` : `${selGaps} blank${selGaps === 1 ? "" : "s"} in your chosen clues will be filled with the column average.`;
+    // 4 clues
+    const cbox = $("#clue-list"); cbox.innerHTML = "";
+    cl.forEach(c => {
+      const info = colInfo(q, c), id = "c-" + c.replace(/\W+/g, "");
+      const lab = document.createElement("label"); lab.className = "clue";
+      lab.innerHTML = `<input type="checkbox" id="${id}" ${S.clues[q.id].includes(c) ? "checked" : ""}><span>${esc(c)}</span><span class="ctype">${info.type === "num" ? "number" : info.type === "yesno" ? "yes / no" : "category"}</span>`;
+      $("input", lab).addEventListener("change", e => {
+        const on = e.target.checked, list = S.clues[q.id];
+        if (!on && list.length === 1) { e.target.checked = true; return; }
+        S.clues[q.id] = on ? cl.filter(x => x === c || list.includes(x)) : list.filter(x => x !== c);
+        renderSetup(); markStale(true);
+      });
+      cbox.appendChild(lab);
+    });
+    // 5 split
+    $("#test-r").value = S.test; $("#test-o").textContent = S.test + "%"; $("#seed-i").value = S.seed;
+    const n = S.missing === "drop" ? ds.rows.length - selGaps : ds.rows.length, nt = Math.max(1, Math.round(n * S.test / 100));
+    $("#piles").innerHTML = `<span><i style="background:var(--accent)"></i>Practice pile: <b>${n - nt}</b></span><span><i style="background:var(--margin)"></i>Exam pile: <b>${nt}</b></span>`;
+    // 6 model
+    const ml = $("#model-list"); ml.innerHTML = "";
+    const MODELS = [
+      { id: "lazy", t: "Lazy guess", s: q.type === "class" ? "Always gives the most common answer. A baseline to beat." : "Always guesses the average. A baseline to beat." },
+      { id: "knn", t: "Nearest neighbours", s: q.type === "class" ? "Asks the most similar practice examples and goes with the majority." : "Averages the answers of the most similar practice examples." },
+      { id: "tree", t: "Decision tree", s: "Learns a flowchart of yes/no questions." }
+    ];
+    if (q.type === "reg") MODELS.splice(1, 0, { id: "line", t: "Best straight line", s: "Adds up a fixed amount for each clue. Also called linear regression." });
+    if (!MODELS.some(m => m.id === S.model)) S.model = "knn";
+    MODELS.forEach(m => {
+      const b = document.createElement("div");
+      b.innerHTML = `<button type="button" class="mbtn" aria-pressed="${m.id === S.model}"><b>${m.t}</b><small>${m.s}</small></button>`;
+      if (m.id === S.model && m.id === "knn") b.insertAdjacentHTML("beforeend", `<div class="mset"><label class="hint" for="k-r">How many neighbours (k)</label><div class="range-row"><input type="range" id="k-r" min="1" max="25" step="1" value="${S.k}"><output id="k-o">k = ${S.k}</output></div></div>`);
+      if (m.id === S.model && m.id === "tree") b.insertAdjacentHTML("beforeend", `<div class="mset"><label class="hint" for="d-r">How many questions deep (depth)</label><div class="range-row"><input type="range" id="d-r" min="1" max="8" step="1" value="${S.depth}"><output id="d-o">depth ${S.depth}</output></div></div>`);
+      $("button", b).addEventListener("click", () => { if (S.model === m.id) return; S.model = m.id; renderSetup(); markStale(true); });
+      ml.appendChild(b);
+    });
+    const kr = $("#k-r"); if (kr) kr.addEventListener("input", () => { S.k = +kr.value; $("#k-o").textContent = "k = " + S.k; markStale(true); });
+    const dr = $("#d-r"); if (dr) dr.addEventListener("input", () => { S.depth = +dr.value; $("#d-o").textContent = "depth " + S.depth; markStale(true); });
+  }
+  function setSeg(sel, v) { $$(sel + " button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === v))); }
+  $("#miss-seg").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; S.missing = b.dataset.v; renderSetup(); markStale(true); });
+  $("#scale-seg").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; S.scale = b.dataset.v === "on"; renderSetup(); markStale(true); });
+  $("#test-r").addEventListener("input", () => { S.test = +$("#test-r").value; renderSetup(); markStale(true); });
+  $("#seed-i").addEventListener("change", () => { S.seed = Math.max(1, Math.min(999, parseInt($("#seed-i").value, 10) || 1)); renderSetup(); markStale(true); });
+  $("#seed-new").addEventListener("click", () => { S.seed = S.seed >= 999 ? 1 : S.seed + 1; renderSetup(); markStale(true); });
+  function markStale(on) { $("#stale").hidden = !on || !last; }
+
+  /* ---------- formatting ---------- */
+  function fmtVal(q, v) { const r = Math.abs(v) >= 100 ? Math.round(v) : Math.round(v * 10) / 10; return (q.pre || "") + r + (q.post || ""); }
+  const pct = v => Math.round(v * 100) + "%";
+  function fmtScore(q, v) { return q.type === "class" ? pct(v) : fmtVal(q, v); }
+  function modelName(o) { return o.model === "knn" ? `Nearest neighbours (k = ${o.k})` : o.model === "tree" ? `Decision tree (depth ${o.depth})` : o.model === "line" ? "Best straight line" : "Lazy guess"; }
+
+  /* ---------- train and test ---------- */
+  function opts() { const q = Q(S.q); return { clues: S.clues[q.id].slice(), missing: S.missing, scale: S.scale, testPct: S.test, seed: S.seed, model: S.model, k: S.k, depth: S.depth }; }
+  function train(log) {
+    const q = Q(S.q), o = opts();
+    last = ML.run(D[q.data], q, o); lastOpts = o; last.strict = S.strict;
+    if (q.positive) {
+      const m = last.model, P = last.P;
+      last.probTr = last.split.train.map(i => m.proba(P.X[i], q.positive));
+    }
+    renderResults();
+    $("#rep-out").innerHTML = "";
+    markStale(false);
+    if (log) addLog(entry());
+  }
+  function binaryScores() {
+    const q = last.q, t = S.strict / 100;
+    const tr = ML.binaryBoxes(last.ytr, last.probTr, q.positive, t), te = ML.binaryBoxes(last.yte, last.probTe, q.positive, t);
+    return { tr, te };
+  }
+  function scoresNow() {
+    if (last.isClass && last.q.positive) { const b = binaryScores(); return { train: b.tr.acc, test: b.te.acc, boxes: b.te }; }
+    return { train: last.trainScore, test: last.testScore };
+  }
+  function renderResults() {
+    const q = last.q, o = lastOpts, sc = scoresNow();
+    $("#r-sub").textContent = `${q.title} · ${modelName(o)} · ${o.clues.length} clue${o.clues.length > 1 ? "s" : ""} · practice ${last.nTrain}, exam ${last.nTest} · shuffle ${o.seed}`;
+    const isC = q.type === "class";
+    const right = isC ? Math.round(sc.test * last.nTest) : null;
+    $("#scores").innerHTML = `
+      <div class="score"><span class="k">Practice score</span><span class="v">${fmtScore(q, sc.train)}</span><span class="d">${isC ? "on the " + last.nTrain + " practice " + q.nouns : "average error on practice"}</span></div>
+      <div class="score main"><span class="k">Exam score</span><span class="v">${fmtScore(q, sc.test)}</span><span class="d">${isC ? `${right} of ${last.nTest} right` : "average error on " + last.nTest + " unseen " + q.nouns}</span></div>
+      <div class="score lazy"><span class="k">Lazy guess</span><span class="v">${fmtScore(q, last.lazyScore)}</span><span class="d">${isC ? "always the most common answer" : "always the average"}</span></div>`;
+    // flag
+    const flag = $("#flag"); let warn = false, msg;
+    if (isC) {
+      const gap = sc.train - sc.test;
+      if (o.model === "lazy") msg = `<b>This is the baseline.</b> Any real model should beat ${pct(last.lazyScore)} on the exam.`;
+      else if (sc.test <= last.lazyScore + 0.02) { warn = true; msg = `<b>No better than the lazy guess.</b> This model has not learned anything useful yet.`; }
+      else if (gap >= 0.08) { warn = true; msg = `<b>Big gap:</b> ${Math.round(gap * 100)} points better on practice than on the exam. The model may be learning by rote.`; }
+      else msg = `<b>${Math.round((sc.test - last.lazyScore) * 100)} points better</b> than the lazy guess on the exam.`;
+    } else {
+      if (o.model === "lazy") msg = `<b>This is the baseline.</b> Any real model should be off by less than ${fmtVal(q, last.lazyScore)}.`;
+      else if (sc.test >= last.lazyScore * 0.95) { warn = true; msg = `<b>No better than guessing the average.</b>`; }
+      else if (sc.test > sc.train * 1.5 && sc.test - sc.train > 1) { warn = true; msg = `<b>Big gap:</b> much better on practice than on the exam. The model may be learning by rote.`; }
+      else msg = `<b>${Math.round((1 - sc.test / last.lazyScore) * 100)}% smaller error</b> than guessing the average.`;
+    }
+    flag.className = "flag" + (warn ? " warn" : ""); flag.innerHTML = msg;
+    renderBoxes(sc); renderPicture(); renderLearned(); renderPredictForm();
+  }
+  function renderBoxes(sc) {
+    const q = last.q, box = $("#boxes-sec");
+    if (q.type === "reg") {
+      const errs = last.predTe.map((p, i) => Math.abs(p - last.yte[i])).sort((a, b) => a - b);
+      const within = v => errs.filter(e => e <= v).length;
+      const step = q.id === "price" ? 5 : 10;
+      box.innerHTML = `<h3>How far off on the exam <small>${last.nTest} unseen ${q.nouns}</small></h3>
+        <div class="pr">
+          <div class="pr-row"><span>Average error</span><b>${fmtVal(q, last.testScore)}</b><small>Add up how far off each guess was, divide by ${last.nTest}.</small></div>
+          <div class="pr-row"><span>Guesses within ${fmtVal(q, step)}</span><b>${within(step)} of ${last.nTest}</b></div>
+          <div class="pr-row"><span>Biggest miss</span><b>${fmtVal(q, errs[errs.length - 1])}</b></div>
+        </div>`;
+      return;
+    }
+    if (q.positive) {
+      const b = sc.boxes, pos = q.positive, neg = q.order.find(v => v !== pos);
+      const name = q.id === "spam" ? "spam" : "ripe";
+      box.innerHTML = `<h3>The four boxes <small>exam pile</small></h3>
+        <div class="cm" style="grid-template-columns:6.4em 1fr 1fr">
+          <span></span><span class="h">Actually ${pos === "Yes" ? name : pos}</span><span class="h">Actually not ${name}</span>
+          <span class="rh">Machine said ${name}</span><div class="c ok ${b.tp ? "" : "zero"}"><b>${b.tp}</b><span>Correct</span></div><div class="c no ${b.fp ? "" : "zero"}"><b>${b.fp}</b><span>False alarm</span></div>
+          <span class="rh">Machine said not ${name}</span><div class="c no ${b.fn ? "" : "zero"}"><b>${b.fn}</b><span>Missed</span></div><div class="c ok ${b.tn ? "" : "zero"}"><b>${b.tn}</b><span>Correct</span></div>
+        </div>
+        <div class="pr" style="margin-top:12px">
+          <div class="pr-row"><span>Found all the ${name}? <small style="display:inline;grid-column:auto">(recall)</small></span><b>${b.recall === null ? "–" : pct(b.recall)}</b><small>${b.tp} of ${b.tp + b.fn} ${name} ${q.nouns} found.</small></div>
+          <div class="pr-row"><span>When it says ${name}, right? <small style="display:inline;grid-column:auto">(precision)</small></span><b>${b.precision === null ? "–" : pct(b.precision)}</b><small>${b.tp + b.fp ? `${b.tp} of ${b.tp + b.fp} “${name}” answers were right.` : `It never said ${name}.`}</small></div>
+        </div>
+        <div class="strict"><label for="st-r">Strictness: say “${name}” only when at least <b id="st-o">${S.strict}%</b> of the evidence says so</label>
+          <input type="range" id="st-r" min="10" max="90" step="10" value="${S.strict}">
+          <small>Lower is a bigger net: finds more, with more false alarms. Changing it does not retrain.</small></div>`;
+      $("#st-r").addEventListener("input", e => { S.strict = +e.target.value; renderResults(); const r = $("#st-r"); r && r.focus(); });
+      return;
+    }
+    const M = ML.confusion(last.classes, last.yte, last.predTe), C = last.classes;
+    box.innerHTML = `<h3>The boxes <small>exam pile · rows: machine said, columns: actually</small></h3>
+      <div class="cm" style="grid-template-columns:5.6em repeat(${C.length},1fr)"><span></span>${C.map(c => `<span class="h">${esc(c)}</span>`).join("")}
+      ${C.map((r, i) => `<span class="rh">said ${esc(r)}</span>${C.map((c, j) => `<div class="c ${i === j ? "ok" : "no"} ${M[i][j] ? "" : "zero"}"><b>${M[i][j]}</b><span>${i === j ? "Correct" : "Mixed up"}</span></div>`).join("")}`).join("")}</div>`;
+  }
+
+  /* ---------- picture ---------- */
+  const cv = $("#pic"), ctx = cv.getContext("2d"); let W = 0, H = 0;
+  function sizeCanvas() { const r = cv.getBoundingClientRect(); if (!r.width) return false; const d = Math.min(devicePixelRatio || 1, 2.5); W = r.width; H = r.height; cv.width = Math.round(W * d); cv.height = Math.round(H * d); ctx.setTransform(d, 0, 0, d, 0, 0); return true; }
+  if (window.ResizeObserver) new ResizeObserver(() => { if (last && sizeCanvas()) drawPicture(); }).observe(cv);
+  function classColor(q, v) { return token((q.colors || {})[v] || "--chalk"); }
+  function renderPicture() { if (sizeCanvas()) drawPicture(); }
+  function nice(v) { return Math.abs(v) >= 100 ? Math.round(v) : Math.round(v * 10) / 10; }
+  function drawAxes(P, xl, yl, xr, yr) {
+    const dim = token("--chalk-dim"), chalk = token("--chalk");
+    ctx.strokeStyle = dim; ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.moveTo(P.x0, P.y0); ctx.lineTo(P.x0, P.y0 + P.h); ctx.lineTo(P.x0 + P.w, P.y0 + P.h); ctx.stroke();
+    ctx.font = "12px Hind, sans-serif"; ctx.fillStyle = dim;
+    ctx.textAlign = "left"; ctx.textBaseline = "top"; ctx.fillText(nice(xr[0]), P.x0, P.y0 + P.h + 4);
+    ctx.textAlign = "right"; ctx.fillText(nice(xr[1]), P.x0 + P.w, P.y0 + P.h + 4);
+    ctx.textAlign = "right"; ctx.textBaseline = "middle"; ctx.fillText(nice(yr[0]), P.x0 - 5, P.y0 + P.h); ctx.fillText(nice(yr[1]), P.x0 - 5, P.y0 + 6);
+    ctx.fillStyle = chalk; ctx.font = "700 13px Kalam, cursive"; ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillText(xl, P.x0 + P.w / 2, P.y0 + P.h + 4);
+    ctx.save(); ctx.translate(P.x0 - 34, P.y0 + P.h / 2); ctx.rotate(-Math.PI / 2); ctx.textBaseline = "middle"; ctx.fillText(yl, 0, 0); ctx.restore();
+  }
+  function drawPicture() {
+    const q = last.q, o = lastOpts, ds = D[q.data], P = { x0: 44, y0: 8, w: W - 54, h: H - 32 };
+    ctx.clearRect(0, 0, W, H);
+    const legend = $("#pic-legend"), cap = $("#pic-cap"), title = $("#pic-title"), sub = $("#pic-sub");
+    const rawOf = (rowId, col) => ds.rows[rowId][ds.cols.indexOf(col)];
+    const numClues = o.clues.filter(c => colInfo(q, c).type === "num");
+    const ids = last.P.rowIds, tr = last.split.train, te = last.split.test;
+    $("#axes").innerHTML = "";
+    if (q.type === "class") {
+      title.textContent = "Map of two clues";
+      if (numClues.length < 2) { sub.textContent = ""; legend.innerHTML = ""; cap.textContent = "Choose at least two number clues to see a map."; ctx.fillStyle = token("--chalk-dim"); ctx.font = "400 16px Kalam, cursive"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("No map for these clues", W / 2, H / 2); return; }
+      let [cx, cy] = MAP[q.id] || [];
+      if (!numClues.includes(cx)) cx = numClues.find(c => c !== cy) || numClues[0];
+      if (!numClues.includes(cy) || cy === cx) cy = numClues.find(c => c !== cx);
+      MAP[q.id] = [cx, cy];
+      const opt = (sel) => numClues.map(c => `<option${c === sel ? " selected" : ""}>${esc(c)}</option>`).join("");
+      $("#axes").innerHTML = `<label>Across <select id="ax-x">${opt(cx)}</select></label><label>Up <select id="ax-y">${opt(cy)}</select></label>`;
+      $("#ax-x").addEventListener("change", e => { const v = e.target.value; MAP[q.id] = [v, v === MAP[q.id][1] ? MAP[q.id][0] : MAP[q.id][1]]; drawPicture(); });
+      $("#ax-y").addEventListener("change", e => { const v = e.target.value; MAP[q.id] = [v === MAP[q.id][0] ? MAP[q.id][1] : MAP[q.id][0], v]; drawPicture(); });
+      const ix = colInfo(q, cx), iy = colInfo(q, cy);
+      const fill = (rid, col) => { const v = rawOf(rid, col); return v === null ? last.P.means[col] : v; };
+      const X = v => P.x0 + (v - ix.min) / (ix.max - ix.min || 1) * P.w, Y = v => P.y0 + P.h - (v - iy.min) / (iy.max - iy.min || 1) * P.h;
+      const regions = o.clues.length === 2;
+      if (regions) {
+        const G = 46, gw = P.w / G, gh = P.h / Math.round(G * P.h / P.w), GH = Math.round(G * P.h / P.w);
+        for (let a = 0; a < G; a++) for (let b = 0; b < GH; b++) {
+          const vx = ix.min + (a + .5) / G * (ix.max - ix.min), vy = iy.max - (b + .5) / GH * (iy.max - iy.min);
+          const x = last.P.toModel(last.P.encodeRaw(col => col === cx ? vx : vy));
+          let cls;
+          if (q.positive && last.model.proba) cls = last.model.proba(x, q.positive) >= S.strict / 100 ? q.positive : q.order.find(v => v !== q.positive);
+          else cls = last.model.predict(x);
+          ctx.globalAlpha = .2; ctx.fillStyle = classColor(q, cls); ctx.fillRect(P.x0 + a * gw, P.y0 + b * gh, gw + .5, gh + .5); ctx.globalAlpha = 1;
+        }
+      }
+      drawAxes(P, cx, cy, [ix.min, ix.max], [iy.min, iy.max]);
+      const predTe = last.isClass && q.positive ? last.probTe.map(p => p >= S.strict / 100 ? q.positive : q.order.find(v => v !== q.positive)) : last.predTe;
+      tr.forEach(i => { const rid = ids[i]; ctx.globalAlpha = .45; ctx.fillStyle = classColor(q, last.P.y[i]); ctx.beginPath(); ctx.arc(X(fill(rid, cx)), Y(fill(rid, cy)), 3, 0, 7); ctx.fill(); ctx.globalAlpha = 1; });
+      te.forEach((i, j) => {
+        const rid = ids[i], px = X(fill(rid, cx)), py = Y(fill(rid, cy));
+        ctx.fillStyle = classColor(q, last.P.y[i]); ctx.beginPath(); ctx.arc(px, py, 5.5, 0, 7); ctx.fill(); ctx.strokeStyle = token("--chalk"); ctx.lineWidth = 1.5; ctx.stroke();
+        if (predTe[j] !== last.yte[j]) { ctx.strokeStyle = token("--c-pink"); ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(px, py, 10, 0, 7); ctx.stroke(); }
+      });
+      legend.innerHTML = q.order.map(v => `<span><i style="background:${classColor(q, v)}"></i>${esc(v)}</span>`).join("") + `<span><i class="ring"></i>exam ${q.noun}</span><span><i class="ring" style="border-color:var(--c-pink)"></i>wrong on exam</span>`;
+      sub.textContent = regions ? "shaded by the machine’s answer" : "";
+      cap.textContent = regions ? "Each shaded area shows what the machine would answer there. Small dots: practice pile. Ringed dots: exam pile." : `Showing ${cx} and ${cy}. Choose exactly these two clues to see the machine’s areas shaded in.`;
+      return;
+    }
+    // regression
+    const ys = ds.rows.map(r => r[ds.cols.indexOf(q.label)]), ymin = Math.min(...ys), ymax = Math.max(...ys);
+    if (o.clues.length === 1 && numClues.length === 1) {
+      const c = numClues[0], ic = colInfo(q, c), fill = rid => { const v = rawOf(rid, c); return v === null ? last.P.means[c] : v; };
+      const X = v => P.x0 + (v - ic.min) / (ic.max - ic.min || 1) * P.w, Y = v => P.y0 + P.h - (v - ymin) / (ymax - ymin || 1) * P.h;
+      drawAxes(P, c, q.label, [ic.min, ic.max], [ymin, ymax]);
+      tr.forEach(i => { ctx.globalAlpha = .45; ctx.fillStyle = token("--c-blue"); ctx.beginPath(); ctx.arc(X(fill(ids[i])), Y(last.P.y[i]), 3, 0, 7); ctx.fill(); ctx.globalAlpha = 1; });
+      te.forEach(i => { ctx.fillStyle = token("--ripe"); ctx.beginPath(); ctx.arc(X(fill(ids[i])), Y(last.P.y[i]), 5, 0, 7); ctx.fill(); ctx.strokeStyle = token("--chalk"); ctx.lineWidth = 1.4; ctx.stroke(); });
+      ctx.save(); ctx.beginPath(); ctx.rect(P.x0, P.y0, P.w, P.h); ctx.clip();
+      ctx.strokeStyle = token("--lemon"); ctx.lineWidth = 3; ctx.beginPath();
+      for (let a = 0; a <= 160; a++) { const v = ic.min + a / 160 * (ic.max - ic.min), p = last.model.predict(last.P.toModel(last.P.encodeRaw(() => v))); a ? ctx.lineTo(X(v), Y(p)) : ctx.moveTo(X(v), Y(p)); }
+      ctx.stroke(); ctx.restore();
+      title.textContent = "The model’s answer for every " + c.replace(/ \(.*\)/, "").toLowerCase(); sub.textContent = "";
+      legend.innerHTML = `<span><i style="background:var(--c-blue)"></i>practice ${q.noun}</span><span><i style="background:var(--ripe)"></i>exam ${q.noun}</span><span><i style="background:var(--lemon);border-radius:0;height:3px"></i>model</span>`;
+      cap.textContent = "The yellow line is what the model has learned. The gap between a dot and the line is that guess’s error.";
+      return;
+    }
+    const X = v => P.x0 + (v - ymin) / (ymax - ymin || 1) * P.w, Y = v => P.y0 + P.h - (v - ymin) / (ymax - ymin || 1) * P.h;
+    drawAxes(P, "Real " + q.label.toLowerCase(), "Guess", [ymin, ymax], [ymin, ymax]);
+    ctx.save(); ctx.setLineDash([5, 5]); ctx.strokeStyle = token("--chalk-dim"); ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(X(ymin), Y(ymin)); ctx.lineTo(X(ymax), Y(ymax)); ctx.stroke(); ctx.restore();
+    last.predTr.forEach((p, i) => { ctx.globalAlpha = .4; ctx.fillStyle = token("--c-blue"); ctx.beginPath(); ctx.arc(X(last.ytr[i]), Y(p), 3, 0, 7); ctx.fill(); ctx.globalAlpha = 1; });
+    last.predTe.forEach((p, i) => { ctx.fillStyle = token("--ripe"); ctx.beginPath(); ctx.arc(X(last.yte[i]), Y(p), 5, 0, 7); ctx.fill(); ctx.strokeStyle = token("--chalk"); ctx.lineWidth = 1.4; ctx.stroke(); });
+    title.textContent = "Guess against the real answer"; sub.textContent = "";
+    legend.innerHTML = `<span><i style="background:var(--c-blue)"></i>practice</span><span><i style="background:var(--ripe)"></i>exam</span><span><i style="background:transparent;border:1.5px dashed var(--chalk-dim);border-radius:0;height:0;width:16px"></i>perfect guesses</span>`;
+    cap.textContent = "A perfect model puts every dot on the dashed line. The further a dot sits from it, the bigger that error.";
+  }
+
+  /* ---------- what the model learned ---------- */
+  function unitOf(col) { const m = /\(([^)]+)\)/.exec(col); if (!m) return ""; const u = m[1]; return u === "1-10" ? "point" : u === "%" ? "percentage point" : u === "words" ? "word" : u; }
+  function renderLearned() {
+    const el = $("#learned"), q = last.q, ex = last.model.explain(), P = last.P;
+    if (ex.kind === "lazy" || ex.kind === "knn") { el.innerHTML = `<p class="big">${esc(ex.text)}</p>`; return; }
+    if (ex.kind === "line") {
+      const w = ex.w, rows = P.feats.map((f, j) => ({ f, v: w[j + 1] }));
+      const money = v => (v < 0 ? "−" : "+") + (q.pre || "") + (Math.abs(v) >= 10 ? Math.abs(v).toFixed(0) : Math.abs(v) >= 1 ? Math.abs(v).toFixed(1) : Math.abs(v).toFixed(2)) + (q.post || "");
+      el.innerHTML = `<p class="big">Start at ${fmtVal(q, w[0])}, then:</p><ul class="line-list">${rows.map(({ f, v }) => {
+        const what = f.kind === "num" ? `for each ${unitOf(f.col) || "unit"} of ${f.col.replace(/ \(.*\)/, "")}` : `if ${f.label.replace(/\?$/, "")}`;
+        return `<li><span class="amt ${v < 0 ? "neg" : ""}">${money(v)}</span><span>${esc(what)}</span></li>`;
+      }).join("")}</ul>`;
+      return;
+    }
+    // tree
+    const depthShown = 4;
+    const fmtThr = (f, j, thr) => { const lo = Math.min(...P.Xraw.map(x => x[j])), hi = Math.max(...P.Xraw.map(x => x[j])); const raw = lastOpts.scale && lastOpts.model !== "line" ? lo + thr * (hi - lo) : thr; return Math.round(raw * 10) / 10; };
+    const leafTxt = n => {
+      if (q.type === "class") { const c = n.counts, tot = n.n; return `<span class="lf">→ ${esc(q.label.replace(/\?$/, ""))}: <b>${esc(n.value)}</b> <small>(${c[n.value] || 0} of ${tot} practice ${q.nouns})</small></span>`; }
+      return `<span class="lf">→ about <b>${fmtVal(q, n.value)}</b> <small>(${n.n} practice ${q.nouns})</small></span>`;
+    };
+    const node = (n, d) => {
+      if (n.leaf) return leafTxt(n);
+      if (d >= depthShown) return `<span class="lf"><small>… more questions below (deeper than ${depthShown})</small></span>`;
+      const f = P.feats[n.j];
+      if (f.kind === "bin") return `<span class="q">${esc(f.label.replace(/\?$/, ""))}?</span><ul><li><span class="br">yes</span>${node(n.right, d + 1)}</li><li><span class="br">no</span>${node(n.left, d + 1)}</li></ul>`;
+      return `<span class="q">${esc(f.col.replace(/ \(.*\)/, ""))} ≤ ${fmtThr(f, n.j, n.thr)}?</span><ul><li><span class="br">yes</span>${node(n.left, d + 1)}</li><li><span class="br">no</span>${node(n.right, d + 1)}</li></ul>`;
+    };
+    el.innerHTML = `<div class="tree-scroll"><ul class="tree-ol"><li>${node(ex.root, 0)}</li></ul></div>`;
+  }
+
+  /* ---------- try a new example ---------- */
+  function renderPredictForm() {
+    const q = last.q, ds = D[q.data], f = $("#pred-form"); f.innerHTML = "";
+    lastOpts.clues.forEach(c => {
+      const info = colInfo(q, c), id = "p-" + c.replace(/\W+/g, "");
+      const lab = document.createElement("label"); lab.setAttribute("for", id); lab.textContent = c;
+      let inp;
+      if (info.type === "num") {
+        const vals = ds.rows.map(r => r[ds.cols.indexOf(c)]).filter(v => v !== null).sort((a, b) => a - b);
+        const med = vals[Math.floor(vals.length / 2)], intish = vals.every(v => Number.isInteger(v));
+        inp = document.createElement("input"); inp.type = "number"; inp.step = intish ? "1" : "0.1"; inp.value = med;
+      } else {
+        inp = document.createElement("select"); info.cats.forEach(v => inp.insertAdjacentHTML("beforeend", `<option>${esc(v)}</option>`));
+      }
+      inp.id = id; inp.dataset.col = c; inp.addEventListener("input", predict); inp.addEventListener("change", predict);
+      lab.appendChild(inp); f.appendChild(lab);
+    });
+    predict();
+  }
+  function predict() {
+    const q = last.q, vals = {};
+    $$("#pred-form [data-col]").forEach(i => vals[i.dataset.col] = colInfo(q, i.dataset.col).type === "num" ? (i.value === "" ? null : +i.value) : i.value);
+    const x = last.P.toModel(last.P.encodeRaw(col => vals[col])), m = last.model, out = $("#pred-out");
+    let ans, why = "";
+    if (q.type === "class") {
+      if (q.positive && m.proba) { const p = m.proba(x, q.positive); ans = p >= S.strict / 100 ? q.positive : q.order.find(v => v !== q.positive); }
+      else ans = m.predict(x);
+      if (lastOpts.model === "knn") { const v = m.votes(x); why = `${v.c[ans] || 0} of the ${v.n} most similar practice ${q.nouns} say “${ans}”.`; }
+      else if (lastOpts.model === "tree") { const l = m.leafOf(x); why = `This branch of the tree held ${l.n} practice ${q.nouns}: ${q.order.filter(c => l.counts[c]).map(c => `${l.counts[c]} ${c}`).join(", ")}.`; }
+      else why = "The lazy guess ignores the clues.";
+      out.innerHTML = `${esc(q.label.replace(/\?$/, ""))}${q.label.endsWith("?") ? "?" : ":"} ${esc(ans)}<small>${esc(why)}</small>`;
+    } else {
+      ans = m.predict(x);
+      why = lastOpts.model === "knn" ? `Average of the ${lastOpts.k} most similar practice ${q.nouns}.` : lastOpts.model === "tree" ? "The average of the practice examples in this branch of the tree." : lastOpts.model === "line" ? "Worked out from the line in “What the model learned”." : "The lazy guess ignores the clues.";
+      out.innerHTML = `About ${fmtVal(q, ans)}<small>${esc(why)}</small>`;
+    }
+  }
+
+  /* ---------- test 5 times ---------- */
+  $("#rep").addEventListener("click", () => {
+    if (!last) return;
+    const q = last.q, o = { ...lastOpts };
+    const s = ML.repeat(D[q.data], q, o, 5), avg = ML.mean(s), lo = Math.min(...s), hi = Math.max(...s);
+    $("#rep-out").innerHTML = `Shuffles ${o.seed} to ${o.seed + 4}: ${s.map(v => fmtScore(q, v)).join(", ")}<br>Average <b>${fmtScore(q, avg)}</b> · from ${fmtScore(q, lo)} to ${fmtScore(q, hi)}`;
+    addLog({ ...entry(), shuffle: `${o.seed}–${o.seed + 4}`, practice: "–", exam: `${fmtScore(q, avg)} avg (${fmtScore(q, lo)}–${fmtScore(q, hi)})` });
+  });
+
+  /* ---------- experiment log ---------- */
+  const LOGKEY = "ml-lab-log-v1";
+  let LOG = []; try { LOG = JSON.parse(localStorage.getItem(LOGKEY) || "[]") || []; } catch (e) { LOG = []; }
+  function entry() {
+    const q = last.q, o = lastOpts, sc = scoresNow();
+    const all = allClues(q).length;
+    return { q: q.title, clues: o.clues.length === all ? `all ${all}` : `${o.clues.length} of ${all}: ${o.clues.map(c => c.replace(/ \(.*\)/, "")).join(", ")}`,
+      prep: `${D[q.data].rows.some(r => o.clues.some(c => r[D[q.data].cols.indexOf(c)] === null)) ? (o.missing === "drop" ? "rows removed" : "blanks filled") + ", " : ""}scales ${o.scale ? "on" : "off"}`,
+      model: modelName(o) + (q.positive && S.strict !== 50 ? `, strictness ${S.strict}%` : ""), exam: fmtScore(q, sc.test), practice: fmtScore(q, sc.train), split: `${100 - o.testPct}/${o.testPct}`, shuffle: String(o.seed),
+      kind: q.type === "class" ? "right" : "avg error" };
+  }
+  function addLog(e) { LOG.unshift({ id: (LOG[0] ? LOG[0].id : 0) + 1, ...e }); LOG = LOG.slice(0, 200); try { localStorage.setItem(LOGKEY, JSON.stringify(LOG)); } catch (x) {} renderLog(true); }
+  function renderLog(isNew) {
+    const t = $("#log");
+    if (!LOG.length) { t.innerHTML = `<tbody><tr><td class="empty">No experiments yet. Press “Train and test” to add your first one.</td></tr></tbody>`; return; }
+    t.innerHTML = `<thead><tr><th>#</th><th>Question</th><th>Clues</th><th>Prepare</th><th>Model</th><th>Practice/exam</th><th>Shuffle</th><th>Practice score</th><th>Exam score</th></tr></thead><tbody>` +
+      LOG.map((e, i) => `<tr class="${isNew && i === 0 ? "new" : ""}"><td class="n">${e.id}</td><td>${esc(e.q)}</td><td>${esc(e.clues)}</td><td>${esc(e.prep)}</td><td>${esc(e.model)}</td><td class="n">${esc(e.split)}</td><td class="n">${esc(e.shuffle)}</td><td class="n">${esc(e.practice)}</td><td class="n ex">${esc(e.exam)}</td></tr>`).join("") + "</tbody>";
+  }
+  const actions = $("#log-actions");
+  function clearBtn() {
+    actions.innerHTML = `<button type="button" class="btn sm" id="log-clear">Clear the list</button>`;
+    $("#log-clear").addEventListener("click", () => {
+      actions.innerHTML = `<span class="confirm">Clear all ${LOG.length} experiments? <button type="button" class="btn sm" id="log-yes">Yes, clear</button><button type="button" class="btn sm" id="log-no">Keep them</button></span>`;
+      $("#log-yes").addEventListener("click", () => { LOG = []; try { localStorage.removeItem(LOGKEY); } catch (e) {} renderLog(); clearBtn(); });
+      $("#log-no").addEventListener("click", clearBtn);
+    });
+  }
+  clearBtn();
+
+  /* ---------- start ---------- */
+  $("#run").addEventListener("click", () => train(true));
+  window.LAB = { S, train, applyTask: n => { const t = [...TASKS.I.list, ...TASKS.II.list].find(x => x.n === n); applyTask(t); }, last: () => last, scoresNow: () => scoresNow() };
+  renderTasks(); renderSetup(); renderLog(); train(false);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => last && renderPicture());
+  if (window.matchMedia) { const mq = matchMedia("(prefers-color-scheme: dark)"); (mq.addEventListener || mq.addListener).call(mq, "change", () => last && renderPicture()); }
+})();
+
+</script>
+</body>
+</html>
