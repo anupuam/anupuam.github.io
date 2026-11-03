@@ -742,7 +742,7 @@
   {
     "id": "kimichsa",
     "type": "editedbook",
-    "year": null,
+    "year": 2022,
     "authors": "J. H. Kim, K. Deep, Z. W. Geem, A. Sadollah, and A. Yadav",
     "title": "ICHSA 2022",
     "venue": "",
@@ -752,7 +752,7 @@
   {
     "id": "yadavpccda",
     "type": "editedbook",
-    "year": null,
+    "year": 2023,
     "authors": "A. Yadav, S. J. Nanda, and M.-H. Lim",
     "title": "PCCDA 2023",
     "venue": "",
@@ -762,7 +762,7 @@
   {
     "id": "yadavproceedings",
     "type": "editedbook",
-    "year": null,
+    "year": 2022,
     "authors": "A. Yadav, G. Gupta, P. Rana, and J. H. Kim",
     "title": "Proceedings on International Conference on Data Analytics and Computing",
     "venue": "",
