@@ -648,5 +648,175 @@
     "venue": "Decision Science in Action: Theory and Applications of Modern Decision Analytic Optimisation",
     "details": "pp. 31–39. Springer Singapore, 2019",
     "bibtex": "@incollection{yadav2019convergence,\n  title = {Convergence of gravitational search algorithm on linear and quadratic functions},\n  author = {Yadav, Anupam and Anita and Kim, Joong Hoon},\n  booktitle = {Decision Science in Action: Theory and Applications of Modern Decision Analytic Optimisation},\n  pages = {31--39},\n  year = {2019},\n  publisher = {Springer Singapore}\n}"
+  },
+  {
+    "id": "yadav2019harmony",
+    "type": "editedbook",
+    "year": 2019,
+    "authors": "N. Yadav, A. Yadav, J. C. Bansal, K. Deep, and J. H. Kim",
+    "title": "Harmony Search and Nature Inspired Optimization Algorithms: Theory and Applications, ICHSA 2018",
+    "venue": "Springer Nature Singapore Pte Limited",
+    "details": "Springer Nature Singapore Pte Limited, 2019",
+    "bibtex": "@misc{yadav2019harmony,\n  title = {Harmony Search and Nature Inspired Optimization Algorithms: Theory and Applications, ICHSA 2018},\n  author = {Yadav, Neha and Yadav, Anupam and Bansal, Jagdish Chand and Deep, Kusum and Kim, Joong Hoon},\n  year = {2019},\n  publisher = {Springer Nature Singapore Pte Limited}\n}"
+  },
+  {
+    "id": "kim2020advances",
+    "type": "editedbook",
+    "year": 2020,
+    "authors": "J. H. Kim, Z. W. Geem, D. Jung, and A. Yadav",
+    "title": "Advances in Harmony Search, Soft Computing and Applications",
+    "venue": "Springer Nature",
+    "details": "Springer Nature, 2020",
+    "bibtex": "@misc{kim2020advances,\n  title = {Advances in Harmony Search, Soft Computing and Applications},\n  author = {Kim, Joong Hoon and Geem, Zong Woo and Jung, Donghwi and Yadav, Anupam},\n  year = {2020},\n  publisher = {Springer Nature}\n}"
+  },
+  {
+    "id": "sharma2020congress",
+    "type": "editedbook",
+    "year": 2020,
+    "authors": "H. Sharma, M. Saraswat, A. Yadav, J. H. Kim, and J. C. Bansal",
+    "title": "Congress on Intelligent Systems",
+    "venue": "Proceedings of CIS",
+    "details": "vol. 1, 2020",
+    "bibtex": "@misc{sharma2020congress,\n  title = {Congress on Intelligent Systems},\n  author = {Sharma, Harish and Saraswat, Mukesh and Yadav, Anupam and Kim, Joong Hoon and Bansal, Jagdish Chand},\n  journal = {Proceedings of CIS},\n  volume = {1},\n  year = {2020}\n}"
+  },
+  {
+    "id": "nigdeli2020proceedings",
+    "type": "editedbook",
+    "year": 2020,
+    "authors": "S. M. Nigdeli, J. H. Kim, G. Bekdaş, and A. Yadav",
+    "title": "Proceedings of 6th International Conference on Harmony Search, Soft Computing and Applications ICHSA 2020, Istanbul",
+    "venue": "Conference proceedings ICHSA",
+    "details": "p. 10, 2020",
+    "bibtex": "@inproceedings{nigdeli2020proceedings,\n  title = {Proceedings of 6th International Conference on Harmony Search, Soft Computing and Applications ICHSA 2020, Istanbul},\n  author = {Nigdeli, Sinan Melih and Kim, Joong Hoon and Bekda{\\c{s}}, Gebrail and Yadav, Anupam},\n  booktitle = {Conference proceedings ICHSA},\n  pages = {10},\n  year = {2020}\n}"
+  },
+  {
+    "id": "tiwari2020soft",
+    "type": "editedbook",
+    "year": 2020,
+    "authors": "A. Tiwari, K. Ahuja, A. Yadav, J. C. Bansal, K. Deep, and A. K. Nagar",
+    "title": "Soft Computing for Problem Solving",
+    "venue": "Proceedings of SocProS",
+    "details": "vol. 1, 2020",
+    "bibtex": "@misc{tiwari2020soft,\n  title = {Soft Computing for Problem Solving},\n  author = {Tiwari, Aruna and Ahuja, Kapil and Yadav, Anupam and Bansal, Jagdish Chand and Deep, Kusum and Nagar, Atulya K},\n  journal = {Proceedings of SocProS},\n  volume = {1},\n  year = {2020}\n}"
+  },
+  {
+    "id": "gupta2022proceedings",
+    "type": "editedbook",
+    "year": 2022,
+    "authors": "G. Gupta, L. Wang, A. Yadav, P. Rana, and Z. Wang",
+    "title": "Proceedings of Academia-Industry Consortium for Data Science",
+    "venue": "Springer Singapore",
+    "details": "Springer Singapore, 2022",
+    "bibtex": "@misc{gupta2022proceedings,\n  title = {Proceedings of Academia-Industry Consortium for Data Science},\n  author = {Gupta, Gaurav and Wang, Lipo and Yadav, Anupam and Rana, Puneet and Wang, Zhenyu},\n  year = {2022},\n  publisher = {Springer Singapore}\n}"
+  },
+  {
+    "id": "xie2022advances",
+    "type": "editedbook",
+    "year": 2022,
+    "authors": "Q. Xie, L. Zhao, K. Li, A. Yadav, and L. Wang",
+    "title": "Advances in Natural Computation, Fuzzy Systems and Knowledge Discovery: Proceedings of the ICNC-FSKD 2021",
+    "venue": "Springer Nature",
+    "details": "Springer Nature, 2022",
+    "bibtex": "@misc{xie2022advances,\n  title = {Advances in Natural Computation, Fuzzy Systems and Knowledge Discovery: Proceedings of the ICNC-FSKD 2021},\n  author = {Xie, Quan and Zhao, Liang and Li, Kenli and Yadav, Anupam and Wang, Lipo},\n  year = {2022},\n  publisher = {Springer Nature}\n}"
+  },
+  {
+    "id": "yadav2023proceedings",
+    "type": "editedbook",
+    "year": 2023,
+    "authors": "A. Yadav, G. Gupta, P. Rana, and J. H. Kim",
+    "title": "Proceedings on International Conference on Data Analytics and Computing: ICDAC 2022",
+    "venue": "Springer",
+    "details": "Springer, 2023",
+    "bibtex": "@misc{yadav2023proceedings,\n  title = {Proceedings on International Conference on Data Analytics and Computing: ICDAC 2022},\n  author = {Yadav, Anupam and Gupta, Gaurav and Rana, Puneet and Kim, Joong Hoon},\n  year = {2023},\n  publisher = {Springer}\n}"
+  },
+  {
+    "id": "pundir2023recent",
+    "type": "editedbook",
+    "year": 2023,
+    "authors": "A. K. S. Pundir, A. Yadav, and S. Das",
+    "title": "Recent Trends in Communication and Intelligent Systems Proceedings of ICRTCIS 2023",
+    "venue": "Proceedings of ICRTCIS",
+    "details": "p. 1, 2023",
+    "bibtex": "@article{pundir2023recent,\n  title = {Recent Trends in Communication and Intelligent Systems Proceedings of ICRTCIS 2023},\n  author = {Pundir, Aditya Kumar Singh and Yadav, Anupam and Das, Swagatam},\n  journal = {Proceedings of ICRTCIS},\n  pages = {1},\n  year = {2023}\n}"
+  },
+  {
+    "id": "kimichsa",
+    "type": "editedbook",
+    "year": null,
+    "authors": "J. H. Kim, K. Deep, Z. W. Geem, A. Sadollah, and A. Yadav",
+    "title": "ICHSA 2022",
+    "venue": "",
+    "details": "Publication year and publisher not supplied",
+    "bibtex": "@article{kimichsa,\n  title = {ICHSA 2022},\n  author = {Kim, Joong Hoon and Deep, Kusum and Geem, Zong Woo and Sadollah, Ali and Yadav, Anupam}\n}"
+  },
+  {
+    "id": "yadavpccda",
+    "type": "editedbook",
+    "year": null,
+    "authors": "A. Yadav, S. J. Nanda, and M.-H. Lim",
+    "title": "PCCDA 2023",
+    "venue": "",
+    "details": "Publication year and publisher not supplied",
+    "bibtex": "@article{yadavpccda,\n  title = {PCCDA 2023},\n  author = {Yadav, Anupam and Nanda, Satyasai Jagannath and Lim, Meng-Hiot}\n}"
+  },
+  {
+    "id": "yadavproceedings",
+    "type": "editedbook",
+    "year": null,
+    "authors": "A. Yadav, G. Gupta, P. Rana, and J. H. Kim",
+    "title": "Proceedings on International Conference on Data Analytics and Computing",
+    "venue": "",
+    "details": "Publication year and publisher not supplied",
+    "bibtex": "@article{yadavproceedings,\n  title = {Proceedings on International Conference on Data Analytics and Computing},\n  author = {Yadav, Anupam and Gupta, Gaurav and Rana, Puneet and Kim, Joong Hoon}\n}"
+  },
+  {
+    "id": "kumar2024machine",
+    "type": "editedbook",
+    "year": 2024,
+    "authors": "R. Kumar, O. P. Verma, L. Wang, and A. Yadav",
+    "title": "Machine Intelligence for Research and Innovations: Proceedings of MAiTRI 2023, Volume 2",
+    "venue": "Springer Verlag, Singapore",
+    "details": "vol. 2. Springer Verlag, Singapore, 2024",
+    "bibtex": "@misc{kumar2024machine,\n  title = {Machine Intelligence for Research and Innovations: Proceedings of MAiTRI 2023, Volume 2},\n  author = {Kumar, Rajesh and Verma, Om Prakash and Wang, Lipo and Yadav, Anupam},\n  year = {2024},\n  publisher = {Springer Verlag, Singapore}\n}"
+  },
+  {
+    "id": "verma2023machine",
+    "type": "editedbook",
+    "year": 2023,
+    "authors": "O. P. Verma, L. Wang, R. Kumar, and A. Yadav",
+    "title": "Machine Intelligence for Research and Innovations",
+    "venue": "Proceedings of MAiTRI",
+    "details": "vol. 1, 2023",
+    "bibtex": "@article{verma2023machine,\n  title = {Machine Intelligence for Research and Innovations},\n  author = {Verma, Om Prakash and Wang, Lipo and Kumar, Rajesh and Yadav, Anupam},\n  journal = {Proceedings of MAiTRI},\n  volume = {1},\n  year = {2023}\n}"
+  },
+  {
+    "id": "dua2022proceedings",
+    "type": "editedbook",
+    "year": 2022,
+    "authors": "M. Dua, A. K. Jain, A. Yadav, N. Kumar, and P. Siarry",
+    "title": "Proceedings of the International Conference on Paradigms of Communication, Computing and Data Sciences PCCDS 2021",
+    "venue": "",
+    "details": "2022",
+    "bibtex": "@misc{dua2022proceedings,\n  title = {Proceedings of the International Conference on Paradigms of Communication, Computing and Data Sciences PCCDS 2021},\n  author = {Dua, Mohit and Jain, Ankit Kumar and Yadav, Anupam and Kumar, Nitin and Siarry, Patrick},\n  year = {2022}\n}"
+  },
+  {
+    "id": "nagar2021soft",
+    "type": "editedbook",
+    "year": 2021,
+    "authors": "A. K. Nagar, K. Deep, J. C. Bansal, A. Yadav, K. Ahuja, and A. Tiwari",
+    "title": "Soft Computing for Problem Solving: Proceedings of SocProS 2020, Volume 1",
+    "venue": "Springer",
+    "details": "vol. 1. Springer, 2021",
+    "bibtex": "@misc{nagar2021soft,\n  title = {Soft Computing for Problem Solving: Proceedings of SocProS 2020, Volume 1},\n  author = {Nagar, Atulya K and Deep, Kusum and Bansal, Jagdish Chand and Yadav, Anupam and Ahuja, Kapil and Tiwari, Aruna},\n  year = {2021},\n  publisher = {Springer}\n}"
+  },
+  {
+    "id": "kim2022proceedings",
+    "type": "editedbook",
+    "year": 2022,
+    "authors": "J. H. Kim, K. Deep, Z. W. Geem, A. Sadollah, and A. Yadav",
+    "title": "Proceedings of 7th International Conference on Harmony Search, Soft Computing and Applications: ICHSA 2022",
+    "venue": "Springer",
+    "details": "Springer, 2022",
+    "bibtex": "@misc{kim2022proceedings,\n  title = {Proceedings of 7th International Conference on Harmony Search, Soft Computing and Applications: ICHSA 2022},\n  author = {Kim, Joong Hoon and Deep, Kusum and Geem, Zong Woo and Sadollah, Ali and Yadav, Anupam},\n  year = {2022},\n  publisher = {Springer}\n}"
   }
 ]
