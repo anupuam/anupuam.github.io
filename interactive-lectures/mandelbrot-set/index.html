@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>The Mandelbrot Set — Interactive Lecture | Dr Anupam Yadav</title>
+<style>
+  :root{
+    --bg:#0b0b14; --panel:#141425; --ink:#e9e8f5; --mute:#a3a2c2; --line:#2a2a45;
+    --acc:#ff8a3d; --acc2:#5ad1ff; --acc3:#c77dff; --ok:#6ee7a8; --bad:#ff6b8a;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  a{color:var(--acc2)}
+  header{padding:28px 18px 10px;max-width:980px;margin:auto}
+  h1{margin:0;font-size:clamp(28px,6vw,46px);line-height:1.1;letter-spacing:-.02em;
+     background:linear-gradient(90deg,#ffd166,#ff8a3d,#ef476f,#c77dff,#5ad1ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--mute);margin:8px 0 0}
+  main{max-width:980px;margin:auto;padding:0 14px 60px}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin:18px 0}
+  h2{margin:0 0 10px;font-size:22px}
+  h3{margin:18px 0 6px;font-size:17px;color:var(--acc)}
+  .eq{display:block;text-align:center;font:600 clamp(17px,4vw,22px)/1.5 "Cambria Math","STIX Two Math",Georgia,serif;
+      background:#0e0e1c;border:1px solid var(--line);border-radius:10px;padding:12px;margin:12px 0;overflow-x:auto;white-space:nowrap}
+  .m{font-family:"Cambria Math","STIX Two Math",Georgia,serif;font-style:italic;white-space:nowrap}
+  code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  pre{background:#0e0e1c;border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto;font-size:13.5px;line-height:1.5}
+  .stage{position:relative;width:100%;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#000;touch-action:none;user-select:none}
+  @media (max-width:640px){.stage{aspect-ratio:1/1}}
+  .stage canvas{position:absolute;inset:0;width:100%;height:100%}
+  .hud{position:absolute;left:8px;bottom:8px;font:12px/1.3 ui-monospace,Menlo,monospace;background:rgba(0,0,0,.55);padding:6px 8px;border-radius:8px;pointer-events:none}
+  .badge{position:absolute;right:8px;top:8px;font-size:12px;background:rgba(0,0,0,.55);padding:4px 8px;border-radius:8px;pointer-events:none}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+  .controls label{font-size:14px;color:var(--mute);display:flex;align-items:center;gap:6px}
+  button,select{background:#1f1f38;color:var(--ink);border:1px solid #393960;border-radius:10px;padding:8px 12px;font-size:14px;cursor:pointer}
+  button:hover{border-color:var(--acc2)}
+  button.on{background:var(--acc);color:#1a0f05;border-color:var(--acc);font-weight:600}
+  input[type=range]{accent-color:var(--acc);width:140px}
+  .seg{display:inline-flex;border-radius:10px;overflow:hidden;border:1px solid #393960}
+  .seg button{border:0;border-radius:0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:720px){.grid2{grid-template-columns:1fr}}
+  .card{background:#0e0e1c;border:1px solid var(--line);border-radius:12px;padding:12px}
+  table{border-collapse:collapse;width:100%;font:13px ui-monospace,Menlo,monospace}
+  td,th{padding:3px 6px;border-bottom:1px solid #22223a;text-align:right}
+  th{color:var(--mute);font-weight:500}
+  .esc{color:var(--bad)} .in{color:var(--ok)}
+  #julia{width:100%;aspect-ratio:1/1;border-radius:10px;background:#000;display:block}
+  .examples{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+  .ex{background:#0e0e1c;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:14px}
+  .ex b{color:var(--acc2)}
+  .note{color:var(--mute);font-size:14px}
+  .hint{font-size:13px;color:var(--mute);margin-top:6px}
+  svg text{font-family:system-ui,sans-serif}
+  footer{color:var(--mute);text-align:center;font-size:13px;padding:20px}
+</style>
+</head>
+<body>
+<header>
+  <a href="../../interactive-lectures.html" style="font-size:14px;text-decoration:none">← All interactive lectures</a>
+  <h1>The Mandelbrot Set</h1>
+  <p>One tiny formula, iterated over and over, draws an infinitely detailed shape. Explore it below, then see exactly how the math works.</p>
+</header>
+
+<main>
+
+<!-- ================= EXPLORER ================= -->
+<section id="explorer">
+  <h2>1 · Interactive explorer</h2>
+  <div class="stage" id="stage">
+    <canvas id="mb"></canvas>
+    <canvas id="ov"></canvas>
+    <div class="badge" id="badge">Rendering…</div>
+    <div class="hud" id="hud"></div>
+  </div>
+
+  <div class="controls">
+    <div class="seg" role="group">
+      <button id="modeExplore" class="on">✋ Explore</button>
+      <button id="modeOrbit">🎯 Trace orbit</button>
+    </div>
+    <label>Palette
+      <select id="palette">
+        <option value="0">Sunset</option>
+        <option value="1">Electric</option>
+        <option value="2">Rainbow</option>
+        <option value="3">Fire</option>
+        <option value="4">Ocean</option>
+        <option value="5">Classic Ultra</option>
+      </select>
+    </label>
+    <label>Iterations <input type="range" id="iters" min="50" max="3000" step="10" value="300"><span id="itersVal">300</span></label>
+    <label><input type="checkbox" id="autoIt" checked> auto</label>
+    <label>Color density <input type="range" id="density" min="1" max="60" value="12"></label>
+    <label><input type="checkbox" id="cycle"> animate colors</label>
+  </div>
+  <div class="controls">
+    <select id="preset">
+      <option value="">📍 Jump to…</option>
+      <option value="-0.6,0,3.6">Whole set</option>
+      <option value="-0.7453,0.1127,0.012">Seahorse Valley</option>
+      <option value="0.2745,0.0062,0.016">Elephant Valley</option>
+      <option value="-1.7549,0,0.035">Mini-Mandelbrot (period 3)</option>
+      <option value="-0.74364478,0.13182525,0.00035">Double spiral</option>
+      <option value="-0.0886,0.6542,0.02">Triple spiral</option>
+      <option value="-0.1011,0.9563,0.012">Lightning (near c = i)</option>
+    </select>
+    <button id="zoomIn">＋ Zoom</button>
+    <button id="zoomOut">－ Zoom</button>
+    <button id="reset">⟲ Reset</button>
+    <button id="save">💾 Save PNG</button>
+  </div>
+  <p class="hint"><b>Explore:</b> drag to pan · pinch / scroll / double-tap to zoom. <b>Trace orbit:</b> tap or drag on the image to pick a value of <span class="m">c</span> and watch its orbit, iteration table and Julia set below.</p>
+</section>
+
+<!-- ================= ORBIT ================= -->
+<section id="orbit">
+  <h2>2 · Follow one point: the orbit of <span class="m">c</span></h2>
+  <p class="note">Switch to <b>🎯 Trace orbit</b> above (or tap an example below). The white path on the image is the sequence <span class="m">z₀, z₁, z₂, …</span> for your chosen <span class="m">c</span>. The dashed circle is radius 2 — once the path leaves it, it never comes back.</p>
+  <div class="grid2">
+    <div class="card">
+      <div id="orbitStatus" style="font-weight:600;margin-bottom:6px">Pick a point…</div>
+      <table><thead><tr><th>n</th><th>Re zₙ</th><th>Im zₙ</th><th>|zₙ|</th></tr></thead><tbody id="orbitTable"></tbody></table>
+    </div>
+    <div class="card">
+      <div style="font-weight:600;margin-bottom:6px">Julia set for this <span class="m">c</span></div>
+      <canvas id="julia" width="360" height="360"></canvas>
+      <p class="note" style="margin:8px 0 0">Same formula, but <span class="m">c</span> is fixed and the <i>starting</i> point <span class="m">z₀</span> varies. If <span class="m">c</span> is inside the Mandelbrot set, this picture is one connected piece; if outside, it shatters into “dust”.</p>
+    </div>
+  </div>
+  <h3>Try these</h3>
+  <div class="examples">
+    <div class="ex"><b>c = 0</b><br>0, 0, 0, … stays put. <span class="in">Inside</span>. <button data-c="0,0">show</button></div>
+    <div class="ex"><b>c = −1</b><br>0, −1, 0, −1, … a 2-cycle. <span class="in">Inside</span>. <button data-c="-1,0">show</button></div>
+    <div class="ex"><b>c = i</b><br>0, i, −1+i, −i, −1+i, … cycles. <span class="in">Inside</span> (on the edge). <button data-c="0,1">show</button></div>
+    <div class="ex"><b>c = −2</b><br>0, −2, 2, 2, 2, … the far tip. <span class="in">Inside</span>. <button data-c="-2,0">show</button></div>
+    <div class="ex"><b>c = 1</b><br>0, 1, 2, 5, 26, 677, … <span class="esc">Escapes</span>. <button data-c="1,0">show</button></div>
+    <div class="ex"><b>c = 0.26</b><br>Creeps slowly, then bolts. <span class="esc">Escapes</span> (just outside 0.25). <button data-c="0.26,0">show</button></div>
+    <div class="ex"><b>c = −0.12+0.75i</b><br>Spirals into a 3-cycle (“Douady rabbit”). <span class="in">Inside</span>. <button data-c="-0.122,0.745">show</button></div>
+    <div class="ex"><b>c = −0.75+0.1i</b><br>Swirls for a long time near the neck, then escapes. <button data-c="-0.75,0.1">show</button></div>
+  </div>
+</section>
+
+<!-- ================= MATH ================= -->
+<section id="math">
+  <h2>3 · The math, step by step</h2>
+
+  <h3>The definition</h3>
+  <p>Pick any complex number <span class="m">c</span>. Start at <span class="m">z₀ = 0</span> and repeat one rule:</p>
+  <span class="eq">z<sub>n+1</sub> = z<sub>n</sub><sup>2</sup> + c</span>
+  <p>The <b>Mandelbrot set</b> <span class="m">M</span> is the set of all <span class="m">c</span> for which this sequence stays <b>bounded</b> (never runs off to infinity):</p>
+  <span class="eq">M = { c ∈ ℂ : |z<sub>n</sub>| stays bounded as n → ∞ }</span>
+  <p>Every pixel on the image is one value of <span class="m">c</span>: its horizontal position is the real part, its vertical position the imaginary part. Black pixels are in <span class="m">M</span>.</p>
+
+  <h3>Complex numbers in 30 seconds</h3>
+  <p>A complex number <span class="m">z = x + iy</span> is a point <span class="m">(x, y)</span> in the plane, with <span class="m">i² = −1</span>. Squaring it:</p>
+  <span class="eq">(x + iy)<sup>2</sup> = (x<sup>2</sup> − y<sup>2</sup>) + i·(2xy)</span>
+  <p>Geometrically, squaring <b>squares the distance</b> from the origin and <b>doubles the angle</b>. Then adding <span class="m">c</span> just shifts the point. So each step is “spin-and-stretch, then shift” — that tension between stretching outward and being nudged back is what creates the fractal.</p>
+  <svg viewBox="0 0 520 220" width="100%" style="max-width:560px;display:block;margin:8px auto">
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker></defs>
+    <g stroke="#3a3a5c"><line x1="20" y1="180" x2="500" y2="180"/><line x1="140" y1="10" x2="140" y2="210"/></g>
+    <circle cx="140" cy="180" r="90" fill="none" stroke="#2c2c48" stroke-dasharray="4 4"/>
+    <g style="color:#5ad1ff"><line x1="140" y1="180" x2="218" y2="135" stroke="currentColor" stroke-width="2.5" marker-end="url(#ar)"/></g>
+    <text x="222" y="130" fill="#5ad1ff" font-size="15">z  (length r, angle θ)</text>
+    <g style="color:#c77dff"><line x1="140" y1="180" x2="218" y2="45" stroke="currentColor" stroke-width="2.5" marker-end="url(#ar)"/></g>
+    <text x="150" y="38" fill="#c77dff" font-size="15">z²  (length r², angle 2θ)</text>
+    <g style="color:#ff8a3d"><line x1="218" y1="45" x2="330" y2="85" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6 3" marker-end="url(#ar)"/></g>
+    <text x="290" y="60" fill="#ff8a3d" font-size="15">+ c</text>
+    <circle cx="330" cy="85" r="5" fill="#ffd166"/><text x="340" y="90" fill="#ffd166" font-size="15">z² + c  (next point)</text>
+    <path d="M175,160 A40,40 0 0 0 166,148" fill="none" stroke="#5ad1ff"/><text x="182" y="160" fill="#a3a2c2" font-size="12">θ</text>
+  </svg>
+  <p>In plain real arithmetic, with <span class="m">z = x + iy</span> and <span class="m">c = a + ib</span>, one iteration is:</p>
+  <span class="eq">x ← x<sup>2</sup> − y<sup>2</sup> + a &nbsp;&nbsp;&nbsp; y ← 2xy + b</span>
+
+  <h3>Why the magic number is 2</h3>
+  <p>We can't iterate forever, so we need a test that proves a point escapes. Here it is: <b>if ever |z<sub>n</sub>| &gt; 2, the orbit goes to infinity.</b></p>
+  <p>Sketch: if <span class="m">|z| &gt; 2</span> and <span class="m">|z| ≥ |c|</span>, the triangle inequality gives</p>
+  <span class="eq">|z<sup>2</sup> + c| ≥ |z|<sup>2</sup> − |c| ≥ |z|<sup>2</sup> − |z| = |z|·(|z| − 1) &gt; |z|</span>
+  <p>and since <span class="m">|z| − 1 &gt; 1</span> is a fixed growth factor, the distance grows at least geometrically — off to infinity. A consequence: the whole set fits inside the disk <span class="m">|c| ≤ 2</span>, touching it only at <span class="m">c = −2</span>.</p>
+  <p>Points that <i>never</i> pass 2 within our iteration limit are treated as inside. That's why raising <b>Iterations</b> sharpens the edges when you zoom deep: some points only escape after thousands of steps.</p>
+
+  <h3>Where the colors come from</h3>
+  <p>Black = never escaped. Every other pixel is colored by <b>how fast</b> it escaped — the step number <span class="m">n</span> when <span class="m">|z<sub>n</sub>|</span> first exceeded the bailout radius. Whole-number <span class="m">n</span> gives visible bands, so this explorer uses the <b>smooth (continuous) escape count</b>:</p>
+  <span class="eq">μ = n + 1 − log<sub>2</sub>( log<sub>2</sub> |z<sub>n</sub>| )</span>
+  <p>Because <span class="m">|z|</span> roughly squares each step near escape, <span class="m">log log|z|</span> grows by about 1 per step, so subtracting it fills in the fractional part. <span class="m">μ</span> is then fed into a cosine palette <span class="m">color(t) = a + b·cos(2π(c·t + d))</span> for each RGB channel. The colors are a visualization choice — the set itself is just the black part.</p>
+
+  <h3>Anatomy of the shape</h3>
+  <ul>
+    <li><b>Main cardioid</b> (the big heart): values of <span class="m">c</span> whose orbit settles to a single fixed point. Its boundary is <span class="m">c = ½e<sup>iθ</sup> − ¼e<sup>2iθ</sup></span>. Its rightmost point is <span class="m">c = ¼</span> — which is why 0.26 escapes.</li>
+    <li><b>Period-2 bulb</b> (the disk on the left): the disk <span class="m">|c + 1| ≤ ¼</span>, where orbits settle into a 2-cycle, like <span class="m">c = −1</span>.</li>
+    <li><b>Smaller bulbs</b>: each one attached to the cardioid has a definite period (3, 4, 5, …). Count the “antennae” spokes on a bulb to read its period.</li>
+    <li><b>Mini-Mandelbrots</b>: perfect-looking smaller copies appear everywhere along the filaments, at every scale — try the “Mini-Mandelbrot” preset.</li>
+    <li><b>Proven facts</b>: <span class="m">M</span> is connected (Douady & Hubbard, 1982); its boundary is so wiggly it has Hausdorff dimension 2 (Shishikura, 1998); its area is about 1.506.</li>
+  </ul>
+
+  <h3>The Julia-set connection</h3>
+  <p>For a fixed <span class="m">c</span>, the <b>filled Julia set</b> <span class="m">K<sub>c</sub></span> is all starting points <span class="m">z₀</span> whose orbit stays bounded. The Mandelbrot set is a “map” of all Julia sets:</p>
+  <span class="eq">c ∈ M &nbsp;⟺&nbsp; K<sub>c</sub> is connected &nbsp;⟺&nbsp; the orbit of 0 stays bounded</span>
+  <p>That's why starting at <span class="m">z₀ = 0</span> matters: 0 is the critical point of <span class="m">z² + c</span> (where its derivative <span class="m">2z</span> vanishes), and its fate decides the shape of the whole Julia set. Zooming into <span class="m">M</span> near <span class="m">c</span> even looks like <span class="m">K<sub>c</sub></span> — compare the two pictures in section 2.</p>
+
+  <h3>The algorithm (what this page actually runs)</h3>
+<pre>for each pixel (px, py):
+    a = xMin + px * pixelSize          # real part of c
+    b = yMax - py * pixelSize          # imaginary part of c
+    x = 0; y = 0; n = 0
+    while x*x + y*y &lt;= R*R and n &lt; maxIter:
+        x, y = x*x - y*y + a, 2*x*y + b   # z = z² + c
+        n += 1
+    if n == maxIter:
+        color = black                  # assumed inside M
+    else:
+        mu = n + 1 - log2(log2(sqrt(x*x + y*y)))
+        color = palette(mu * density)</pre>
+  <p class="note">Speed-ups used here: points inside the main cardioid or period-2 bulb are detected with a formula and skipped; the image renders progressively so it stays responsive; a large bailout radius (R = 256) makes the smooth coloring cleaner. Zoom depth is limited to about 10<sup>13</sup>× by JavaScript's 64-bit floating-point numbers.</p>
+</section>
+
+</main>
+<footer>z ↦ z² + c · Interactive lecture by Dr Anupam Yadav, NIT Jalandhar · <a href="../../interactive-lectures.html">More lectures</a></footer>
+
+<script>
+(() => {
+'use strict';
+const stage = document.getElementById('stage');
+const cv = document.getElementById('mb'), ctx = cv.getContext('2d');
+const ov = document.getElementById('ov'), octx = ov.getContext('2d');
+const hud = document.getElementById('hud'), badge = document.getElementById('badge');
+const itersEl = document.getElementById('iters'), itersVal = document.getElementById('itersVal');
+const autoEl = document.getElementById('autoIt'), densEl = document.getElementById('density');
+const palEl = document.getElementById('palette'), cycleEl = document.getElementById('cycle');
+
+const HOME = {cx:-0.6, cy:0, w:3.6};
+let view = {...HOME};
+let mode = 'explore';
+let orbitC = null;
+
+// ---------- palettes (cosine palettes) ----------
+const PALS = [
+  {a:[.5,.5,.5], b:[.5,.5,.5], c:[1,1,1], d:[0,.10,.20]},        // Sunset
+  {a:[.5,.5,.5], b:[.5,.5,.5], c:[1,1,1], d:[.30,.20,.20]},      // Electric
+  {a:[.5,.5,.5], b:[.5,.5,.5], c:[1,1,1], d:[0,.33,.67]},        // Rainbow
+  {a:[.5,.3,.1], b:[.5,.4,.3], c:[1,1,1], d:[0,.15,.25]},        // Fire
+  {a:[.2,.45,.6], b:[.3,.4,.4], c:[1,1,1], d:[.5,.4,.3]},        // Ocean
+  null                                                            // Classic Ultra (gradient)
+];
+const LUTN = 2048;
+let lut = new Uint8ClampedArray(LUTN*3);
+function buildLUT(){
+  const p = PALS[+palEl.value];
+  if (p){
+    for (let i=0;i<LUTN;i++){
+      const t=i/LUTN;
+      for (let k=0;k<3;k++) lut[i*3+k] = 255*(p.a[k]+p.b[k]*Math.cos(2*Math.PI*(p.c[k]*t+p.d[k])));
+    }
+  } else {
+    const stops=[[0,0,7,100],[.16,32,107,203],[.42,237,255,255],[.6425,255,170,0],[.8575,0,2,0],[1,0,7,100]];
+    for (let i=0;i<LUTN;i++){
+      const t=i/LUTN; let j=0; while(stops[j+1][0]<t) j++;
+      const s0=stops[j], s1=stops[j+1], f=(t-s0[0])/(s1[0]-s0[0]);
+      for (let k=0;k<3;k++) lut[i*3+k] = s0[k+1]+(s1[k+1]-s0[k+1])*f;
+    }
+  }
+}
+
+// ---------- sizing ----------
+let W=0,H=0,DPR=1;
+function resize(){
+  DPR = Math.min(window.devicePixelRatio||1, 2);
+  const r = stage.getBoundingClientRect();
+  W = Math.max(1, Math.round(r.width*DPR)); H = Math.max(1, Math.round(r.height*DPR));
+  cv.width=ov.width=W; cv.height=ov.height=H;
+  snap = null; render(); drawOrbit();
+}
+
+// ---------- coordinate helpers ----------
+const px = () => view.w / W;
+const toC = (sx, sy) => [view.cx - view.w/2 + sx*px(), view.cy + H*px()/2 - sy*px()];
+const toS = (a, b) => [(a - (view.cx - view.w/2))/px(), ((view.cy + H*px()/2) - b)/px()];
+
+function maxIter(){
+  if (autoEl.checked){
+    const z = Math.max(1, HOME.w / view.w);
+    const it = Math.round(Math.min(3000, 200 + 90*Math.log2(z)));
+    itersEl.value = it;
+  }
+  itersVal.textContent = itersEl.value;
+  return +itersEl.value;
+}
+
+// ---------- progressive render with raw escape data ----------
+let job = 0, snap = null, snapView = null;
+let muBuf = null; // Float32 smooth counts, -1 = inside
+let colorPhase = 0;
+
+function render(){
+  const id = ++job;
+  const w=W, h=H, MI=maxIter(), p=px();
+  const x0 = view.cx - view.w/2, y0 = view.cy + h*p/2;
+  muBuf = new Float32Array(w*h);
+  const mb = muBuf;
+  const img = ctx.createImageData(w,h), d = img.data;
+  const R2 = 65536, LN2 = Math.LN2;
+  let row = 0;
+  badge.textContent='Rendering…'; badge.style.display='block';
+  const vSnap = {...view};
+  function chunk(){
+    if (id !== job) return;
+    const t0 = performance.now(), start = row;
+    while (row < h && performance.now()-t0 < 14){
+      const b = y0 - row*p, b2 = b*b;
+      for (let col=0; col<w; col++){
+        const a = x0 + col*p;
+        // cardioid / bulb check
+        const q = (a-.25)*(a-.25) + b2;
+        if (q*(q+(a-.25)) <= .25*b2 || (a+1)*(a+1)+b2 <= .0625){ mb[row*w+col] = -1; continue; }
+        let x=0,y=0,xx=0,yy=0,n=0;
+        while (xx+yy <= R2 && n < MI){ y = 2*x*y + b; x = xx - yy + a; xx=x*x; yy=y*y; n++; }
+        mb[row*w+col] = (n>=MI) ? -1 : n + 1 - Math.log(Math.log(xx+yy)/2/LN2)/LN2;
+      }
+      colorRow(d, mb, row, w);
+      row++;
+    }
+    ctx.putImageData(img, 0, 0, 0, start, w, row-start);
+    if (row < h) requestAnimationFrame(chunk);
+    else {
+      lastImg = img;
+      snap = document.createElement('canvas'); snap.width=w; snap.height=h;
+      snap.getContext('2d').putImageData(img,0,0); snapView = vSnap;
+      badge.style.display='none';
+    }
+  }
+  requestAnimationFrame(chunk);
+  updateHud();
+}
+let lastImg = null;
+function colorRow(d, mb, row, w){
+  const dens = +densEl.value / 100, ph = colorPhase;
+  for (let col=0; col<w; col++){
+    const i = row*w+col, o = i*4, mu = mb[i];
+    if (mu < 0){ d[o]=d[o+1]=d[o+2]=0; }
+    else {
+      let t = (Math.sqrt(mu) * dens * 4 + ph) % 1; if (t<0) t+=1;
+      const li = (t*LUTN|0)*3;
+      d[o]=lut[li]; d[o+1]=lut[li+1]; d[o+2]=lut[li+2];
+    }
+    d[o+3]=255;
+  }
+}
+function recolor(){ // re-color without recomputing
+  if (!lastImg || !muBuf || muBuf.length !== W*H) { render(); return; }
+  for (let r=0;r<H;r++) colorRow(lastImg.data, muBuf, r, W);
+  ctx.putImageData(lastImg,0,0);
+  if (snap) snap.getContext('2d').putImageData(lastImg,0,0);
+}
+
+// Preview: transform last snapshot to current view while interacting
+function preview(){
+  if (!snap || !snapView) return;
+  const bp = snapView.w / snap.width, p = px();
+  const bx0 = snapView.cx - snapView.w/2, by0 = snapView.cy + snap.height*bp/2;
+  const x0 = view.cx - view.w/2, y0 = view.cy + H*p/2;
+  ctx.fillStyle='#000'; ctx.fillRect(0,0,W,H);
+  ctx.imageSmoothingEnabled = true;
+  ctx.drawImage(snap, (bx0-x0)/p, (y0-by0)/p, snap.width*bp/p, snap.height*bp/p);
+}
+let renderTimer = 0;
+function scheduleRender(){ job++; preview(); drawOrbit(); updateHud(); clearTimeout(renderTimer); renderTimer = setTimeout(render, 160); }
+
+function updateHud(){
+  const z = HOME.w/view.w;
+  hud.textContent = `center ${view.cx.toFixed(10)} ${view.cy>=0?'+':'−'} ${Math.abs(view.cy).toFixed(10)}i\nzoom ${z<1e4? z.toFixed(1): z.toExponential(2)}×`;
+  hud.style.whiteSpace='pre';
+}
+
+// ---------- zoom ----------
+function zoomAt(sx, sy, f){
+  const [a,b] = toC(sx,sy);
+  const nw = Math.min(8, Math.max(1e-13, view.w*f));
+  const k = nw/view.w;
+  view.cx = a - (a-view.cx)*k; view.cy = b - (b-view.cy)*k; view.w = nw;
+  scheduleRender();
+}
+
+// ---------- pointer handling ----------
+const pts = new Map();
+let pinch0 = null, lastTap = 0, moved = false, downPos = null;
+const local = e => { const r = stage.getBoundingClientRect(); return [(e.clientX-r.left)*DPR, (e.clientY-r.top)*DPR]; };
+
+stage.addEventListener('pointerdown', e => {
+  stage.setPointerCapture(e.pointerId);
+  pts.set(e.pointerId, local(e)); moved=false; downPos = local(e);
+  if (pts.size===2){
+    const [p1,p2]=[...pts.values()];
+    pinch0 = {d:Math.hypot(p1[0]-p2[0],p1[1]-p2[1]), w:view.w, mid:[(p1[0]+p2[0])/2,(p1[1]+p2[1])/2], c:toC((p1[0]+p2[0])/2,(p1[1]+p2[1])/2)};
+  } else if (mode==='orbit'){ setOrbit(...toC(...local(e))); }
+});
+stage.addEventListener('pointermove', e => {
+  const cur = local(e);
+  if (pts.size===0 && mode==='explore'){ const [a,b]=toC(...cur); hud.textContent = `c = ${a.toFixed(6)} ${b>=0?'+':'−'} ${Math.abs(b).toFixed(6)}i\nzoom ${(HOME.w/view.w).toPrecision(3)}×`; return; }
+  if (!pts.has(e.pointerId)) return;
+  const prev = pts.get(e.pointerId); pts.set(e.pointerId, cur);
+  if (downPos && Math.hypot(cur[0]-downPos[0], cur[1]-downPos[1]) > 6*DPR) moved = true;
+  if (pts.size===2 && pinch0){
+    const [p1,p2]=[...pts.values()];
+    const dd = Math.hypot(p1[0]-p2[0],p1[1]-p2[1]) || 1;
+    const mid=[(p1[0]+p2[0])/2,(p1[1]+p2[1])/2];
+    view.w = Math.min(8, Math.max(1e-13, pinch0.w * pinch0.d/dd));
+    const p = px();
+    view.cx = pinch0.c[0] - (mid[0]-W/2)*p;
+    view.cy = pinch0.c[1] + (mid[1]-H/2)*p;
+    scheduleRender();
+  } else if (pts.size===1){
+    if (mode==='orbit'){ setOrbit(...toC(...cur)); return; }
+    const p = px();
+    view.cx -= (cur[0]-prev[0])*p; view.cy += (cur[1]-prev[1])*p;
+    scheduleRender();
+  }
+});
+function up(e){
+  pts.delete(e.pointerId);
+  if (pts.size<2) pinch0=null;
+  if (pts.size===1){ /* reset anchor for remaining finger */ }
+  if (!moved && mode==='explore' && e.type==='pointerup'){
+    const now = performance.now();
+    if (now-lastTap < 300){ zoomAt(...local(e), 0.4); lastTap=0; } else lastTap = now;
+  }
+}
+stage.addEventListener('pointerup', up);
+stage.addEventListener('pointercancel', up);
+stage.addEventListener('wheel', e => { e.preventDefault(); zoomAt(...local(e), Math.exp(e.deltaY*0.0015)); }, {passive:false});
+
+// ---------- orbit ----------
+function iterateOrbit(a,b,N=500){
+  const out=[[0,0]]; let x=0,y=0,esc=-1;
+  for (let n=1;n<=N;n++){
+    const nx=x*x-y*y+a; y=2*x*y+b; x=nx; out.push([x,y]);
+    if (x*x+y*y>4 && esc<0){ esc=n; if (n+3<out.length) break; }
+    if (esc>0 && n>esc+2) break;
+  }
+  return {pts:out, esc};
+}
+function setOrbit(a,b){
+  orbitC=[a,b]; drawOrbit(); fillTable(); renderJulia();
+}
+function drawOrbit(){
+  octx.clearRect(0,0,W,H);
+  if (!orbitC) return;
+  const [a,b]=orbitC, {pts:o, esc} = iterateOrbit(a,b);
+  // radius 2 circle
+  const [ox,oy]=toS(0,0), r=2/px();
+  octx.setLineDash([6*DPR,6*DPR]); octx.strokeStyle='rgba(255,255,255,.45)'; octx.lineWidth=1.2*DPR;
+  octx.beginPath(); octx.arc(ox,oy,r,0,Math.PI*2); octx.stroke(); octx.setLineDash([]);
+  // path
+  octx.strokeStyle = esc>0 ? 'rgba(255,107,138,.9)' : 'rgba(255,255,255,.85)'; octx.lineWidth=1.6*DPR;
+  octx.beginPath();
+  o.forEach(([x,y],i)=>{ const [sx,sy]=toS(x,y); i?octx.lineTo(sx,sy):octx.moveTo(sx,sy); });
+  octx.stroke();
+  o.slice(0,60).forEach(([x,y],i)=>{ const [sx,sy]=toS(x,y); octx.fillStyle = i===0?'#ffd166':'rgba(255,255,255,.9)'; octx.beginPath(); octx.arc(sx,sy,(i===0?4:2.4)*DPR,0,7); octx.fill(); });
+  // c marker
+  const [cx,cy]=toS(a,b);
+  octx.strokeStyle='#5ad1ff'; octx.lineWidth=2.5*DPR; octx.beginPath(); octx.arc(cx,cy,8*DPR,0,7); octx.stroke();
+  octx.beginPath(); octx.moveTo(cx-13*DPR,cy); octx.lineTo(cx+13*DPR,cy); octx.moveTo(cx,cy-13*DPR); octx.lineTo(cx,cy+13*DPR); octx.stroke();
+}
+function fmt(v){ return Math.abs(v)>=1e5? v.toExponential(2) : v.toFixed(5); }
+function fillTable(){
+  const [a,b]=orbitC, {pts:o, esc}=iterateOrbit(a,b, 1000);
+  const st=document.getElementById('orbitStatus');
+  const cs=`c = ${a.toFixed(4)} ${b>=0?'+':'−'} ${Math.abs(b).toFixed(4)}i`;
+  st.innerHTML = esc>0 ? `${cs} → <span class="esc">escapes at step ${esc}</span> (outside M)`
+                       : `${cs} → <span class="in">bounded for 1000 steps</span> (inside M)`;
+  const rows=[]; const show=Math.min(o.length, 16);
+  for (let n=0;n<show;n++){ const [x,y]=o[n], m=Math.hypot(x,y); rows.push(`<tr class="${m>2?'esc':''}"><td>${n}</td><td>${fmt(x)}</td><td>${fmt(y)}</td><td>${fmt(m)}</td></tr>`); }
+  document.getElementById('orbitTable').innerHTML=rows.join('');
+}
+
+// ---------- Julia ----------
+const jc = document.getElementById('julia'), jctx = jc.getContext('2d');
+function renderJulia(){
+  if (!orbitC) return;
+  const [a,b]=orbitC, S=jc.width, img=jctx.createImageData(S,S), d=img.data, span=3.4, p=span/S, MI=250;
+  const dens = +densEl.value/100;
+  for (let r=0;r<S;r++) for (let c=0;c<S;c++){
+    let x=-span/2+c*p, y=span/2-r*p, xx=x*x, yy=y*y, n=0;
+    while (xx+yy<=256 && n<MI){ y=2*x*y+b; x=xx-yy+a; xx=x*x; yy=y*y; n++; }
+    const o=(r*S+c)*4;
+    if (n>=MI){ d[o]=d[o+1]=d[o+2]=0; }
+    else { const mu=n+1-Math.log(Math.log(xx+yy)/2/Math.LN2)/Math.LN2; let t=(Math.sqrt(Math.max(mu,0))*dens*4+colorPhase)%1; if(t<0)t+=1; const li=(t*LUTN|0)*3; d[o]=lut[li]; d[o+1]=lut[li+1]; d[o+2]=lut[li+2]; }
+    d[o+3]=255;
+  }
+  jctx.putImageData(img,0,0);
+}
+
+// ---------- controls ----------
+const bE=document.getElementById('modeExplore'), bO=document.getElementById('modeOrbit');
+function setMode(m){ mode=m; bE.classList.toggle('on',m==='explore'); bO.classList.toggle('on',m==='orbit'); stage.style.cursor = m==='orbit'?'crosshair':'grab'; }
+bE.onclick=()=>setMode('explore');
+bO.onclick=()=>{ setMode('orbit'); if(!orbitC) setOrbit(-0.122,0.745); };
+palEl.onchange=()=>{ buildLUT(); recolor(); renderJulia(); };
+densEl.oninput=()=>{ recolor(); };
+densEl.onchange=()=>renderJulia();
+itersEl.oninput=()=>{ autoEl.checked=false; itersVal.textContent=itersEl.value; };
+itersEl.onchange=()=>render();
+autoEl.onchange=()=>render();
+document.getElementById('reset').onclick=()=>{ view={...HOME}; scheduleRender(); };
+document.getElementById('zoomIn').onclick=()=>zoomAt(W/2,H/2,0.5);
+document.getElementById('zoomOut').onclick=()=>zoomAt(W/2,H/2,2);
+document.getElementById('preset').onchange=e=>{
+  if(!e.target.value) return; const [x,y,w]=e.target.value.split(',').map(Number);
+  view={cx:x,cy:y,w}; scheduleRender(); e.target.value='';
+};
+document.getElementById('save').onclick=()=>{ const a=document.createElement('a'); a.download='mandelbrot.png'; a.href=cv.toDataURL('image/png'); a.click(); };
+document.querySelectorAll('[data-c]').forEach(btn=>btn.onclick=()=>{
+  const [a,b]=btn.dataset.c.split(',').map(Number);
+  setMode('orbit'); view={...HOME}; scheduleRender(); setOrbit(a,b);
+  document.getElementById('explorer').scrollIntoView({behavior:'smooth'});
+});
+let raf=0;
+cycleEl.onchange=()=>{
+  cancelAnimationFrame(raf);
+  if(!cycleEl.checked) return;
+  let last=performance.now();
+  const tick=t=>{ colorPhase=(colorPhase+(t-last)*0.00012)%1; last=t; if(badge.style.display==='none') recolor(); raf=requestAnimationFrame(tick); };
+  raf=requestAnimationFrame(tick);
+};
+
+buildLUT();
+setMode('explore');
+new ResizeObserver(()=>{ clearTimeout(resize._t); resize._t=setTimeout(resize,100); }).observe(stage);
+resize();
+})();
+</script>
+</body>
+</html>
